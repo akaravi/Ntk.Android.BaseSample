@@ -27,9 +27,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.core.interfase.ICore;
-import ntk.base.api.core.model.CoreResponse;
 import ntk.base.api.core.model.CoreUserLoginByMobileRequest;
 import ntk.base.api.core.model.CoreUserLoginRequest;
+import ntk.base.api.core.model.CoreUserResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
@@ -94,16 +94,16 @@ public class ActUserLoginByMobile extends AppCompatActivity {
         headers = configRestHeader.GetHeaders(this);
         headers.put("PackageName", txtPackageName.getText().toString());
 
-        Observable<CoreResponse> call = iCore.userLoginByMobile(headers, request);
+        Observable<CoreUserResponse> call = iCore.userLoginByMobile(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<CoreResponse>() {
+                .subscribe(new Observer<CoreUserResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(CoreResponse response) {
+                    public void onNext(CoreUserResponse response) {
                         JsonDialog cdd = new JsonDialog(ActUserLoginByMobile.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();

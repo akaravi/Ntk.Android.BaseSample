@@ -29,9 +29,9 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.core.interfase.ICore;
 import ntk.base.api.core.model.CoreAboutUsResponse;
-import ntk.base.api.core.model.CoreResponse;
 import ntk.base.api.core.model.CoreUserRegisterByMobileRequest;
 import ntk.base.api.core.model.CoreUserRegisterByMobileResponse;
+import ntk.base.api.core.model.CoreUserResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
@@ -91,16 +91,16 @@ public class ActRegisterWithMobile extends AppCompatActivity {
         headers = configRestHeader.GetHeaders(this);
         headers.put("PackageName", txtPackageName.getText().toString());
 
-        Observable<CoreResponse> call = iCore.RegisterWithMobile(headers, request);
+        Observable<CoreUserResponse> call = iCore.RegisterWithMobile(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<CoreResponse>() {
+                .subscribe(new Observer<CoreUserResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(CoreResponse response) {
+                    public void onNext(CoreUserResponse response) {
                         JsonDialog cdd = new JsonDialog(ActRegisterWithMobile.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
