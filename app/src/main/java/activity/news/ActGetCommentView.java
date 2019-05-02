@@ -63,10 +63,10 @@ public class ActGetCommentView extends AppCompatActivity {
     }
 
     private void initialize() {
-        lblLayout.setText("BiographyCommentView");
+        lblLayout.setText("NewsCommentView");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("BiographyCommentView");
+        getSupportActionBar().setTitle("NewsCommentView");
     }
 
     @OnClick(R.id.api_test_submit_button)

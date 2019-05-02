@@ -3,13 +3,13 @@ package activity.biography;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -62,10 +62,11 @@ public class ActContentWithSimilarDatePeriodStartList extends AppCompatActivity 
     EditText tagIdText;
     @BindView(R.id.add_button)
     Button addButton;
-    @BindView(R.id.SearchDateMin)
-    DatePicker SearchDateMin;
-    @BindView(R.id.SearchDateMax)
-    DatePicker SearchDateMax;
+    @BindView(R.id.SearchDayMin)
+    EditText SearchDayMin;
+    @BindView(R.id.SearchDayMax)
+    EditText SearchDayMax;
+
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
     private List<String> sort_type = new ArrayList<String>();
@@ -118,8 +119,26 @@ public class ActContentWithSimilarDatePeriodStartList extends AppCompatActivity 
         if (!TagIds.isEmpty()) {
             request.TagIds = TagIds;
         }
-        request.SearchDateMax=SearchDateMax.getDayOfMonth()+"/"+ SearchDateMax.getMonth()+"/"+SearchDateMax.getYear();
-        request.SearchDateMin=SearchDateMin.getDayOfMonth()+"/"+ SearchDateMin.getMonth()+"/"+SearchDateMin.getYear();
+        if (!SearchDayMax.getText().toString().matches("")) {
+            if (SearchDayMax.getInputType() != InputType.TYPE_CLASS_NUMBER) {
+                progressBar.setVisibility(View.GONE);
+                SearchDayMax.setError("Invalid Info !!");
+                return;
+            } else {
+                request.SearchDayMax = Integer.valueOf(SearchDayMax.getText().toString());
+            }
+        }
+        if (!SearchDayMin.getText().toString().matches("")) {
+            if (SearchDayMin.getInputType() != InputType.TYPE_CLASS_NUMBER) {
+                progressBar.setVisibility(View.GONE);
+                SearchDayMin.setError("Invalid Info !!");
+                return;
+            } else {
+                request.SearchDayMin = Integer.valueOf(SearchDayMin.getText().toString());
+            }
+        }
+        Log.i("0000000000000000", "getData: " + request.SearchDayMax);
+        Log.i("0000000000000000", "getData: " + request.SearchDayMin);
 
         RetrofitManager manager = new RetrofitManager(ActContentWithSimilarDatePeriodStartList.this);
         IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);

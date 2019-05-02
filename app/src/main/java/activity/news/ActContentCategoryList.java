@@ -37,7 +37,6 @@ import ntk.base.api.model.Filters;
 import ntk.base.api.news.interfase.INews;
 import ntk.base.api.news.model.NewsContentCategoryListRequest;
 import ntk.base.api.news.model.NewsContentResponse;
-import ntk.base.api.news.model.NewsContentSimilarListRequest;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
@@ -162,7 +161,7 @@ public class ActContentCategoryList extends AppCompatActivity implements Adapter
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActArticle.class));
+        startActivity(new Intent(this, ActNews.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -180,7 +179,7 @@ public class ActContentCategoryList extends AppCompatActivity implements Adapter
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActArticle.class));
+            startActivity(new Intent(this, ActNews.class));
             finish();
             return true;
         }

@@ -108,8 +108,11 @@ public class ActContentWithDatePeriodStartList extends AppCompatActivity impleme
         if (!TagIds.isEmpty()) {
             request.TagIds = TagIds;
         }
-        request.SearchDateMax=SearchDateMax.getDayOfMonth()+"/"+ SearchDateMax.getMonth()+"/"+SearchDateMax.getYear();
         request.SearchDateMin=SearchDateMin.getDayOfMonth()+"/"+ SearchDateMin.getMonth()+"/"+SearchDateMin.getYear();
+        request.SearchDateMax=SearchDateMax.getDayOfMonth()+"/"+ SearchDateMax.getMonth()+"/"+SearchDateMax.getYear();
+
+        Log.i("000000000000000000", "getData: Max : "+request.SearchDateMax.toString());
+        Log.i("000000000000000000", "getData: Min : "+request.SearchDateMin.toString());
         RetrofitManager manager = new RetrofitManager(ActContentWithDatePeriodStartList.this);
         IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();

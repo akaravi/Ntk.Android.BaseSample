@@ -1,9 +1,8 @@
-package activity.news;
+package activity.imageGallery;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -21,7 +20,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import activity.article.ActArticle;
+import activity.news.ActGetTagList;
+import activity.news.ActNews;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -33,17 +33,16 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.article.interfase.IArticle;
-import ntk.base.api.article.model.ArticleContentResponse;
-import ntk.base.api.article.model.ArticleContentSimilarListRequest;
-import ntk.base.api.model.Filters;
+import ntk.base.api.imageGallery.interfase.IImageGallery;
+import ntk.base.api.imageGallery.model.ImageGalleryTagRequest;
+import ntk.base.api.imageGallery.model.ImageGalleryTagResponse;
 import ntk.base.api.news.interfase.INews;
-import ntk.base.api.news.model.NewsContentResponse;
-import ntk.base.api.news.model.NewsContentSimilarListRequest;
+import ntk.base.api.news.model.NewsTagRequest;
+import ntk.base.api.news.model.NewsTagResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
-public class ActContentSimilarList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ActTagList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.txtPackageName)
     EditText txtPackageName;
@@ -59,30 +58,28 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
     EditText currentPageNumberText;
     @BindView(R.id.sort_column_text)
     EditText sortColumnText;
-    @BindView(R.id.txtLinkContentId)
-    EditText txtLinkContentId;
     @BindView(R.id.api_test_submit_button)
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
-    private List<String> sort_type = new ArrayList<String>();
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
+    private List<String> sort_type = new ArrayList<String>();
     private int sort_Type_posistion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_news_content_similar_list);
+        setContentView(R.layout.act_image_gallery_tag_list);
         ButterKnife.bind(this);
         initialize();
     }
 
     private void initialize() {
-        lblLayout.setText("NewsContentSimilarList");
+        lblLayout.setText("ImageGalleryTagList");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("NewsContentSimilarList");
+        getSupportActionBar().setTitle("ImageGalleryTagList");
         sort_type.add("Descnding_Sort");
         sort_type.add("Ascnding_Sort");
         sort_type.add("Random_Sort");
@@ -91,58 +88,36 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
     }
 
     @OnClick(R.id.api_test_submit_button)
-    public void onClick(View v) {
+    public void onSubmitClick(View v) {
         progressBar.setVisibility(View.VISIBLE);
         getData();
     }
 
     private void getData() {
-        NewsContentSimilarListRequest request = new NewsContentSimilarListRequest();
+        ImageGalleryTagRequest request = new ImageGalleryTagRequest();
         request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
         request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
         request.SortType = sort_Type_posistion;
         request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
         request.SortColumn = sortColumnText.getText().toString();
-        long LinkContentId = 0;
-        if (!txtLinkContentId.getText().toString().matches("")) {
-            if (txtLinkContentId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
-                txtLinkContentId.setError("inValid Info !!");
-                progressBar.setVisibility(View.GONE);
-                return;
-            } else {
-                txtLinkContentId.setError(null);
-                LinkContentId = Long.valueOf(txtLinkContentId.getText().toString());
-            }
-        } else {
-            txtLinkContentId.setError("Required !!");
-            progressBar.setVisibility(View.GONE);
-            return;
-        }
-        if (LinkContentId > 0) {
-            List<Filters> filters = new ArrayList<>();
-            Filters f = new Filters();
-            f.PropertyName = "LinkContentId";
-            f.IntValue1 = LinkContentId;
-            filters.add(f);
-            request.filters = filters;
-        }
-        RetrofitManager manager = new RetrofitManager(ActContentSimilarList.this);
-        INews iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INews.class);
+
+        RetrofitManager manager = new RetrofitManager(ActTagList.this);
+        IImageGallery iImageGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IImageGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
         headers.put("PackageName", txtPackageName.getText().toString());
 
-        Observable<NewsContentResponse> call = iNews.GetContentSimilarList(headers, request);
+        Observable<ImageGalleryTagResponse> call = iImageGallery.GetTagList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<NewsContentResponse>() {
+                .subscribe(new Observer<ImageGalleryTagResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(NewsContentResponse response) {
-                        JsonDialog cdd = new JsonDialog(ActContentSimilarList.this, response);
+                    public void onNext(ImageGalleryTagResponse response) {
+                        JsonDialog cdd = new JsonDialog(ActTagList.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -151,7 +126,7 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
                     public void onError(Throwable e) {
                         progressBar.setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(ActContentSimilarList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActTagList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -159,14 +134,23 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
                         progressBar.setVisibility(View.GONE);
                     }
                 });
-
     }
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActNews.class));
+        startActivity(new Intent(this, ActImageGallery.class));
         finish();
         return super.onSupportNavigateUp();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            startActivity(new Intent(this, ActImageGallery.class));
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
@@ -178,15 +162,4 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActNews.class));
-            finish();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
 }

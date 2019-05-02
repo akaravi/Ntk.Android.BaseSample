@@ -129,7 +129,7 @@ public class ActContentWithSimilarDatePeriodStartDayAndMonthOfYearList extends A
                 progressBar.setVisibility(View.GONE);
                 return;
             } else {
-                request.MountOfYear = Integer.valueOf(MountOfYear.getText().toString());
+                request.MonthOfYear = Integer.valueOf(MountOfYear.getText().toString());
             }
         } else {
             MountOfYear.setError("Invalid info !!");

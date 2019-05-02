@@ -1,23 +1,19 @@
-package activity.news;
+package activity.imageGallery;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -31,55 +27,46 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import ntk.base.api.imageGallery.interfase.IImageGallery;
+import ntk.base.api.imageGallery.model.ImageGalleryCommentResponse;
+import ntk.base.api.imageGallery.model.ImageGalleryCommentViewRequest;
+import ntk.base.api.imageGallery.model.ImageGalleryContentCategoryListRequest;
+import ntk.base.api.imageGallery.model.ImageGalleryContentResponse;
 import ntk.base.api.news.interfase.INews;
-import ntk.base.api.news.model.NewsCategoryTagRequest;
-import ntk.base.api.news.model.NewsCategoryTagResponse;
+import ntk.base.api.news.model.NewsCommentResponse;
+import ntk.base.api.news.model.NewsCommentViewRequest;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
-public class ActGetCategoryTagList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-
-    @BindView(R.id.row_per_page_text)
-    EditText rowPerPageText;
-    @BindView(R.id.sort_type_spinner)
-    Spinner sortTypeSpinner;
-    @BindView(R.id.skip_row_data_text)
-    EditText skipRowDataText;
-    @BindView(R.id.current_page_number_text)
-    EditText currentPageNumberText;
-    @BindView(R.id.sort_column_text)
-    EditText sortColumnText;
-    @BindView(R.id.api_test_submit_button)
-    Button apiTestSubmitButton;
-    @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
+public class ActCommentView extends AppCompatActivity {
     @BindView(R.id.txtPackageName)
     EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
+    @BindView(R.id.txtId)
+    EditText txtId;
+    @BindView(R.id.txtActionClientOrder)
+    EditText txtActionClientOrder;
+    @BindView(R.id.api_test_submit_button)
+    Button apiTestSubmitButton;
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
-    private List<String> sort_type = new ArrayList<String>();
-    private int sort_Type_posistion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_news_get_category_tag_list);
+        setContentView(R.layout.act_image_gallery_comment_view);
         ButterKnife.bind(this);
         initialize();
     }
 
     private void initialize() {
-        lblLayout.setText("NewsCategoryTagList");
+        lblLayout.setText("ImageGalleryContentCategoryList");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("NewsCategoryTagList");
-        sort_type.add("Descnding_Sort");
-        sort_type.add("Ascnding_Sort");
-        sort_type.add("Random_Sort");
-        sortTypeSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sort_type));
-        sortTypeSpinner.setOnItemSelectedListener(this);
+        getSupportActionBar().setTitle("ImageGalleryContentCategoryList");
     }
 
     @OnClick(R.id.api_test_submit_button)
@@ -89,30 +76,50 @@ public class ActGetCategoryTagList extends AppCompatActivity implements AdapterV
     }
 
     private void getData() {
-        NewsCategoryTagRequest request = new NewsCategoryTagRequest();
-        request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
-        request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
-        request.SortType = sort_Type_posistion;
-        request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
-        request.SortColumn = sortColumnText.getText().toString();
-
-        RetrofitManager manager = new RetrofitManager(ActGetCategoryTagList.this);
-        INews iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INews.class);
+        ImageGalleryCommentViewRequest request = new ImageGalleryCommentViewRequest();
+        if (!txtId.getText().toString().matches("")) {
+            if (txtId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
+                txtId.setError("Invalid Info !!");
+                progressBar.setVisibility(View.GONE);
+                return;
+            } else {
+                request.Id = Long.valueOf(txtId.getText().toString());
+            }
+        } else {
+            txtId.setError("Required !!");
+            progressBar.setVisibility(View.GONE);
+            return;
+        }
+        if (!txtActionClientOrder.getText().toString().matches("")) {
+            if (txtActionClientOrder.getInputType() != InputType.TYPE_CLASS_NUMBER) {
+                txtActionClientOrder.setError("Invalid Info !!");
+                progressBar.setVisibility(View.GONE);
+                return;
+            } else {
+                request.ActionClientOrder = Integer.valueOf(txtActionClientOrder.getText().toString());
+            }
+        } else {
+            txtActionClientOrder.setError("Required !!");
+            progressBar.setVisibility(View.GONE);
+            return;
+        }
+        RetrofitManager manager = new RetrofitManager(ActCommentView.this);
+        IImageGallery iImageGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IImageGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
         headers.put("PackageName", txtPackageName.getText().toString());
 
-        Observable<NewsCategoryTagResponse> call = iNews.GetCategoryTagList(headers, request);
+        Observable<ImageGalleryCommentResponse> call = iImageGallery.GetCommentView(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<NewsCategoryTagResponse>() {
+                .subscribe(new Observer<ImageGalleryCommentResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(NewsCategoryTagResponse response) {
-                        JsonDialog cdd = new JsonDialog(ActGetCategoryTagList.this, response);
+                    public void onNext(ImageGalleryCommentResponse response) {
+                        JsonDialog cdd = new JsonDialog(ActCommentView.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -121,7 +128,7 @@ public class ActGetCategoryTagList extends AppCompatActivity implements AdapterV
                     public void onError(Throwable e) {
                         progressBar.setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(ActGetCategoryTagList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActCommentView.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -133,7 +140,7 @@ public class ActGetCategoryTagList extends AppCompatActivity implements AdapterV
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActNews.class));
+        startActivity(new Intent(this, ActImageGallery.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -141,20 +148,10 @@ public class ActGetCategoryTagList extends AppCompatActivity implements AdapterV
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActNews.class));
+            startActivity(new Intent(this, ActImageGallery.class));
             finish();
             return true;
         }
         return super.onKeyDown(keyCode, event);
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        sort_Type_posistion = position;
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
     }
 }

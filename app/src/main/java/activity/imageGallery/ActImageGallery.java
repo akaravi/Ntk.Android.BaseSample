@@ -23,7 +23,18 @@ public class ActImageGallery extends AppCompatActivity {
 
     @BindView(R.id.api_recycler_view)
     RecyclerView apiRecyclerView;
-    private String[] articleList = new String[]{""};
+    private String[] articleList = new String[]{
+            "ImageGalleryCategoryList",
+            "ImageGalleryCategoryTagList",
+            "ImageGalleryContentView",
+            "ImageGalleryContentSimilarList",
+            "ImageGalleryContentOtherInfoList",
+            "ImageGalleryContentList",
+            "ImageGalleryContentFavoriteList",
+            "ImageGalleryContentFavoriteAddOrRemove",
+            "ImageGalleryCommentList",
+            "ImageGalleryContentCategoryList",
+            "ImageGalleryTagList"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +94,47 @@ public class ActImageGallery extends AppCompatActivity {
                 public void onClick(View view) {
                     switch (view.getId()) {
                         case 0:
-                            startActivity(new Intent(ActImageGallery.this, ActGetResponseMain.class));
+                            startActivity(new Intent(ActImageGallery.this, ActCategoryList.class));
+                            finish();
+                            break;
+                        case 1:
+                            startActivity(new Intent(ActImageGallery.this, ActCategoryTagList.class));
+                            finish();
+                            break;
+                        case 2:
+                            startActivity(new Intent(ActImageGallery.this, ActContentView.class));
+                            finish();
+                            break;
+                        case 3:
+                            startActivity(new Intent(ActImageGallery.this, ActContentSimilarList.class));
+                            finish();
+                            break;
+                        case 4:
+                            startActivity(new Intent(ActImageGallery.this, ActContentOtherInfoList.class));
+                            finish();
+                            break;
+                        case 5:
+                            startActivity(new Intent(ActImageGallery.this, ActContentList.class));
+                            finish();
+                            break;
+                        case 6:
+                            startActivity(new Intent(ActImageGallery.this, ActContentFavoriteList.class));
+                            finish();
+                            break;
+                        case 7:
+                            startActivity(new Intent(ActImageGallery.this, ActContentFavoriteAddOrRemove.class));
+                            finish();
+                            break;
+                        case 8:
+                            startActivity(new Intent(ActImageGallery.this, ActCommentList.class));
+                            finish();
+                            break;
+                        case 9:
+                            startActivity(new Intent(ActImageGallery.this, ActContentCategoryList.class));
+                            finish();
+                            break;
+                        case 10:
+                            startActivity(new Intent(ActImageGallery.this, ActTagList.class));
                             finish();
                             break;
                     }

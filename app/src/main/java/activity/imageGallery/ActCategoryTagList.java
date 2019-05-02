@@ -1,9 +1,8 @@
-package activity.biography;
+package activity.imageGallery;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -21,6 +20,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import activity.news.ActGetCategoryTagList;
+import activity.news.ActNews;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -32,13 +33,16 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.biography.interfase.IBiography;
-import ntk.base.api.biography.model.BiographyContentResponse;
-import ntk.base.api.biography.model.BiographyContentWithSimilarDatePeriodEndListRequest;
+import ntk.base.api.imageGallery.interfase.IImageGallery;
+import ntk.base.api.imageGallery.model.ImageGalleryCategoryTagRequest;
+import ntk.base.api.imageGallery.model.ImageGalleryCategoryTagResponse;
+import ntk.base.api.news.interfase.INews;
+import ntk.base.api.news.model.NewsCategoryTagRequest;
+import ntk.base.api.news.model.NewsCategoryTagResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
-public class ActContentWithSimilarDatePeriodEndList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ActCategoryTagList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.txtPackageName)
     EditText txtPackageName;
@@ -58,34 +62,24 @@ public class ActContentWithSimilarDatePeriodEndList extends AppCompatActivity im
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    @BindView(R.id.tag_id_text)
-    EditText tagIdText;
-    @BindView(R.id.add_button)
-    Button addButton;
-    @BindView(R.id.SearchDayMin)
-    EditText SearchDayMin;
-    @BindView(R.id.SearchDayMax)
-    EditText SearchDayMax;
-
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
     private List<String> sort_type = new ArrayList<String>();
     private int sort_Type_posistion;
-    private List<Long> TagIds = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_biography_content_with_similar_date_period_end_list);
+        setContentView(R.layout.act_image_gallery_category_tag_list);
         ButterKnife.bind(this);
         initialize();
     }
 
     private void initialize() {
-        lblLayout.setText("BiographyContentWithSimilarDatePeriodEndList");
+        lblLayout.setText("ImageGalleryCategoryTagList");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("BiographyContentWithSimilarDatePeriodEndList");
+        getSupportActionBar().setTitle("ImageGalleryCategoryTagList");
         sort_type.add("Descnding_Sort");
         sort_type.add("Ascnding_Sort");
         sort_type.add("Random_Sort");
@@ -100,74 +94,51 @@ public class ActContentWithSimilarDatePeriodEndList extends AppCompatActivity im
     }
 
     private void getData() {
-        BiographyContentWithSimilarDatePeriodEndListRequest request = new BiographyContentWithSimilarDatePeriodEndListRequest();
+        ImageGalleryCategoryTagRequest request = new ImageGalleryCategoryTagRequest();
         request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
         request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
         request.SortType = sort_Type_posistion;
         request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
         request.SortColumn = sortColumnText.getText().toString();
-        if (!TagIds.isEmpty()) {
-            request.TagIds = TagIds;
-        }
-        if (!SearchDayMax.getText().toString().matches("")){
-            if(SearchDayMax.getInputType()!= InputType.TYPE_CLASS_NUMBER){
-                progressBar.setVisibility(View.GONE);
-                SearchDayMax.setError("Invalid Info !!");
-                return;
-            }else {
-                request.SearchDayMax=Integer.valueOf(SearchDayMax.getText().toString());
-            }
-        }
-        if (!SearchDayMin.getText().toString().matches("")){
-            if(SearchDayMin.getInputType()!= InputType.TYPE_CLASS_NUMBER){
-                progressBar.setVisibility(View.GONE);
-                SearchDayMin.setError("Invalid Info !!");
-                return;
-            }else {
-                request.SearchDayMin=Integer.valueOf(SearchDayMin.getText().toString());
-            }
-        }
-        Log.i("0000000000000000", "getData: " + request.SearchDayMax);
-        Log.i("0000000000000000", "getData: " + request.SearchDayMin);
 
-        RetrofitManager manager = new RetrofitManager(ActContentWithSimilarDatePeriodEndList.this);
-        IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
+        RetrofitManager manager = new RetrofitManager(ActCategoryTagList.this);
+        IImageGallery iImageGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IImageGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
         headers.put("PackageName", txtPackageName.getText().toString());
 
-        Observable<BiographyContentResponse> call = iBiography.GetContentWithSimilarDatePeriodEndList(headers, request);
-        call.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<BiographyContentResponse>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                    }
-
-                    @Override
-                    public void onNext(BiographyContentResponse response) {
-                        JsonDialog cdd = new JsonDialog(ActContentWithSimilarDatePeriodEndList.this, response);
-                        cdd.setCanceledOnTouchOutside(false);
-                        cdd.show();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        progressBar.setVisibility(View.GONE);
+//        Observable<ImageGalleryCategoryTagResponse> call = iImageGallery.GetCategoryTagList(headers, request);
+//        call.observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(Schedulers.io())
+//                .subscribe(new Observer<ImageGalleryCategoryTagResponse>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//                    }
+//
+//                    @Override
+//                    public void onNext(ImageGalleryCategoryTagResponse response) {
+//                        JsonDialog cdd = new JsonDialog(ActCategoryTagList.this, response);
+//                        cdd.setCanceledOnTouchOutside(false);
+//                        cdd.show();
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        progressBar.setVisibility(View.GONE);
 //                        Log.i("Error", e.getMessage());
-                        Toast.makeText(ActContentWithSimilarDatePeriodEndList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        progressBar.setVisibility(View.GONE);
-                    }
-                });
+//                        Toast.makeText(ActCategoryTagList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        progressBar.setVisibility(View.GONE);
+//                    }
+//                });
     }
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActBiography.class));
+        startActivity(new Intent(this, ActImageGallery.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -175,7 +146,7 @@ public class ActContentWithSimilarDatePeriodEndList extends AppCompatActivity im
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActBiography.class));
+            startActivity(new Intent(this, ActImageGallery.class));
             finish();
             return true;
         }
