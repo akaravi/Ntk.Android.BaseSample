@@ -112,7 +112,8 @@ public class ActContentWithSimilarDatePeriodStartDayOfYearList extends AppCompat
                 progressBar.setVisibility(View.GONE);
                 return;
             } else {
-                request.DayOfYear = Integer.valueOf(DayOfYear.getText().toString());
+                request.DayOfYearMin = Integer.valueOf(DayOfYear.getText().toString());
+                request.DayOfYearMax = Integer.valueOf(DayOfYear.getText().toString());
             }
         } else {
             DayOfYear.setError("Invalid info !!");
@@ -126,7 +127,7 @@ public class ActContentWithSimilarDatePeriodStartDayOfYearList extends AppCompat
         headers = configRestHeader.GetHeaders(this);
         headers.put("PackageName", txtPackageName.getText().toString());
 
-        Observable<BiographyContentResponse> call = iBiography.GetContentWithSimilarDatePeriodStartDayAndMonthOfYearList(headers, request);
+        Observable<BiographyContentResponse> call = iBiography.GetContentWithSimilarDatePeriodStartDayOfYearList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<BiographyContentResponse>() {
