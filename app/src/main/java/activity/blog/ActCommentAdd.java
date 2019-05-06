@@ -7,22 +7,15 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import activity.estate.ActEstate;
-import activity.estate.ActPropertyList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -35,31 +28,24 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.blog.interfase.IBlog;
-import ntk.base.api.blog.model.BlogCategoryListRequest;
-import ntk.base.api.blog.model.BlogCategoryListResponse;
-import ntk.base.api.estate.interfase.IEstate;
-import ntk.base.api.estate.model.EstatePropertyListRequest;
-import ntk.base.api.estate.model.EstatePropertyListResponse;
-import ntk.base.api.model.Filters;
+import ntk.base.api.blog.model.BlogCommentAddRequest;
+import ntk.base.api.blog.model.BlogCommentResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
-public class ActCategoryList extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class ActCommentAdd extends AppCompatActivity {
+
 
     @BindView(R.id.txtPackageName)
     EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
-    @BindView(R.id.row_per_page_text)
-    EditText rowPerPageText;
-    @BindView(R.id.sort_type_spinner)
-    Spinner sortTypeSpinner;
-    @BindView(R.id.skip_row_data_text)
-    EditText skipRowDataText;
-    @BindView(R.id.current_page_number_text)
-    EditText currentPageNumberText;
-    @BindView(R.id.sort_column_text)
-    EditText sortColumnText;
+    @BindView(R.id.txtWriter)
+    EditText txtWriter;
+    @BindView(R.id.txtComment)
+    EditText txtComment;
+    @BindView(R.id.txtLinkParentId)
+    EditText txtLinkParentId;
     @BindView(R.id.txtLinkContentId)
     EditText txtLinkContentId;
     @BindView(R.id.api_test_submit_button)
@@ -67,83 +53,72 @@ public class ActCategoryList extends AppCompatActivity implements AdapterView.On
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
-    private List<String> sort_type = new ArrayList<String>();
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
-    private int sort_Type_posistion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_blog_category_list);
+        setContentView(R.layout.act_blog_comment_add);
         ButterKnife.bind(this);
         initialize();
     }
 
     private void initialize() {
-        lblLayout.setText("BlogCategoryList");
+        lblLayout.setText("BlogCommentAdd");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("BlogCategoryList");
-        sort_type.add("Descnding_Sort");
-        sort_type.add("Ascnding_Sort");
-        sort_type.add("Random_Sort");
-        sortTypeSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sort_type));
-        sortTypeSpinner.setOnItemSelectedListener(this);
+        getSupportActionBar().setTitle("BlogCommentAdd");
     }
 
     @OnClick(R.id.api_test_submit_button)
-    public void onClick(View v) {
+    public void onSubmitClick(View v) {
         progressBar.setVisibility(View.VISIBLE);
         getData();
     }
 
     private void getData() {
-        BlogCategoryListRequest request = new BlogCategoryListRequest();
-        request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
-        request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
-        request.SortType = sort_Type_posistion;
-        request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
-        request.SortColumn = sortColumnText.getText().toString();
-        long LinkContentId = 0;
-        if (!txtLinkContentId.getText().toString().matches("")) {
-            if (txtLinkContentId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
-                txtLinkContentId.setError("inValid Info !!");
+        BlogCommentAddRequest request = new BlogCommentAddRequest();
+        if (!txtWriter.getText().toString().matches("")) {
+            request.Writer = txtWriter.getText().toString();
+        }
+        if (!txtComment.getText().toString().matches("")) {
+            request.Comment = txtWriter.getText().toString();
+        }
+        if (!txtLinkParentId.getText().toString().matches("")) {
+            if (txtLinkParentId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
+                txtLinkParentId.setError("InValid Info  !!");
                 progressBar.setVisibility(View.GONE);
                 return;
             } else {
-                txtLinkContentId.setError(null);
-                LinkContentId = Long.valueOf(txtLinkContentId.getText().toString());
+                request.LinkParentId = Long.valueOf(txtLinkParentId.getText().toString());
             }
-        } else {
-            txtLinkContentId.setError("Required !!");
-            progressBar.setVisibility(View.GONE);
-            return;
         }
-        if (LinkContentId > 0) {
-            List<Filters> filters = new ArrayList<>();
-            Filters f = new Filters();
-            f.PropertyName = "LinkContentId";
-            f.IntValue1 = LinkContentId;
-            filters.add(f);
-            request.filters = filters;
+        if (!txtLinkContentId.getText().toString().matches("")) {
+            if (txtLinkContentId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
+                txtLinkContentId.setError("InValid Info !!");
+                progressBar.setVisibility(View.GONE);
+                return;
+            } else {
+                request.LinkContentId = Long.valueOf(txtLinkContentId.getText().toString());
+            }
         }
-        RetrofitManager manager = new RetrofitManager(ActCategoryList.this);
+        RetrofitManager manager = new RetrofitManager(ActCommentAdd.this);
         IBlog iBlog = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBlog.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
         headers.put("PackageName", txtPackageName.getText().toString());
 
-        Observable<BlogCategoryListResponse> call = iBlog.GetCategoryList(headers, request);
+        Observable<BlogCommentResponse> call = iBlog.SetComment(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<BlogCategoryListResponse>() {
+                .subscribe(new Observer<BlogCommentResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(BlogCategoryListResponse response) {
-                        JsonDialog cdd = new JsonDialog(ActCategoryList.this, response);
+                    public void onNext(BlogCommentResponse response) {
+                        JsonDialog cdd = new JsonDialog(ActCommentAdd.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -152,7 +127,7 @@ public class ActCategoryList extends AppCompatActivity implements AdapterView.On
                     public void onError(Throwable e) {
                         progressBar.setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(ActCategoryList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActCommentAdd.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -171,16 +146,6 @@ public class ActCategoryList extends AppCompatActivity implements AdapterView.On
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        sort_Type_posistion = position;
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
-    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             startActivity(new Intent(this, ActBlog.class));
@@ -189,5 +154,4 @@ public class ActCategoryList extends AppCompatActivity implements AdapterView.On
         }
         return super.onKeyDown(keyCode, event);
     }
-
 }

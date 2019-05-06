@@ -3,7 +3,6 @@ package activity.blog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -21,8 +20,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import activity.estate.ActEstate;
-import activity.estate.ActPropertyList;
+import activity.news.ActGetCategoryTagList;
+import activity.news.ActNews;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -35,16 +34,15 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.blog.interfase.IBlog;
-import ntk.base.api.blog.model.BlogCategoryListRequest;
-import ntk.base.api.blog.model.BlogCategoryListResponse;
-import ntk.base.api.estate.interfase.IEstate;
-import ntk.base.api.estate.model.EstatePropertyListRequest;
-import ntk.base.api.estate.model.EstatePropertyListResponse;
-import ntk.base.api.model.Filters;
+import ntk.base.api.blog.model.BlogCategoryTagListRequest;
+import ntk.base.api.blog.model.BlogCategoryTagListResponse;
+import ntk.base.api.news.interfase.INews;
+import ntk.base.api.news.model.NewsCategoryTagRequest;
+import ntk.base.api.news.model.NewsCategoryTagResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
-public class ActCategoryList extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class ActCategoryTagList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.txtPackageName)
     EditText txtPackageName;
@@ -60,30 +58,28 @@ public class ActCategoryList extends AppCompatActivity implements AdapterView.On
     EditText currentPageNumberText;
     @BindView(R.id.sort_column_text)
     EditText sortColumnText;
-    @BindView(R.id.txtLinkContentId)
-    EditText txtLinkContentId;
     @BindView(R.id.api_test_submit_button)
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
-    private List<String> sort_type = new ArrayList<String>();
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
+    private List<String> sort_type = new ArrayList<String>();
     private int sort_Type_posistion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_blog_category_list);
+        setContentView(R.layout.act_blog_category_tag_list);
         ButterKnife.bind(this);
         initialize();
     }
 
     private void initialize() {
-        lblLayout.setText("BlogCategoryList");
+        lblLayout.setText("BlogCategoryTagList");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("BlogCategoryList");
+        getSupportActionBar().setTitle("BlogCategoryTagList");
         sort_type.add("Descnding_Sort");
         sort_type.add("Ascnding_Sort");
         sort_type.add("Random_Sort");
@@ -92,58 +88,36 @@ public class ActCategoryList extends AppCompatActivity implements AdapterView.On
     }
 
     @OnClick(R.id.api_test_submit_button)
-    public void onClick(View v) {
+    public void onSubmitClick(View v) {
         progressBar.setVisibility(View.VISIBLE);
         getData();
     }
 
     private void getData() {
-        BlogCategoryListRequest request = new BlogCategoryListRequest();
+        BlogCategoryTagListRequest request = new BlogCategoryTagListRequest();
         request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
         request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
         request.SortType = sort_Type_posistion;
         request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
         request.SortColumn = sortColumnText.getText().toString();
-        long LinkContentId = 0;
-        if (!txtLinkContentId.getText().toString().matches("")) {
-            if (txtLinkContentId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
-                txtLinkContentId.setError("inValid Info !!");
-                progressBar.setVisibility(View.GONE);
-                return;
-            } else {
-                txtLinkContentId.setError(null);
-                LinkContentId = Long.valueOf(txtLinkContentId.getText().toString());
-            }
-        } else {
-            txtLinkContentId.setError("Required !!");
-            progressBar.setVisibility(View.GONE);
-            return;
-        }
-        if (LinkContentId > 0) {
-            List<Filters> filters = new ArrayList<>();
-            Filters f = new Filters();
-            f.PropertyName = "LinkContentId";
-            f.IntValue1 = LinkContentId;
-            filters.add(f);
-            request.filters = filters;
-        }
-        RetrofitManager manager = new RetrofitManager(ActCategoryList.this);
+
+        RetrofitManager manager = new RetrofitManager(ActCategoryTagList.this);
         IBlog iBlog = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBlog.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
         headers.put("PackageName", txtPackageName.getText().toString());
 
-        Observable<BlogCategoryListResponse> call = iBlog.GetCategoryList(headers, request);
+        Observable<BlogCategoryTagListResponse> call = iBlog.GetCategoryTagList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<BlogCategoryListResponse>() {
+                .subscribe(new Observer<BlogCategoryTagListResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(BlogCategoryListResponse response) {
-                        JsonDialog cdd = new JsonDialog(ActCategoryList.this, response);
+                    public void onNext(BlogCategoryTagListResponse response) {
+                        JsonDialog cdd = new JsonDialog(ActCategoryTagList.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -152,7 +126,7 @@ public class ActCategoryList extends AppCompatActivity implements AdapterView.On
                     public void onError(Throwable e) {
                         progressBar.setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(ActCategoryList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActCategoryTagList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -160,7 +134,6 @@ public class ActCategoryList extends AppCompatActivity implements AdapterView.On
                         progressBar.setVisibility(View.GONE);
                     }
                 });
-
     }
 
     @Override
@@ -168,16 +141,6 @@ public class ActCategoryList extends AppCompatActivity implements AdapterView.On
         startActivity(new Intent(this, ActBlog.class));
         finish();
         return super.onSupportNavigateUp();
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        sort_Type_posistion = position;
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     @Override
@@ -190,4 +153,13 @@ public class ActCategoryList extends AppCompatActivity implements AdapterView.On
         return super.onKeyDown(keyCode, event);
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        sort_Type_posistion = position;
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }

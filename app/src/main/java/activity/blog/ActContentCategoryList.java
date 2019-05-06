@@ -21,8 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import activity.estate.ActEstate;
-import activity.estate.ActPropertyList;
+import activity.news.ActNews;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -35,16 +34,16 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.blog.interfase.IBlog;
-import ntk.base.api.blog.model.BlogCategoryListRequest;
-import ntk.base.api.blog.model.BlogCategoryListResponse;
-import ntk.base.api.estate.interfase.IEstate;
-import ntk.base.api.estate.model.EstatePropertyListRequest;
-import ntk.base.api.estate.model.EstatePropertyListResponse;
+import ntk.base.api.blog.model.BlogContentCategoryListRequest;
+import ntk.base.api.blog.model.BlogContentResponse;
 import ntk.base.api.model.Filters;
+import ntk.base.api.news.interfase.INews;
+import ntk.base.api.news.model.NewsContentCategoryListRequest;
+import ntk.base.api.news.model.NewsContentResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
-public class ActCategoryList extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class ActContentCategoryList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.txtPackageName)
     EditText txtPackageName;
@@ -74,16 +73,16 @@ public class ActCategoryList extends AppCompatActivity implements AdapterView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_blog_category_list);
+        setContentView(R.layout.act_blog_content_category_list);
         ButterKnife.bind(this);
         initialize();
     }
 
     private void initialize() {
-        lblLayout.setText("BlogCategoryList");
+        lblLayout.setText("BlogContentCategoryList");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("BlogCategoryList");
+        getSupportActionBar().setTitle("BlogContentCategoryList");
         sort_type.add("Descnding_Sort");
         sort_type.add("Ascnding_Sort");
         sort_type.add("Random_Sort");
@@ -98,7 +97,7 @@ public class ActCategoryList extends AppCompatActivity implements AdapterView.On
     }
 
     private void getData() {
-        BlogCategoryListRequest request = new BlogCategoryListRequest();
+        BlogContentCategoryListRequest request = new BlogContentCategoryListRequest();
         request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
         request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
         request.SortType = sort_Type_posistion;
@@ -127,23 +126,23 @@ public class ActCategoryList extends AppCompatActivity implements AdapterView.On
             filters.add(f);
             request.filters = filters;
         }
-        RetrofitManager manager = new RetrofitManager(ActCategoryList.this);
+        RetrofitManager manager = new RetrofitManager(ActContentCategoryList.this);
         IBlog iBlog = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBlog.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
         headers.put("PackageName", txtPackageName.getText().toString());
 
-        Observable<BlogCategoryListResponse> call = iBlog.GetCategoryList(headers, request);
+        Observable<BlogContentResponse> call = iBlog.GetContentCategoryList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<BlogCategoryListResponse>() {
+                .subscribe(new Observer<BlogContentResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(BlogCategoryListResponse response) {
-                        JsonDialog cdd = new JsonDialog(ActCategoryList.this, response);
+                    public void onNext(BlogContentResponse response) {
+                        JsonDialog cdd = new JsonDialog(ActContentCategoryList.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -152,7 +151,7 @@ public class ActCategoryList extends AppCompatActivity implements AdapterView.On
                     public void onError(Throwable e) {
                         progressBar.setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(ActCategoryList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActContentCategoryList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override
