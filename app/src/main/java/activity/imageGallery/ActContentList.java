@@ -152,30 +152,30 @@ public class ActContentList extends AppCompatActivity implements AdapterView.OnI
                 });
     }
 
-        @Override
-        public boolean onSupportNavigateUp () {
+    @Override
+    public boolean onSupportNavigateUp() {
+        startActivity(new Intent(this, ActImageGallery.class));
+        finish();
+        return super.onSupportNavigateUp();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             startActivity(new Intent(this, ActImageGallery.class));
             finish();
-            return super.onSupportNavigateUp();
+            return true;
         }
-
-        @Override
-        public boolean onKeyDown ( int keyCode, KeyEvent event){
-            if (keyCode == KeyEvent.KEYCODE_BACK) {
-                startActivity(new Intent(this, ActImageGallery.class));
-                finish();
-                return true;
-            }
-            return super.onKeyDown(keyCode, event);
-        }
-
-        @Override
-        public void onItemSelected (AdapterView < ? > parent, View view,int position, long id){
-            sort_Type_posistion = position;
-        }
-
-        @Override
-        public void onNothingSelected (AdapterView < ? > parent){
-
-        }
+        return super.onKeyDown(keyCode, event);
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        sort_Type_posistion = position;
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+}

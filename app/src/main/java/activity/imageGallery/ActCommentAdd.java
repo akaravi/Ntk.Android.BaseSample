@@ -1,7 +1,6 @@
 package activity.imageGallery;
 
 import android.content.Intent;
-import android.database.Observable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
@@ -23,6 +22,7 @@ import butterknife.OnClick;
 import config.ConfigRestHeader;
 import config.ConfigStaticValue;
 import dialog.JsonDialog;
+import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -30,7 +30,6 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.imageGallery.interfase.IImageGallery;
 import ntk.base.api.imageGallery.model.ImageGalleryCommentAddRequest;
 import ntk.base.api.imageGallery.model.ImageGalleryCommentResponse;
-import ntk.base.api.news.model.NewsCommentAddRequest;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
@@ -106,33 +105,33 @@ public class ActCommentAdd extends AppCompatActivity {
         headers = configRestHeader.GetHeaders(this);
         headers.put("PackageName", txtPackageName.getText().toString());
 
-//        Observable<ImageGalleryCommentResponse> call = iImageGallery.SetComment(headers, request);
-//        call.observeOn(AndroidSchedulers.mainThread())
-//                .subscribeOn(Schedulers.io())
-//                .subscribe(new Observer<ImageGalleryCommentResponse>() {
-//                    @Override
-//                    public void onSubscribe(Disposable d) {
-//                    }
-//
-//                    @Override
-//                    public void onNext(ImageGalleryCommentResponse response) {
-//                        JsonDialog cdd = new JsonDialog(ActCommentAdd.this, response);
-//                        cdd.setCanceledOnTouchOutside(false);
-//                        cdd.show();
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        progressBar.setVisibility(View.GONE);
-//                        Log.i("Error", e.getMessage());
-//                        Toast.makeText(ActCommentAdd.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-//                        progressBar.setVisibility(View.GONE);
-//                    }
-//                });
+        Observable<ImageGalleryCommentResponse> call = iImageGallery.SetComment(headers, request);
+        call.observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<ImageGalleryCommentResponse>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                    }
+
+                    @Override
+                    public void onNext(ImageGalleryCommentResponse response) {
+                        JsonDialog cdd = new JsonDialog(ActCommentAdd.this, response);
+                        cdd.setCanceledOnTouchOutside(false);
+                        cdd.show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        progressBar.setVisibility(View.GONE);
+                        Log.i("Error", e.getMessage());
+                        Toast.makeText(ActCommentAdd.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        progressBar.setVisibility(View.GONE);
+                    }
+                });
 
     }
 

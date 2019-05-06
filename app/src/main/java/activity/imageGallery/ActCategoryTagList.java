@@ -107,33 +107,33 @@ public class ActCategoryTagList extends AppCompatActivity implements AdapterView
         headers = configRestHeader.GetHeaders(this);
         headers.put("PackageName", txtPackageName.getText().toString());
 
-//        Observable<ImageGalleryCategoryTagResponse> call = iImageGallery.GetCategoryTagList(headers, request);
-//        call.observeOn(AndroidSchedulers.mainThread())
-//                .subscribeOn(Schedulers.io())
-//                .subscribe(new Observer<ImageGalleryCategoryTagResponse>() {
-//                    @Override
-//                    public void onSubscribe(Disposable d) {
-//                    }
-//
-//                    @Override
-//                    public void onNext(ImageGalleryCategoryTagResponse response) {
-//                        JsonDialog cdd = new JsonDialog(ActCategoryTagList.this, response);
-//                        cdd.setCanceledOnTouchOutside(false);
-//                        cdd.show();
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        progressBar.setVisibility(View.GONE);
-//                        Log.i("Error", e.getMessage());
-//                        Toast.makeText(ActCategoryTagList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-//                        progressBar.setVisibility(View.GONE);
-//                    }
-//                });
+        Observable<ImageGalleryCategoryTagResponse> call = iImageGallery.GetCategoryTagList(headers, request);
+        call.observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<ImageGalleryCategoryTagResponse>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                    }
+
+                    @Override
+                    public void onNext(ImageGalleryCategoryTagResponse response) {
+                        JsonDialog cdd = new JsonDialog(ActCategoryTagList.this, response);
+                        cdd.setCanceledOnTouchOutside(false);
+                        cdd.show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        progressBar.setVisibility(View.GONE);
+                        Log.i("Error", e.getMessage());
+                        Toast.makeText(ActCategoryTagList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        progressBar.setVisibility(View.GONE);
+                    }
+                });
     }
 
     @Override

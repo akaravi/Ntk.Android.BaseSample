@@ -15,7 +15,6 @@ import android.widget.Button;
 
 import activity.Main;
 import activity.core.ActGetResponseMain;
-import activity.state.ActState;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ntk.base.app.R;

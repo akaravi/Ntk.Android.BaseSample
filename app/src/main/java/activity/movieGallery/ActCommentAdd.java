@@ -1,4 +1,4 @@
-package activity.imageGallery;
+package activity.movieGallery;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
+import activity.imageGallery.ActImageGallery;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -28,45 +29,48 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.imageGallery.interfase.IImageGallery;
+import ntk.base.api.imageGallery.model.ImageGalleryCommentAddRequest;
 import ntk.base.api.imageGallery.model.ImageGalleryCommentResponse;
-import ntk.base.api.imageGallery.model.ImageGalleryCommentViewRequest;
-import ntk.base.api.imageGallery.model.ImageGalleryContentCategoryListRequest;
-import ntk.base.api.imageGallery.model.ImageGalleryContentResponse;
-import ntk.base.api.news.interfase.INews;
-import ntk.base.api.news.model.NewsCommentResponse;
-import ntk.base.api.news.model.NewsCommentViewRequest;
+import ntk.base.api.movieGallery.interfase.IMovieGallery;
+import ntk.base.api.movieGallery.model.MovieGalleryCommentAddRequest;
+import ntk.base.api.movieGallery.model.MovieGalleryCommentResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
-public class ActCommentView extends AppCompatActivity {
+public class ActCommentAdd extends AppCompatActivity {
+
     @BindView(R.id.txtPackageName)
     EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
-    @BindView(R.id.txtId)
-    EditText txtId;
-    @BindView(R.id.txtActionClientOrder)
-    EditText txtActionClientOrder;
+    @BindView(R.id.txtWriter)
+    EditText txtWriter;
+    @BindView(R.id.txtComment)
+    EditText txtComment;
+    @BindView(R.id.txtLinkParentId)
+    EditText txtLinkParentId;
+    @BindView(R.id.txtLinkContentId)
+    EditText txtLinkContentId;
     @BindView(R.id.api_test_submit_button)
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    private ConfigRestHeader configRestHeader = new ConfigRestHeader();
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
+    private ConfigRestHeader configRestHeader = new ConfigRestHeader();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_image_gallery_comment_view);
+        setContentView(R.layout.act_movie_gallery_comment_add);
         ButterKnife.bind(this);
         initialize();
     }
 
     private void initialize() {
-        lblLayout.setText("ImageGalleryCommentView");
+        lblLayout.setText("MovieGalleryCommentAdd");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("ImageGalleryCommentView");
+        getSupportActionBar().setTitle("MovieGalleryCommentAdd");
     }
 
     @OnClick(R.id.api_test_submit_button)
@@ -76,50 +80,48 @@ public class ActCommentView extends AppCompatActivity {
     }
 
     private void getData() {
-        ImageGalleryCommentViewRequest request = new ImageGalleryCommentViewRequest();
-        if (!txtId.getText().toString().matches("")) {
-            if (txtId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
-                txtId.setError("Invalid Info !!");
+        MovieGalleryCommentAddRequest request = new MovieGalleryCommentAddRequest();
+        if (!txtWriter.getText().toString().matches("")) {
+            request.Writer = txtWriter.getText().toString();
+        }
+        if (!txtComment.getText().toString().matches("")) {
+            request.Comment = txtWriter.getText().toString();
+        }
+        if (!txtLinkParentId.getText().toString().matches("")) {
+            if (txtLinkParentId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
+                txtLinkParentId.setError("InValid Info  !!");
                 progressBar.setVisibility(View.GONE);
                 return;
             } else {
-                request.Id = Long.valueOf(txtId.getText().toString());
+                request.LinkParentId = Long.valueOf(txtLinkParentId.getText().toString());
             }
-        } else {
-            txtId.setError("Required !!");
-            progressBar.setVisibility(View.GONE);
-            return;
         }
-        if (!txtActionClientOrder.getText().toString().matches("")) {
-            if (txtActionClientOrder.getInputType() != InputType.TYPE_CLASS_NUMBER) {
-                txtActionClientOrder.setError("Invalid Info !!");
+        if (!txtLinkContentId.getText().toString().matches("")) {
+            if (txtLinkContentId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
+                txtLinkContentId.setError("InValid Info !!");
                 progressBar.setVisibility(View.GONE);
                 return;
             } else {
-                request.ActionClientOrder = Integer.valueOf(txtActionClientOrder.getText().toString());
+                request.LinkContentId = Long.valueOf(txtLinkContentId.getText().toString());
             }
-        } else {
-            txtActionClientOrder.setError("Required !!");
-            progressBar.setVisibility(View.GONE);
-            return;
         }
-        RetrofitManager manager = new RetrofitManager(ActCommentView.this);
-        IImageGallery iImageGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IImageGallery.class);
+        RetrofitManager manager = new RetrofitManager(ActCommentAdd.this);
+        IMovieGallery iMovieGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMovieGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
         headers.put("PackageName", txtPackageName.getText().toString());
 
-        Observable<ImageGalleryCommentResponse> call = iImageGallery.GetCommentView(headers, request);
+        Observable<MovieGalleryCommentResponse> call = iMovieGallery.SetComment(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<ImageGalleryCommentResponse>() {
+                .subscribe(new Observer<MovieGalleryCommentResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(ImageGalleryCommentResponse response) {
-                        JsonDialog cdd = new JsonDialog(ActCommentView.this, response);
+                    public void onNext(MovieGalleryCommentResponse response) {
+                        JsonDialog cdd = new JsonDialog(ActCommentAdd.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -128,7 +130,7 @@ public class ActCommentView extends AppCompatActivity {
                     public void onError(Throwable e) {
                         progressBar.setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(ActCommentView.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActCommentAdd.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -136,11 +138,12 @@ public class ActCommentView extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                     }
                 });
+
     }
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActImageGallery.class));
+        startActivity(new Intent(this, ActMovieGallery.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -148,7 +151,7 @@ public class ActCommentView extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActImageGallery.class));
+            startActivity(new Intent(this, ActMovieGallery.class));
             finish();
             return true;
         }

@@ -23,7 +23,17 @@ public class ActMovieGallery extends AppCompatActivity {
 
     @BindView(R.id.api_recycler_view)
     RecyclerView apiRecyclerView;
-    private String[] articleList = new String[]{""};
+    private String[] articleList = new String[]{"MovieGalleryTagList",
+            "MovieGalleryContentView",
+            "MovieGalleryContentSimilarList",
+            "MovieGalleryContentOtherInfoList",
+            "MovieGalleryContentList",
+            "MovieGalleryContentFavoriteList",
+            "MovieGalleryContentFavoriteAddOrRemove",
+            "MovieGalleryContentCategoryList",
+            "MovieGalleryCommentView",
+            "MovieGalleryCategoryList",
+            "MovieGalleryCommentAdd"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +93,47 @@ public class ActMovieGallery extends AppCompatActivity {
                 public void onClick(View view) {
                     switch (view.getId()) {
                         case 0:
-                            startActivity(new Intent(ActMovieGallery.this, ActGetResponseMain.class));
+                            startActivity(new Intent(ActMovieGallery.this, ActTagList.class));
+                            finish();
+                            break;
+                        case 1:
+                            startActivity(new Intent(ActMovieGallery.this, ActContentView.class));
+                            finish();
+                            break;
+                        case 2:
+                            startActivity(new Intent(ActMovieGallery.this, ActContentSimilarList.class));
+                            finish();
+                            break;
+                        case 3:
+                            startActivity(new Intent(ActMovieGallery.this, ActContentOtherInfoList.class));
+                            finish();
+                            break;
+                        case 4:
+                            startActivity(new Intent(ActMovieGallery.this, ActContentList.class));
+                            finish();
+                            break;
+                        case 5:
+                            startActivity(new Intent(ActMovieGallery.this, ActContentFavoriteList.class));
+                            finish();
+                            break;
+                        case 6:
+                            startActivity(new Intent(ActMovieGallery.this, ActContentFavoriteAddOrRemove.class));
+                            finish();
+                            break;
+                        case 7:
+                            startActivity(new Intent(ActMovieGallery.this, ActContentCategoryList.class));
+                            finish();
+                            break;
+                        case 8:
+                            startActivity(new Intent(ActMovieGallery.this, ActCommentView.class));
+                            finish();
+                            break;
+                        case 9:
+                            startActivity(new Intent(ActMovieGallery.this, ActCategoryList.class));
+                            finish();
+                            break;
+                        case 10:
+                            startActivity(new Intent(ActMovieGallery.this, ActCommentAdd.class));
                             finish();
                             break;
                     }

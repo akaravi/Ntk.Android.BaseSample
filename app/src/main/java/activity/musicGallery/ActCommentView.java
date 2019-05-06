@@ -1,4 +1,4 @@
-package activity.imageGallery;
+package activity.musicGallery;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
+import activity.imageGallery.ActImageGallery;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -30,11 +31,9 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.imageGallery.interfase.IImageGallery;
 import ntk.base.api.imageGallery.model.ImageGalleryCommentResponse;
 import ntk.base.api.imageGallery.model.ImageGalleryCommentViewRequest;
-import ntk.base.api.imageGallery.model.ImageGalleryContentCategoryListRequest;
-import ntk.base.api.imageGallery.model.ImageGalleryContentResponse;
-import ntk.base.api.news.interfase.INews;
-import ntk.base.api.news.model.NewsCommentResponse;
-import ntk.base.api.news.model.NewsCommentViewRequest;
+import ntk.base.api.musicGallery.interfase.IMusicGallery;
+import ntk.base.api.musicGallery.model.MusicGalleryCommentResponse;
+import ntk.base.api.musicGallery.model.MusicGalleryCommentViewRequest;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
@@ -57,16 +56,16 @@ public class ActCommentView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_image_gallery_comment_view);
+        setContentView(R.layout.act_music_gallery_comment_view);
         ButterKnife.bind(this);
         initialize();
     }
 
     private void initialize() {
-        lblLayout.setText("ImageGalleryCommentView");
+        lblLayout.setText("MusicGalleryCommentView");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("ImageGalleryCommentView");
+        getSupportActionBar().setTitle("MusicGalleryCommentView");
     }
 
     @OnClick(R.id.api_test_submit_button)
@@ -76,7 +75,7 @@ public class ActCommentView extends AppCompatActivity {
     }
 
     private void getData() {
-        ImageGalleryCommentViewRequest request = new ImageGalleryCommentViewRequest();
+        MusicGalleryCommentViewRequest request = new MusicGalleryCommentViewRequest();
         if (!txtId.getText().toString().matches("")) {
             if (txtId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
                 txtId.setError("Invalid Info !!");
@@ -104,21 +103,21 @@ public class ActCommentView extends AppCompatActivity {
             return;
         }
         RetrofitManager manager = new RetrofitManager(ActCommentView.this);
-        IImageGallery iImageGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IImageGallery.class);
+        IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMusicGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
         headers.put("PackageName", txtPackageName.getText().toString());
 
-        Observable<ImageGalleryCommentResponse> call = iImageGallery.GetCommentView(headers, request);
+        Observable<MusicGalleryCommentResponse> call = iMusicGallery.GetCommentView(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<ImageGalleryCommentResponse>() {
+                .subscribe(new Observer<MusicGalleryCommentResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(ImageGalleryCommentResponse response) {
+                    public void onNext(MusicGalleryCommentResponse response) {
                         JsonDialog cdd = new JsonDialog(ActCommentView.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
@@ -140,7 +139,7 @@ public class ActCommentView extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActImageGallery.class));
+        startActivity(new Intent(this, ActMusicGallery.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -148,7 +147,7 @@ public class ActCommentView extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActImageGallery.class));
+            startActivity(new Intent(this, ActMusicGallery.class));
             finish();
             return true;
         }

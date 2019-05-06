@@ -14,9 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import activity.Main;
-import activity.core.ActGetResponseMain;
-import activity.movieGallery.ActMovieGallery;
-import activity.state.ActState;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ntk.base.app.R;
@@ -25,7 +22,17 @@ public class ActMusicGallery extends AppCompatActivity {
 
     @BindView(R.id.api_recycler_view)
     RecyclerView apiRecyclerView;
-    private String[] articleList = new String[]{""};
+    private String[] articleList = new String[]{"MusicGalleryTagList",
+            "MusicGalleryContentView",
+            "MusicGalleryContentSimilarList",
+            "MusicGalleryContentOtherInfoList",
+            "MusicGalleryContentList",
+            "MusicGalleryContentFavoriteList",
+            "MusicGalleryContentFavoriteAddOrRemove",
+            "MusicGalleryContentCategoryList",
+            "MusicGalleryCommentView",
+            "MusicGalleryCategoryList",
+            "MusicGalleryCommentAdd"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +92,47 @@ public class ActMusicGallery extends AppCompatActivity {
                 public void onClick(View view) {
                     switch (view.getId()) {
                         case 0:
-                            startActivity(new Intent(ActMusicGallery.this, ActGetResponseMain.class));
+                            startActivity(new Intent(ActMusicGallery.this, ActTagList.class));
+                            finish();
+                            break;
+                        case 1:
+                            startActivity(new Intent(ActMusicGallery.this, ActContentView.class));
+                            finish();
+                            break;
+                        case 2:
+                            startActivity(new Intent(ActMusicGallery.this, ActContentSimilarList.class));
+                            finish();
+                            break;
+                        case 3:
+                            startActivity(new Intent(ActMusicGallery.this, ActContentOtherInfoList.class));
+                            finish();
+                            break;
+                        case 4:
+                            startActivity(new Intent(ActMusicGallery.this, ActContentList.class));
+                            finish();
+                            break;
+                        case 5:
+                            startActivity(new Intent(ActMusicGallery.this, ActContentFavoriteList.class));
+                            finish();
+                            break;
+                        case 6:
+                            startActivity(new Intent(ActMusicGallery.this, ActContentFavoriteAddOrRemove.class));
+                            finish();
+                            break;
+                        case 7:
+                            startActivity(new Intent(ActMusicGallery.this, ActContentCategoryList.class));
+                            finish();
+                            break;
+                        case 8:
+                            startActivity(new Intent(ActMusicGallery.this, ActCommentView.class));
+                            finish();
+                            break;
+                        case 9:
+                            startActivity(new Intent(ActMusicGallery.this, ActCategoryList.class));
+                            finish();
+                            break;
+                        case 10:
+                            startActivity(new Intent(ActMusicGallery.this, ActCommentAdd.class));
                             finish();
                             break;
                     }

@@ -13,13 +13,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import activity.blog.ActBlog;
+import activity.estate.ActEstate;
 import activity.file.ActFile;
 import activity.imageGallery.ActImageGallery;
 import activity.movieGallery.ActMovieGallery;
 import activity.musicGallery.ActMusicGallery;
 import activity.product.ActProduct;
 import activity.service.ActService;
-import activity.state.ActState;
 import activity.ticketing.ActTicket;
 import activity.application.ActApplication;
 import activity.article.ActArticle;
@@ -129,7 +129,7 @@ public class Main extends AppCompatActivity {
                             finish();
                             break;
                         case 7:
-                            startActivity(new Intent(context, ActState.class));
+                            startActivity(new Intent(context, ActEstate.class));
                             finish();
                             break;
                         case 8:

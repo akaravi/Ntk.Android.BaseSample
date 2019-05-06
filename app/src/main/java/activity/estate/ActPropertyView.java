@@ -1,4 +1,4 @@
-package activity.imageGallery;
+package activity.estate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,26 +27,20 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.imageGallery.interfase.IImageGallery;
-import ntk.base.api.imageGallery.model.ImageGalleryCommentResponse;
-import ntk.base.api.imageGallery.model.ImageGalleryCommentViewRequest;
-import ntk.base.api.imageGallery.model.ImageGalleryContentCategoryListRequest;
-import ntk.base.api.imageGallery.model.ImageGalleryContentResponse;
-import ntk.base.api.news.interfase.INews;
-import ntk.base.api.news.model.NewsCommentResponse;
-import ntk.base.api.news.model.NewsCommentViewRequest;
+import ntk.base.api.estate.interfase.IEstate;
+import ntk.base.api.estate.model.EstatePropertyViewRequest;
+import ntk.base.api.estate.model.EstatePropertyViewResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
-public class ActCommentView extends AppCompatActivity {
+public class ActPropertyView extends AppCompatActivity {
+
     @BindView(R.id.txtPackageName)
     EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
-    @BindView(R.id.txtId)
-    EditText txtId;
-    @BindView(R.id.txtActionClientOrder)
-    EditText txtActionClientOrder;
+    @BindView(R.id.txtPropertyId)
+    EditText PropertyId;
     @BindView(R.id.api_test_submit_button)
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
@@ -57,16 +51,16 @@ public class ActCommentView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_image_gallery_comment_view);
+        setContentView(R.layout.act_estate_property_view);
         ButterKnife.bind(this);
         initialize();
     }
 
     private void initialize() {
-        lblLayout.setText("ImageGalleryCommentView");
+        lblLayout.setText("EstatePropertyAdd");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("ImageGalleryCommentView");
+        getSupportActionBar().setTitle("EstatePropertyAdd");
     }
 
     @OnClick(R.id.api_test_submit_button)
@@ -76,50 +70,33 @@ public class ActCommentView extends AppCompatActivity {
     }
 
     private void getData() {
-        ImageGalleryCommentViewRequest request = new ImageGalleryCommentViewRequest();
-        if (!txtId.getText().toString().matches("")) {
-            if (txtId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
-                txtId.setError("Invalid Info !!");
-                progressBar.setVisibility(View.GONE);
-                return;
+        EstatePropertyViewRequest request = new EstatePropertyViewRequest();
+        if (!PropertyId.getText().toString().matches("")) {
+            if (PropertyId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
+                request.PropertyId = Integer.valueOf(PropertyId.getText().toString());
             } else {
-                request.Id = Long.valueOf(txtId.getText().toString());
-            }
-        } else {
-            txtId.setError("Required !!");
-            progressBar.setVisibility(View.GONE);
-            return;
-        }
-        if (!txtActionClientOrder.getText().toString().matches("")) {
-            if (txtActionClientOrder.getInputType() != InputType.TYPE_CLASS_NUMBER) {
-                txtActionClientOrder.setError("Invalid Info !!");
                 progressBar.setVisibility(View.GONE);
+                PropertyId.setError("InValid Info !!");
                 return;
-            } else {
-                request.ActionClientOrder = Integer.valueOf(txtActionClientOrder.getText().toString());
             }
-        } else {
-            txtActionClientOrder.setError("Required !!");
-            progressBar.setVisibility(View.GONE);
-            return;
         }
-        RetrofitManager manager = new RetrofitManager(ActCommentView.this);
-        IImageGallery iImageGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IImageGallery.class);
+        RetrofitManager manager = new RetrofitManager(ActPropertyView.this);
+        IEstate iEstate = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IEstate.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
         headers.put("PackageName", txtPackageName.getText().toString());
 
-        Observable<ImageGalleryCommentResponse> call = iImageGallery.GetCommentView(headers, request);
+        Observable<EstatePropertyViewResponse> call = iEstate.GetPropertyView(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<ImageGalleryCommentResponse>() {
+                .subscribe(new Observer<EstatePropertyViewResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(ImageGalleryCommentResponse response) {
-                        JsonDialog cdd = new JsonDialog(ActCommentView.this, response);
+                    public void onNext(EstatePropertyViewResponse response) {
+                        JsonDialog cdd = new JsonDialog(ActPropertyView.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -128,7 +105,7 @@ public class ActCommentView extends AppCompatActivity {
                     public void onError(Throwable e) {
                         progressBar.setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(ActCommentView.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActPropertyView.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -140,7 +117,7 @@ public class ActCommentView extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActImageGallery.class));
+        startActivity(new Intent(this, ActEstate.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -148,7 +125,7 @@ public class ActCommentView extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActImageGallery.class));
+            startActivity(new Intent(this, ActEstate.class));
             finish();
             return true;
         }

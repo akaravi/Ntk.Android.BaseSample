@@ -1,4 +1,4 @@
-package activity.news;
+package activity.musicGallery;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import activity.imageGallery.ActImageGallery;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -31,14 +32,21 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.news.interfase.INews;
-import ntk.base.api.news.model.NewsCategoryRequest;
-import ntk.base.api.news.model.NewsCategoryResponse;
+import ntk.base.api.imageGallery.interfase.IImageGallery;
+import ntk.base.api.imageGallery.model.ImageGalleryContentListRequest;
+import ntk.base.api.imageGallery.model.ImageGalleryContentResponse;
+import ntk.base.api.musicGallery.interfase.IMusicGallery;
+import ntk.base.api.musicGallery.model.MusicGalleryContentListRequest;
+import ntk.base.api.musicGallery.model.MusicGalleryContentResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
-public class ActGetCategoryList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ActContentList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    @BindView(R.id.txtPackageName)
+    EditText txtPackageName;
+    @BindView(R.id.lblLayout)
+    TextView lblLayout;
     @BindView(R.id.row_per_page_text)
     EditText rowPerPageText;
     @BindView(R.id.sort_type_spinner)
@@ -49,14 +57,15 @@ public class ActGetCategoryList extends AppCompatActivity implements AdapterView
     EditText currentPageNumberText;
     @BindView(R.id.sort_column_text)
     EditText sortColumnText;
+    @BindView(R.id.txtTag)
+    EditText txtTag;
+    @BindView(R.id.btnAdd)
+    Button btnAdd;
     @BindView(R.id.api_test_submit_button)
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
-    @BindView(R.id.lblLayout)
-    TextView lblLayout;
+    private List<Long> TagIds = new ArrayList<>();
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
     private List<String> sort_type = new ArrayList<String>();
@@ -65,16 +74,16 @@ public class ActGetCategoryList extends AppCompatActivity implements AdapterView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_news_get_category_list);
+        setContentView(R.layout.act_music_gallery_content_list);
         ButterKnife.bind(this);
         initialize();
     }
 
     private void initialize() {
-        lblLayout.setText("NewsCategoryList");
+        lblLayout.setText("MusicGalleryContentList");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("NewsCategoryList");
+        getSupportActionBar().setTitle("MusicGalleryContentList");
         sort_type.add("Descnding_Sort");
         sort_type.add("Ascnding_Sort");
         sort_type.add("Random_Sort");
@@ -88,31 +97,43 @@ public class ActGetCategoryList extends AppCompatActivity implements AdapterView
         getData();
     }
 
+    @OnClick(R.id.btnAdd)
+    public void onAddClick(View v) {
+        try {
+            TagIds.add(Long.valueOf(txtTag.getText().toString()));
+            txtTag.setText("");
+        } catch (Exception e) {
+            txtTag.setError("inValid Info !!");
+        }
+    }
+
     private void getData() {
-        NewsCategoryRequest request = new NewsCategoryRequest();
+        MusicGalleryContentListRequest request = new MusicGalleryContentListRequest();
         request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
         request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
         request.SortType = sort_Type_posistion;
         request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
         request.SortColumn = sortColumnText.getText().toString();
-
-        RetrofitManager manager = new RetrofitManager(ActGetCategoryList.this);
-        INews iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INews.class);
+        if (!TagIds.isEmpty()) {
+            request.TagIds = TagIds;
+        }
+        RetrofitManager manager = new RetrofitManager(ActContentList.this);
+        IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMusicGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
         headers.put("PackageName", txtPackageName.getText().toString());
 
-        Observable<NewsCategoryResponse> call = iNews.GetCategoryList(headers, request);
+        Observable<MusicGalleryContentResponse> call = iMusicGallery.GetContentList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<NewsCategoryResponse>() {
+                .subscribe(new Observer<MusicGalleryContentResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(NewsCategoryResponse response) {
-                        JsonDialog cdd = new JsonDialog(ActGetCategoryList.this, response);
+                    public void onNext(MusicGalleryContentResponse response) {
+                        JsonDialog cdd = new JsonDialog(ActContentList.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -121,7 +142,7 @@ public class ActGetCategoryList extends AppCompatActivity implements AdapterView
                     public void onError(Throwable e) {
                         progressBar.setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(ActGetCategoryList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActContentList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -133,7 +154,7 @@ public class ActGetCategoryList extends AppCompatActivity implements AdapterView
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActNews.class));
+        startActivity(new Intent(this, ActMusicGallery.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -141,7 +162,7 @@ public class ActGetCategoryList extends AppCompatActivity implements AdapterView
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActNews.class));
+            startActivity(new Intent(this, ActMusicGallery.class));
             finish();
             return true;
         }
