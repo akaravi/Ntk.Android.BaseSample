@@ -81,10 +81,6 @@ public class ActCommentView extends AppCompatActivity {
             } else {
                 request.Id = Long.valueOf(txtId.getText().toString());
             }
-        } else {
-            txtId.setError("Required !!");
-            progressBar.setVisibility(View.GONE);
-            return;
         }
         if (!txtActionClientOrder.getText().toString().matches("")) {
             if (txtActionClientOrder.getInputType() != InputType.TYPE_CLASS_NUMBER) {
@@ -94,10 +90,6 @@ public class ActCommentView extends AppCompatActivity {
             } else {
                 request.ActionClientOrder = Integer.valueOf(txtActionClientOrder.getText().toString());
             }
-        } else {
-            txtActionClientOrder.setError("Required !!");
-            progressBar.setVisibility(View.GONE);
-            return;
         }
         RetrofitManager manager = new RetrofitManager(ActCommentView.this);
         IMovieGallery iMovieGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMovieGallery.class);

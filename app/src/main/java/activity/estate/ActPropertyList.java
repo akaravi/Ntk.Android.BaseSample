@@ -112,10 +112,6 @@ public class ActPropertyList extends AppCompatActivity implements AdapterView.On
                 txtLinkContentId.setError(null);
                 LinkContentId = Long.valueOf(txtLinkContentId.getText().toString());
             }
-        } else {
-            txtLinkContentId.setError("Required !!");
-            progressBar.setVisibility(View.GONE);
-            return;
         }
         if (LinkContentId > 0) {
             List<Filters> filters = new ArrayList<>();

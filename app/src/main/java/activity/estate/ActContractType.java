@@ -16,11 +16,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import activity.news.ActGetCategoryList;
-import activity.news.ActNews;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -33,11 +30,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.estate.interfase.IEstate;
-import ntk.base.api.estate.model.EstateContractTypeRequest;
-import ntk.base.api.estate.model.EstateContractTypeResponse;
-import ntk.base.api.news.interfase.INews;
-import ntk.base.api.news.model.NewsCategoryRequest;
-import ntk.base.api.news.model.NewsCategoryResponse;
+import ntk.base.api.estate.model.EstateContractTypeListResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
@@ -74,24 +67,22 @@ public class ActContractType extends AppCompatActivity {
     }
 
     private void getData() {
-        EstateContractTypeRequest request = new EstateContractTypeRequest();
-
         RetrofitManager manager = new RetrofitManager(ActContractType.this);
         IEstate iEstate = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IEstate.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
         headers.put("PackageName", txtPackageName.getText().toString());
 
-        Observable<EstateContractTypeResponse> call = iEstate.GetContractType(headers, request);
+        Observable<EstateContractTypeListResponse> call = iEstate.GetContractType(headers);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<EstateContractTypeResponse>() {
+                .subscribe(new Observer<EstateContractTypeListResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(EstateContractTypeResponse response) {
+                    public void onNext(EstateContractTypeListResponse response) {
                         JsonDialog cdd = new JsonDialog(ActContractType.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();

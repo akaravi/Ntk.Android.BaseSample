@@ -44,7 +44,7 @@ public class ActEstate extends AppCompatActivity {
     private void initialize() {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("State");
+        getSupportActionBar().setTitle("Estate");
         apiRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         apiRecyclerView.setAdapter(new ApiRecyclerViewAdapter(this, articleList));
     }

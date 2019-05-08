@@ -35,8 +35,8 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.estate.interfase.IEstate;
 import ntk.base.api.estate.model.EstatePropertyListRequest;
 import ntk.base.api.estate.model.EstatePropertyListResponse;
-import ntk.base.api.estate.model.EstatePropertyTypeRequest;
-import ntk.base.api.estate.model.EstatePropertyTypeResponse;
+import ntk.base.api.estate.model.EstatePropertyTypeListRequest;
+import ntk.base.api.estate.model.EstatePropertyTypeListResponse;
 import ntk.base.api.model.Filters;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
@@ -96,7 +96,7 @@ public class ActPropertyType extends AppCompatActivity implements AdapterView.On
     }
 
     private void getData() {
-        EstatePropertyTypeRequest request = new EstatePropertyTypeRequest();
+        EstatePropertyTypeListRequest request = new EstatePropertyTypeListRequest();
         request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
         request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
         request.SortType = sort_Type_posistion;
@@ -112,10 +112,6 @@ public class ActPropertyType extends AppCompatActivity implements AdapterView.On
                 txtLinkContentId.setError(null);
                 LinkContentId = Long.valueOf(txtLinkContentId.getText().toString());
             }
-        } else {
-            txtLinkContentId.setError("Required !!");
-            progressBar.setVisibility(View.GONE);
-            return;
         }
         if (LinkContentId > 0) {
             List<Filters> filters = new ArrayList<>();
@@ -131,16 +127,16 @@ public class ActPropertyType extends AppCompatActivity implements AdapterView.On
         headers = configRestHeader.GetHeaders(this);
         headers.put("PackageName", txtPackageName.getText().toString());
 
-        Observable<EstatePropertyTypeResponse> call = iEstate.GetPropertyType(headers, request);
+        Observable<EstatePropertyTypeListResponse> call = iEstate.GetPropertyType(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<EstatePropertyTypeResponse>() {
+                .subscribe(new Observer<EstatePropertyTypeListResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(EstatePropertyTypeResponse response) {
+                    public void onNext(EstatePropertyTypeListResponse response) {
                         JsonDialog cdd = new JsonDialog(ActPropertyType.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();

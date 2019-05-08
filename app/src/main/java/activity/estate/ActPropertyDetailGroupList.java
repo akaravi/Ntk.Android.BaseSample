@@ -75,11 +75,11 @@ public class ActPropertyDetailGroupList extends AppCompatActivity {
         EstatePropertyDetailGroupListRequest request = new EstatePropertyDetailGroupListRequest();
         if (!PropertyTypeId.getText().toString().matches("")) {
             if (PropertyTypeId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
-                request.PropertyTypeId = Integer.valueOf(PropertyTypeId.getText().toString());
-            } else {
                 progressBar.setVisibility(View.GONE);
                 PropertyTypeId.setError("InValid Info !!");
                 return;
+            } else {
+                request.PropertyTypeId = Integer.valueOf(PropertyTypeId.getText().toString());
             }
         }
         RetrofitManager manager = new RetrofitManager(ActPropertyDetailGroupList.this);

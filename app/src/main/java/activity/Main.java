@@ -44,7 +44,7 @@ public class Main extends AppCompatActivity {
             "Ticketing",
             "Biography",
             "Application",
-            "State",
+            "Estate",
             "File",
             "Blog",
             "Image Gallery ",

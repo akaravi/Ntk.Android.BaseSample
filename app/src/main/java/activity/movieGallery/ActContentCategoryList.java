@@ -114,10 +114,6 @@ public class ActContentCategoryList extends AppCompatActivity implements Adapter
                 txtLinkContentId.setError(null);
                 LinkContentId = Long.valueOf(txtLinkContentId.getText().toString());
             }
-        } else {
-            txtLinkContentId.setError("Required !!");
-            progressBar.setVisibility(View.GONE);
-            return;
         }
         if (LinkContentId > 0) {
             List<Filters> filters = new ArrayList<>();

@@ -57,10 +57,10 @@ public class ActPropertyView extends AppCompatActivity {
     }
 
     private void initialize() {
-        lblLayout.setText("EstatePropertyAdd");
+        lblLayout.setText("EstatePropertyView");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("EstatePropertyAdd");
+        getSupportActionBar().setTitle("EstatePropertyView");
     }
 
     @OnClick(R.id.api_test_submit_button)
@@ -73,11 +73,11 @@ public class ActPropertyView extends AppCompatActivity {
         EstatePropertyViewRequest request = new EstatePropertyViewRequest();
         if (!PropertyId.getText().toString().matches("")) {
             if (PropertyId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
-                request.PropertyId = Integer.valueOf(PropertyId.getText().toString());
-            } else {
                 progressBar.setVisibility(View.GONE);
                 PropertyId.setError("InValid Info !!");
                 return;
+            } else {
+                request.PropertyId = Integer.valueOf(PropertyId.getText().toString());
             }
         }
         RetrofitManager manager = new RetrofitManager(ActPropertyView.this);

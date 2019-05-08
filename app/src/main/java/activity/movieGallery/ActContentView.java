@@ -115,10 +115,6 @@ public class ActContentView extends AppCompatActivity implements AdapterView.OnI
             } else {
                 request.Id = Long.valueOf(txtId.getText().toString());
             }
-        } else {
-            txtId.setError("Required !!");
-            progressBar.setVisibility(View.GONE);
-            return;
         }
         if (!txtActionClientOrder.getText().toString().matches("")) {
             if (txtActionClientOrder.getInputType() != InputType.TYPE_CLASS_NUMBER) {
@@ -128,10 +124,6 @@ public class ActContentView extends AppCompatActivity implements AdapterView.OnI
             } else {
                 request.ActionClientOrder = Integer.valueOf(txtActionClientOrder.getText().toString());
             }
-        } else {
-            txtActionClientOrder.setError("Required !!");
-            progressBar.setVisibility(View.GONE);
-            return;
         }
         if (!txtScorePercent.getText().toString().matches("")) {
             if (txtScorePercent.getInputType() != InputType.TYPE_CLASS_NUMBER) {
@@ -141,10 +133,6 @@ public class ActContentView extends AppCompatActivity implements AdapterView.OnI
             } else {
                 request.ScorePercent = Integer.valueOf(txtScorePercent.getText().toString());
             }
-        } else {
-            txtScorePercent.setError("Required !!");
-            progressBar.setVisibility(View.GONE);
-            return;
         }
 
         RetrofitManager manager = new RetrofitManager(ActContentView.this);
