@@ -3,6 +3,7 @@ package activity.core;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -20,7 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import activity.news.ActGetCategoryList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -35,9 +35,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.core.interfase.ICore;
 import ntk.base.api.core.model.CoreLocationRequest;
 import ntk.base.api.core.model.CoreLocationResponse;
-import ntk.base.api.news.interfase.INews;
-import ntk.base.api.news.model.NewsCategoryRequest;
-import ntk.base.api.news.model.NewsCategoryResponse;
+import ntk.base.api.model.Filters;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
@@ -61,6 +59,8 @@ public class ActLocation extends AppCompatActivity implements AdapterView.OnItem
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
+    @BindView(R.id.link_parent_id)
+    EditText linkParentId;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
     private List<String> sort_type = new ArrayList<String>();
@@ -100,6 +100,24 @@ public class ActLocation extends AppCompatActivity implements AdapterView.OnItem
         request.SortType = sort_Type_posistion;
         request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
         request.SortColumn = sortColumnText.getText().toString();
+        long ParentId = 0;
+        if (!linkParentId.getText().toString().matches("")) {
+            if (linkParentId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
+                linkParentId.setError("inValid Info !!");
+                progressBar.setVisibility(View.GONE);
+                return;
+            } else {
+                ParentId = Long.valueOf(linkParentId.getText().toString());
+            }
+        }
+        if (ParentId > 0) {
+            List<Filters> filters = new ArrayList<>();
+            Filters f = new Filters();
+            f.PropertyName = "LinkParentId";
+            f.IntValue1 = ParentId;
+            filters.add(f);
+            request.filters = filters;
+        }
 
         RetrofitManager manager = new RetrofitManager(ActLocation.this);
         ICore iCore = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(ICore.class);
