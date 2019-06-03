@@ -24,10 +24,6 @@ import ntk.base.app.R;
 
 public class ActCreateFilterModel extends AppCompatActivity {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
-    @BindView(R.id.lblLayout)
-    TextView lblLayout;
     @BindView(R.id.row_per_page_text)
     EditText rowPerPageText;
     @BindView(R.id.sort_type_spinner)
@@ -61,7 +57,6 @@ public class ActCreateFilterModel extends AppCompatActivity {
     }
 
     private void initialize() {
-        lblLayout.setText("Create Filter Model");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Create Filter Model");
