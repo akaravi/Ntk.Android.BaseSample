@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="activity.blog.ActTagList"></activity>
+        <activity android:name="activity.core.ActCreateFilterModel"></activity>
+        <activity android:name="activity.blog.ActTagList" />
         <activity android:name="activity.blog.ActContentView" />
         <activity android:name="activity.blog.ActContentSimilarList" />
         <activity android:name="activity.blog.ActContentOtherInfoList" />

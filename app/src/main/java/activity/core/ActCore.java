@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import activity.Main;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ntk.base.app.R;
@@ -31,7 +30,8 @@ public class ActCore extends AppCompatActivity {
             "Core User Login",
             "Core User Login By Mobile",
             "Core User Mobile Confirm",
-            "Core User Register"};
+            "Core User Register",
+            "Core Create Filter Model"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,6 @@ public class ActCore extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, Main.class));
             finish();
             return true;
         }
@@ -62,7 +61,6 @@ public class ActCore extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, Main.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -132,6 +130,10 @@ public class ActCore extends AppCompatActivity {
                             break;
                         case 10:
                             startActivity(new Intent(ActCore.this, ActUserRegister.class));
+                            finish();
+                            break;
+                        case 11:
+                            startActivity(new Intent(ActCore.this, ActCreateFilterModel.class));
                             finish();
                             break;
                     }
