@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +41,8 @@ public class ActCreateFilterModel extends AppCompatActivity {
     EditText TotalRowDataText;
     @BindView(R.id.count_spinner)
     Spinner countSpinner;
+    @BindView(R.id.RecordStatusTxt)
+    EditText lblRecordStatus;
 
     private List<String> sort_type = new ArrayList<String>();
     private List<Boolean> count = new ArrayList<Boolean>();
