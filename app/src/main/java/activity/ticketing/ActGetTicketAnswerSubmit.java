@@ -120,7 +120,7 @@ public class ActGetTicketAnswerSubmit extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 return;
             } else {
-                request.LinkTicketingDepartemenId = Long.valueOf(LinkTicketingDepartemenId.getText().toString());
+                //request.LinkTicketingDepartemenId = Long.valueOf(LinkTicketingDepartemenId.getText().toString());
             }
         }
         if (!LinkTypeOperatorId.getText().toString().matches("")) {
@@ -129,14 +129,14 @@ public class ActGetTicketAnswerSubmit extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 return;
             } else {
-                request.LinkTypeOperatorId = Long.valueOf(LinkTypeOperatorId.getText().toString());
+                //request.LinkTypeOperatorId = Long.valueOf(LinkTypeOperatorId.getText().toString());
             }
         }
         if (!LinkFileIds.getText().toString().matches("")) {
             request.LinkFileIds = LinkFileIds.getText().toString();
         }
         if (!LinkFileIdsSrcList.isEmpty()) {
-            request.LinkFileIdsSrc = LinkFileIdsSrcList;
+            request.LinkFileIds = LinkFileIdsSrcList.toString();
         }
         if (!Id.getText().toString().matches("")) {
             if (Id.getInputType() != InputType.TYPE_CLASS_NUMBER) {
@@ -144,7 +144,7 @@ public class ActGetTicketAnswerSubmit extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 return;
             } else {
-                request.Id = Long.valueOf(Id.getText().toString());
+                request.LinkTicketId = Long.valueOf(Id.getText().toString());
             }
         }
         RetrofitManager manager = new RetrofitManager(ActGetTicketAnswerSubmit.this);
