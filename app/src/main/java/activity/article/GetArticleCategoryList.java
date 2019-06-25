@@ -38,10 +38,10 @@ import ntk.base.api.article.model.ArticleCategoryResponse;
 import ntk.base.api.model.Filters;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class GetArticleCategoryList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
+
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
@@ -69,7 +69,6 @@ public class GetArticleCategoryList extends AppCompatActivity implements Adapter
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActArticle.class));
             finish();
             return true;
         }
@@ -131,8 +130,7 @@ public class GetArticleCategoryList extends AppCompatActivity implements Adapter
         IArticle iArticle = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IArticle.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<ArticleCategoryResponse> call = iArticle.GetCategoryList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -165,7 +163,6 @@ public class GetArticleCategoryList extends AppCompatActivity implements Adapter
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActArticle.class));
         finish();
         return super.onSupportNavigateUp();
     }

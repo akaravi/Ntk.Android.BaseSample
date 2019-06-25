@@ -37,11 +37,10 @@ import ntk.base.api.biography.model.BiographyContentResponse;
 import ntk.base.api.biography.model.BiographyContentWithSimilarDatePeriodStartListRequest;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActContentWithSimilarDatePeriodStartList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.row_per_page_text)
@@ -137,15 +136,12 @@ public class ActContentWithSimilarDatePeriodStartList extends AppCompatActivity 
                 request.SearchDayMin = Integer.valueOf(SearchDayMin.getText().toString());
             }
         }
-        Log.i("0000000000000000", "getData: " + request.SearchDayMax);
-        Log.i("0000000000000000", "getData: " + request.SearchDayMin);
 
         RetrofitManager manager = new RetrofitManager(ActContentWithSimilarDatePeriodStartList.this);
         IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<BiographyContentResponse> call = iBiography.GetContentWithSimilarDatePeriodStartList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -177,7 +173,6 @@ public class ActContentWithSimilarDatePeriodStartList extends AppCompatActivity 
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActBiography.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -185,7 +180,6 @@ public class ActContentWithSimilarDatePeriodStartList extends AppCompatActivity 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActBiography.class));
             finish();
             return true;
         }

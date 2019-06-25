@@ -36,6 +36,7 @@ import ntk.base.api.news.model.NewsContentListRequest;
 import ntk.base.api.news.model.NewsContentResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActGetNewsContentList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -118,8 +119,7 @@ public class ActGetNewsContentList extends AppCompatActivity implements AdapterV
         INews iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INews.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<NewsContentResponse> call = iNews.GetContentList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -151,7 +151,6 @@ public class ActGetNewsContentList extends AppCompatActivity implements AdapterV
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActNews.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -159,7 +158,6 @@ public class ActGetNewsContentList extends AppCompatActivity implements AdapterV
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActNews.class));
             finish();
             return true;
         }

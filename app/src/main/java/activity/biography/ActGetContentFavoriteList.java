@@ -36,6 +36,7 @@ import ntk.base.api.biography.model.BiographyContentFavoriteListRequest;
 import ntk.base.api.biography.model.BiographyContentFavoriteListResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActGetContentFavoriteList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -53,8 +54,6 @@ public class ActGetContentFavoriteList extends AppCompatActivity implements Adap
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
@@ -100,8 +99,7 @@ public class ActGetContentFavoriteList extends AppCompatActivity implements Adap
         IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<BiographyContentFavoriteListResponse> call = iBiography.GetContentFavoriteList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -133,7 +131,6 @@ public class ActGetContentFavoriteList extends AppCompatActivity implements Adap
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActBiography.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -141,7 +138,6 @@ public class ActGetContentFavoriteList extends AppCompatActivity implements Adap
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActBiography.class));
             finish();
             return true;
         }

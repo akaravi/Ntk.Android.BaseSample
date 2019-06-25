@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import activity.Main;
 import activity.article.ActArticle;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,10 +43,10 @@ import ntk.base.api.news.model.NewsContentResponse;
 import ntk.base.api.news.model.NewsContentSimilarListRequest;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActContentSimilarList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
+
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.row_per_page_text)
@@ -125,8 +126,7 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
         IImageGallery iImageGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IImageGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<ImageGalleryContentResponse> call = iImageGallery.GetContentSimilarList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -159,7 +159,6 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActImageGallery.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -177,7 +176,6 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActImageGallery.class));
             finish();
             return true;
         }

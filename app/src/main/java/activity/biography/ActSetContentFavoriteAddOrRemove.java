@@ -34,6 +34,7 @@ import ntk.base.api.biography.model.BiographyContentFavoriteRemoveRequest;
 import ntk.base.api.biography.model.BiographyContentFavoriteRemoveResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
 
@@ -48,8 +49,6 @@ public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
     Button btnRemove;
     @BindView(R.id.progressBarRemove)
     ProgressBar progressBarRemove;
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
@@ -102,8 +101,7 @@ public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
         IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<BiographyContentFavoriteAddResponse> call = iBiography.SetContentFavoriteAdd(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -152,8 +150,7 @@ public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
         IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<BiographyContentFavoriteRemoveResponse> call = iBiography.SetContentFavoriteRemove(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -185,7 +182,6 @@ public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActBiography.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -193,7 +189,6 @@ public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActBiography.class));
             finish();
             return true;
         }

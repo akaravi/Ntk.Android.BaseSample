@@ -37,6 +37,7 @@ import ntk.base.api.biography.model.BiographyContentResponse;
 import ntk.base.api.biography.model.BiographyContentViewRequest;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActGetContentView extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -60,8 +61,6 @@ public class ActGetContentView extends AppCompatActivity implements AdapterView.
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     private List<Long> TagIds = new ArrayList<>();
@@ -148,8 +147,7 @@ public class ActGetContentView extends AppCompatActivity implements AdapterView.
         IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<BiographyContentResponse> call = iBiography.GetContentView(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -181,7 +179,6 @@ public class ActGetContentView extends AppCompatActivity implements AdapterView.
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActBiography.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -189,7 +186,6 @@ public class ActGetContentView extends AppCompatActivity implements AdapterView.
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActBiography.class));
             finish();
             return true;
         }

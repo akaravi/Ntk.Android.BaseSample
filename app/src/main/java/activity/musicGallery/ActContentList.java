@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import activity.Main;
 import activity.imageGallery.ActImageGallery;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,11 +41,10 @@ import ntk.base.api.musicGallery.model.MusicGalleryContentListRequest;
 import ntk.base.api.musicGallery.model.MusicGalleryContentResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActContentList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.row_per_page_text)
@@ -121,8 +121,7 @@ public class ActContentList extends AppCompatActivity implements AdapterView.OnI
         IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMusicGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<MusicGalleryContentResponse> call = iMusicGallery.GetContentList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -154,7 +153,6 @@ public class ActContentList extends AppCompatActivity implements AdapterView.OnI
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActMusicGallery.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -162,7 +160,6 @@ public class ActContentList extends AppCompatActivity implements AdapterView.OnI
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActMusicGallery.class));
             finish();
             return true;
         }

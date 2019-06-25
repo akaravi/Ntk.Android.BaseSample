@@ -39,11 +39,10 @@ import ntk.base.api.article.model.ArticleContentSimilarListRequest;
 import ntk.base.api.model.Filters;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActContentCategoryList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.row_per_page_text)
@@ -128,8 +127,7 @@ public class ActContentCategoryList extends AppCompatActivity implements Adapter
         IArticle iArticle = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IArticle.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<ArticleContentResponse> call = iArticle.GetContentCategoryList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -162,7 +160,6 @@ public class ActContentCategoryList extends AppCompatActivity implements Adapter
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActArticle.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -180,7 +177,6 @@ public class ActContentCategoryList extends AppCompatActivity implements Adapter
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActArticle.class));
             finish();
             return true;
         }

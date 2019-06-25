@@ -40,12 +40,10 @@ import ntk.base.api.movieGallery.model.MovieGalleryTagRequest;
 import ntk.base.api.movieGallery.model.MovieGalleryTagResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActTagList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.row_per_page_text)
@@ -105,8 +103,7 @@ public class ActTagList extends AppCompatActivity implements AdapterView.OnItemS
         IMovieGallery iMovieGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMovieGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<MovieGalleryTagResponse> call = iMovieGallery.GetTagList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -138,7 +135,6 @@ public class ActTagList extends AppCompatActivity implements AdapterView.OnItemS
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActMovieGallery.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -146,7 +142,6 @@ public class ActTagList extends AppCompatActivity implements AdapterView.OnItemS
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActMovieGallery.class));
             finish();
             return true;
         }

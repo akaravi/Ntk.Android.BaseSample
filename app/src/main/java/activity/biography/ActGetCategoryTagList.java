@@ -36,6 +36,7 @@ import ntk.base.api.biography.model.BiographyCategoryTagRequest;
 import ntk.base.api.biography.model.BiographyCategoryTagResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActGetCategoryTagList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     @BindView(R.id.row_per_page_text)
@@ -52,8 +53,6 @@ public class ActGetCategoryTagList extends AppCompatActivity implements AdapterV
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
@@ -99,8 +98,7 @@ public class ActGetCategoryTagList extends AppCompatActivity implements AdapterV
         IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<BiographyCategoryTagResponse> call = iBiography.GetCategoryTagList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -132,7 +130,6 @@ public class ActGetCategoryTagList extends AppCompatActivity implements AdapterV
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActBiography.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -140,7 +137,6 @@ public class ActGetCategoryTagList extends AppCompatActivity implements AdapterV
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActBiography.class));
             finish();
             return true;
         }

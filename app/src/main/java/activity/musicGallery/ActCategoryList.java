@@ -39,11 +39,10 @@ import ntk.base.api.musicGallery.model.MusicGalleryCategoryRequest;
 import ntk.base.api.musicGallery.model.MusicGalleryCategoryResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActCategoryList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.row_per_page_text)
@@ -101,8 +100,7 @@ public class ActCategoryList extends AppCompatActivity implements AdapterView.On
         IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMusicGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<MusicGalleryCategoryResponse> call = iMusicGallery.GetCategoryList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -134,7 +132,6 @@ public class ActCategoryList extends AppCompatActivity implements AdapterView.On
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActMusicGallery.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -142,7 +139,6 @@ public class ActCategoryList extends AppCompatActivity implements AdapterView.On
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActMusicGallery.class));
             finish();
             return true;
         }

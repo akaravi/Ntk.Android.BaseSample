@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import activity.Main;
 import activity.news.ActGetContentView;
 import activity.news.ActNews;
 import butterknife.BindView;
@@ -42,11 +43,10 @@ import ntk.base.api.news.model.NewsContentResponse;
 import ntk.base.api.news.model.NewsContentViewRequest;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActContentView extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.row_per_page_text)
@@ -140,8 +140,7 @@ public class ActContentView extends AppCompatActivity implements AdapterView.OnI
         IImageGallery iImageGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IImageGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<ImageGalleryContentResponse> call = iImageGallery.GetContentView(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -173,7 +172,6 @@ public class ActContentView extends AppCompatActivity implements AdapterView.OnI
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActImageGallery.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -181,7 +179,6 @@ public class ActContentView extends AppCompatActivity implements AdapterView.OnI
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActImageGallery.class));
             finish();
             return true;
         }

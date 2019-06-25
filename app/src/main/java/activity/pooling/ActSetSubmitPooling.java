@@ -36,10 +36,10 @@ import ntk.base.api.pooling.model.PoolingSubmitResponse;
 import ntk.base.api.pooling.model.PoolingVote;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActSetSubmitPooling extends AppCompatActivity {
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
+
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
@@ -136,8 +136,7 @@ public class ActSetSubmitPooling extends AppCompatActivity {
         IPooling iPooling = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IPooling.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<PoolingSubmitResponse> call = iPooling.SetSubmitPooling(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -170,7 +169,6 @@ public class ActSetSubmitPooling extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActPooling.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -178,7 +176,6 @@ public class ActSetSubmitPooling extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActPooling.class));
             finish();
             return true;
         }

@@ -133,7 +133,6 @@ public class ActGetContentFavoriteList extends AppCompatActivity implements Adap
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActNews.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -141,7 +140,6 @@ public class ActGetContentFavoriteList extends AppCompatActivity implements Adap
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActNews.class));
             finish();
             return true;
         }

@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import activity.Main;
 import activity.news.ActGetCategoryTagList;
 import activity.news.ActNews;
 import butterknife.BindView;
@@ -41,11 +42,10 @@ import ntk.base.api.news.model.NewsCategoryTagRequest;
 import ntk.base.api.news.model.NewsCategoryTagResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActCategoryTagList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.row_per_page_text)
@@ -105,8 +105,7 @@ public class ActCategoryTagList extends AppCompatActivity implements AdapterView
         IImageGallery iImageGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IImageGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<ImageGalleryCategoryTagResponse> call = iImageGallery.GetCategoryTagList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -138,7 +137,6 @@ public class ActCategoryTagList extends AppCompatActivity implements AdapterView
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActImageGallery.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -146,7 +144,6 @@ public class ActCategoryTagList extends AppCompatActivity implements AdapterView
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActImageGallery.class));
             finish();
             return true;
         }

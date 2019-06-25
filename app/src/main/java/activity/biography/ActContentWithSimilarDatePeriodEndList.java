@@ -167,7 +167,6 @@ public class ActContentWithSimilarDatePeriodEndList extends AppCompatActivity im
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActBiography.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -175,7 +174,6 @@ public class ActContentWithSimilarDatePeriodEndList extends AppCompatActivity im
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActBiography.class));
             finish();
             return true;
         }

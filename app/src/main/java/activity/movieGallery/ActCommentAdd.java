@@ -36,6 +36,7 @@ import ntk.base.api.movieGallery.model.MovieGalleryCommentAddRequest;
 import ntk.base.api.movieGallery.model.MovieGalleryCommentResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActCommentAdd extends AppCompatActivity {
 
@@ -109,8 +110,7 @@ public class ActCommentAdd extends AppCompatActivity {
         IMovieGallery iMovieGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMovieGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName", ""));
         Observable<MovieGalleryCommentResponse> call = iMovieGallery.SetComment(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -143,7 +143,6 @@ public class ActCommentAdd extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActMovieGallery.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -151,7 +150,6 @@ public class ActCommentAdd extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActMovieGallery.class));
             finish();
             return true;
         }

@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import activity.Main;
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
@@ -34,10 +35,10 @@ import ntk.base.api.article.model.ArticleCommentResponse;
 import ntk.base.api.article.model.ArticleCommentViewRequest;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ArticleCommentViewActivity extends AppCompatActivity {
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
+
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
@@ -103,8 +104,7 @@ public class ArticleCommentViewActivity extends AppCompatActivity {
         IArticle iArticle = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IArticle.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<ArticleCommentResponse> call = iArticle.GetCommentView(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -138,7 +138,6 @@ public class ArticleCommentViewActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActArticle.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -146,7 +145,6 @@ public class ArticleCommentViewActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActArticle.class));
             finish();
             return true;
         }

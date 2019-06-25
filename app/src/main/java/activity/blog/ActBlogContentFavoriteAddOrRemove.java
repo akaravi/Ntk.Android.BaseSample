@@ -37,7 +37,6 @@ import ntk.base.app.R;
 
 public class ActBlogContentFavoriteAddOrRemove extends AppCompatActivity {
 
-    @BindView(R.id.txtPackageName)
     EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;

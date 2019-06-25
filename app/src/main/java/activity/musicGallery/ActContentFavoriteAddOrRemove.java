@@ -40,11 +40,10 @@ import ntk.base.api.musicGallery.model.MusicGalleryContentFavoriteRemoveRequest;
 import ntk.base.api.musicGallery.model.MusicGalleryContentFavoriteRemoveResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActContentFavoriteAddOrRemove extends AppCompatActivity {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.txtIdAddOrRemove)
@@ -106,8 +105,7 @@ public class ActContentFavoriteAddOrRemove extends AppCompatActivity {
         IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMusicGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<MusicGalleryContentFavoriteAddResponse> call = iMusicGallery.SetContentFavoriteAdd(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -156,8 +154,7 @@ public class ActContentFavoriteAddOrRemove extends AppCompatActivity {
         IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMusicGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<MusicGalleryContentFavoriteRemoveResponse> call = iMusicGallery.SetContentFavoriteRemove(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -189,7 +186,6 @@ public class ActContentFavoriteAddOrRemove extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActMusicGallery.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -197,7 +193,6 @@ public class ActContentFavoriteAddOrRemove extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActMusicGallery.class));
             finish();
             return true;
         }

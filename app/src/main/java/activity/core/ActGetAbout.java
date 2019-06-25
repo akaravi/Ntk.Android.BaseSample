@@ -29,6 +29,7 @@ import ntk.base.api.core.interfase.ICore;
 import ntk.base.api.core.model.CoreAboutUsResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActGetAbout extends AppCompatActivity {
 
@@ -67,8 +68,7 @@ public class ActGetAbout extends AppCompatActivity {
         ICore iCore = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(ICore.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<CoreAboutUsResponse> call = iCore.GetAbout(headers);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -100,7 +100,6 @@ public class ActGetAbout extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActCore.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -108,7 +107,6 @@ public class ActGetAbout extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActCore.class));
             finish();
             return true;
         }

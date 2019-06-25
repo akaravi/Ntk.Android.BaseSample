@@ -38,6 +38,7 @@ import ntk.base.api.biography.model.BiographyContentResponse;
 import ntk.base.api.model.Filters;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActGetContentList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -61,8 +62,6 @@ public class ActGetContentList extends AppCompatActivity implements AdapterView.
     Button addButton;
     @BindView(R.id.category_id)
     EditText categoryId;
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
@@ -139,8 +138,7 @@ public class ActGetContentList extends AppCompatActivity implements AdapterView.
         IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<BiographyContentResponse> call = iBiography.GetContentList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -172,7 +170,6 @@ public class ActGetContentList extends AppCompatActivity implements AdapterView.
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActBiography.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -180,7 +177,6 @@ public class ActGetContentList extends AppCompatActivity implements AdapterView.
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActBiography.class));
             finish();
             return true;
         }

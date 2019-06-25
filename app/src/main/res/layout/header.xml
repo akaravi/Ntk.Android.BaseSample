@@ -35,28 +35,6 @@
             style="@style/titleStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/package_name" />
-
-        <EditText
-            android:id="@+id/txtPackageName"
-            style="@style/textStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="ntk.cms.android.academy.app10" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/extra_padding"
-        android:orientation="horizontal">
-
-        <TextView
-            style="@style/titleStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/layout" />
 
         <TextView

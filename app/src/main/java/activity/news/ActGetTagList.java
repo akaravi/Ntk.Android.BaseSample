@@ -36,6 +36,7 @@ import ntk.base.api.news.model.NewsTagRequest;
 import ntk.base.api.news.model.NewsTagResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActGetTagList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -100,8 +101,7 @@ public class ActGetTagList extends AppCompatActivity implements AdapterView.OnIt
         INews iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INews.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<NewsTagResponse> call = iNews.GetTagList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -133,7 +133,6 @@ public class ActGetTagList extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActNews.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -141,7 +140,6 @@ public class ActGetTagList extends AppCompatActivity implements AdapterView.OnIt
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActNews.class));
             finish();
             return true;
         }

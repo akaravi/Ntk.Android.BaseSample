@@ -32,14 +32,13 @@ import ntk.base.api.pooling.model.PoolingCategoryRequest;
 import ntk.base.api.pooling.model.PoolingCategoryResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActGetCategoryList extends AppCompatActivity {
     @BindView(R.id.api_test_submit_button)
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
@@ -71,8 +70,7 @@ public class ActGetCategoryList extends AppCompatActivity {
         IPooling iPooling = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IPooling.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<PoolingCategoryResponse> call = iPooling.GetCategoryList(headers);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -104,7 +102,6 @@ public class ActGetCategoryList extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActPooling.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -112,7 +109,6 @@ public class ActGetCategoryList extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActPooling.class));
             finish();
             return true;
         }

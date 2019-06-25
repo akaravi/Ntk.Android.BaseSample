@@ -35,6 +35,7 @@ import ntk.base.api.news.model.NewsCommentResponse;
 import ntk.base.api.news.model.NewsCommentViewRequest;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActGetCommentView extends AppCompatActivity {
 
@@ -107,8 +108,7 @@ public class ActGetCommentView extends AppCompatActivity {
         INews iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INews.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<NewsCommentResponse> call = iNews.GetCommentView(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -140,7 +140,6 @@ public class ActGetCommentView extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActNews.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -148,7 +147,6 @@ public class ActGetCommentView extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActNews.class));
             finish();
             return true;
         }

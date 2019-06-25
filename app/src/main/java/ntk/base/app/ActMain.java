@@ -39,6 +39,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import utill.EasyPreference;
 
 public class ActMain extends AppCompatActivity {
     private ConfigStaticValue configStaticValue =new ConfigStaticValue(this);
@@ -67,8 +68,7 @@ public class ActMain extends AppCompatActivity {
             INews iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INews.class);
             Map<String, String> headers = new HashMap<>();
             headers.put("layout", "newscontentlist");
-            headers.put("packagename", "ntk.cms.vitrin.app");
-
+            headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
             Observable<NewsContentResponse> call = iNews.GetContentList(headers, request);
             call.observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())

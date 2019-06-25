@@ -159,7 +159,6 @@ public class ActPropertyList extends AppCompatActivity implements AdapterView.On
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActEstate.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -177,7 +176,6 @@ public class ActPropertyList extends AppCompatActivity implements AdapterView.On
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActEstate.class));
             finish();
             return true;
         }

@@ -69,7 +69,6 @@ public class GetArticleContentOtherInfoList extends AppCompatActivity implements
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActArticle.class));
             finish();
             return true;
         }
@@ -164,7 +163,6 @@ public class GetArticleContentOtherInfoList extends AppCompatActivity implements
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActArticle.class));
         finish();
         return super.onSupportNavigateUp();
     }

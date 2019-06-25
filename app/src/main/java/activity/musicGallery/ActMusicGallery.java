@@ -53,7 +53,6 @@ public class ActMusicGallery extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, Main.class));
             finish();
             return true;
         }
@@ -63,7 +62,6 @@ public class ActMusicGallery extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, Main.class));
         finish();
         return super.onSupportNavigateUp();
     }

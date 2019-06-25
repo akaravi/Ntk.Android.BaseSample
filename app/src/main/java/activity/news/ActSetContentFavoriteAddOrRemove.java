@@ -34,6 +34,7 @@ import ntk.base.api.news.model.NewsContentFavoriteRemoveRequest;
 import ntk.base.api.news.model.NewsContentFavoriteRemoveResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
 
@@ -100,8 +101,7 @@ public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
         INews iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INews.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<NewsContentFavoriteAddResponse> call = iNews.SetContentFavoriteAdd(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -183,7 +183,6 @@ public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActNews.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -191,7 +190,6 @@ public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActNews.class));
             finish();
             return true;
         }

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
+import activity.Main;
 import activity.imageGallery.ActImageGallery;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,10 +37,10 @@ import ntk.base.api.musicGallery.model.MusicGalleryCommentResponse;
 import ntk.base.api.musicGallery.model.MusicGalleryCommentViewRequest;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActCommentView extends AppCompatActivity {
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
+
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.txtId)
@@ -98,8 +99,7 @@ public class ActCommentView extends AppCompatActivity {
         IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMusicGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<MusicGalleryCommentResponse> call = iMusicGallery.GetCommentView(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -131,7 +131,6 @@ public class ActCommentView extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActMusicGallery.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -139,7 +138,6 @@ public class ActCommentView extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActMusicGallery.class));
             finish();
             return true;
         }
