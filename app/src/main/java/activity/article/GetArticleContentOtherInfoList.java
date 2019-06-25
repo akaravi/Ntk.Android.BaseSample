@@ -38,11 +38,10 @@ import ntk.base.api.article.model.ArticleContentOtherInfoResponse;
 import ntk.base.api.model.Filters;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class GetArticleContentOtherInfoList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
@@ -130,8 +129,7 @@ public class GetArticleContentOtherInfoList extends AppCompatActivity implements
         IArticle iArticle = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IArticle.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<ArticleContentOtherInfoResponse> call = iArticle.GetContentOtherInfoList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

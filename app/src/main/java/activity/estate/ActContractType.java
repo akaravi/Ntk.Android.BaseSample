@@ -33,11 +33,10 @@ import ntk.base.api.estate.interfase.IEstate;
 import ntk.base.api.estate.model.EstateContractTypeListResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActContractType extends AppCompatActivity {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.progress_bar)
@@ -71,7 +70,7 @@ public class ActContractType extends AppCompatActivity {
         IEstate iEstate = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IEstate.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
 
         Observable<EstateContractTypeListResponse> call = iEstate.GetContractType(headers);
         call.observeOn(AndroidSchedulers.mainThread())

@@ -32,11 +32,10 @@ import ntk.base.api.core.model.CoreUserLoginRequest;
 import ntk.base.api.core.model.CoreUserResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActUserLoginByMobile extends AppCompatActivity {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.txtlangActUserLoginByMobile)
@@ -92,8 +91,7 @@ public class ActUserLoginByMobile extends AppCompatActivity {
         ICore iCore = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(ICore.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<CoreUserResponse> call = iCore.userLoginByMobile(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

@@ -41,11 +41,10 @@ import ntk.base.api.biography.model.BiographyContentResponse;
 import ntk.base.api.biography.model.BiographyContentWithDatePeriodEndListRequest;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActContentWithDatePeriodEndList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.row_per_page_text)
@@ -126,15 +125,12 @@ public class ActContentWithDatePeriodEndList extends AppCompatActivity implement
         }
         request.SearchDateMin=SearchDateMin.getDayOfMonth()+"/"+ SearchDateMin.getMonth()+"/"+SearchDateMin.getYear()+" 12:00:00 AM";
         request.SearchDateMax=SearchDateMax.getDayOfMonth()+"/"+ SearchDateMax.getMonth()+"/"+SearchDateMax.getYear()+" 12:00:00 AM";
-        Log.i("00000000000", "max: "+ request.SearchDateMax);
-        Log.i("00000000000", "min: "+ request.SearchDateMin);
 
         RetrofitManager manager = new RetrofitManager(ActContentWithDatePeriodEndList.this);
         IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<BiographyContentResponse> call = iBiography.GetContentWithDatePeriodEndList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

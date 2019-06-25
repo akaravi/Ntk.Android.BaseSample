@@ -54,8 +54,6 @@ public class ActGetTagList extends AppCompatActivity implements AdapterView.OnIt
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();

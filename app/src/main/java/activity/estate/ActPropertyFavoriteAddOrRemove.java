@@ -33,12 +33,10 @@ import ntk.base.api.estate.model.EstatePropertyFavoriteRemoveRequest;
 import ntk.base.api.estate.model.EstatePropertyFavoriteRemoveResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActPropertyFavoriteAddOrRemove extends AppCompatActivity {
 
-
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.txtIdAddOrRemove)
@@ -96,7 +94,7 @@ public class ActPropertyFavoriteAddOrRemove extends AppCompatActivity {
         IEstate iEstate = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IEstate.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
 
         Observable<EstatePropertyFavoriteAddResponse> call = iEstate.SetPropertyFavoriteAdd(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
@@ -146,7 +144,7 @@ public class ActPropertyFavoriteAddOrRemove extends AppCompatActivity {
         IEstate iEstate = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IEstate.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
 
         Observable<EstatePropertyFavoriteRemoveResponse> call = iEstate.SetPropertyFavoriteRemove(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())

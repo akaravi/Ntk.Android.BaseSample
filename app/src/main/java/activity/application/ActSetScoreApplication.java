@@ -32,6 +32,7 @@ import ntk.base.api.application.model.ApplicationScoreRequest;
 import ntk.base.api.application.model.ApplicationScoreResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActSetScoreApplication extends AppCompatActivity {
 
@@ -43,8 +44,6 @@ public class ActSetScoreApplication extends AppCompatActivity {
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
@@ -97,8 +96,7 @@ public class ActSetScoreApplication extends AppCompatActivity {
         IApplication iApplication = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IApplication.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<ApplicationScoreResponse> call = iApplication.SetScoreApplication(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

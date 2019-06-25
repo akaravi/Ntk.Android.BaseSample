@@ -36,11 +36,10 @@ import ntk.base.api.movieGallery.model.MovieGalleryContentFavoriteListRequest;
 import ntk.base.api.movieGallery.model.MovieGalleryContentFavoriteListResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActContentFavoriteList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.row_per_page_text)
@@ -100,7 +99,7 @@ public class ActContentFavoriteList extends AppCompatActivity implements Adapter
         IMovieGallery iMovieGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMovieGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
 
         Observable<MovieGalleryContentFavoriteListResponse> call = iMovieGallery.GetContentFavoriteList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())

@@ -32,11 +32,10 @@ import ntk.base.api.imageGallery.model.ImageGalleryCommentAddRequest;
 import ntk.base.api.imageGallery.model.ImageGalleryCommentResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActCommentAdd extends AppCompatActivity {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.txtWriter)
@@ -103,8 +102,7 @@ public class ActCommentAdd extends AppCompatActivity {
         IImageGallery iImageGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IImageGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<ImageGalleryCommentResponse> call = iImageGallery.SetComment(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

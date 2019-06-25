@@ -36,6 +36,7 @@ import ntk.base.api.biography.model.BiographyContentOtherInfoRequest;
 import ntk.base.api.biography.model.BiographyContentOtherInfoResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActGetContentOtherInfoList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     @BindView(R.id.row_per_page_text)
@@ -52,8 +53,6 @@ public class ActGetContentOtherInfoList extends AppCompatActivity implements Ada
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
@@ -99,8 +98,7 @@ public class ActGetContentOtherInfoList extends AppCompatActivity implements Ada
         IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<BiographyContentOtherInfoResponse> call = iBiography.GetContentOtherInfoList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

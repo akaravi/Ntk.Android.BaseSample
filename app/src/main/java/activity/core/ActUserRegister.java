@@ -34,8 +34,6 @@ import utill.EasyPreference;
 
 public class ActUserRegister extends AppCompatActivity {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.txtUsernameActRegister)

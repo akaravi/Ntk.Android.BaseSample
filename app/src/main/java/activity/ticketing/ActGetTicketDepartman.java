@@ -31,6 +31,7 @@ import ntk.base.api.ticket.interfase.ITicket;
 import ntk.base.api.ticket.model.TicketingDepartemenList;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActGetTicketDepartman extends AppCompatActivity {
 
@@ -38,8 +39,6 @@ public class ActGetTicketDepartman extends AppCompatActivity {
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
@@ -71,7 +70,7 @@ public class ActGetTicketDepartman extends AppCompatActivity {
         ITicket iTicket = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(ITicket.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
 
         Observable<TicketingDepartemenList> call = iTicket.GetTicketDepartman(headers);
         call.observeOn(AndroidSchedulers.mainThread())

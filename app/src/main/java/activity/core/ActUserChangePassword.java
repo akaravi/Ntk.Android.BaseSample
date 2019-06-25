@@ -35,8 +35,6 @@ import utill.EasyPreference;
 
 public class ActUserChangePassword extends AppCompatActivity {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.txtOldPasswordActUserChangePassword)

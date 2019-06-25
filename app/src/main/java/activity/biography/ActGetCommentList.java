@@ -36,6 +36,7 @@ import ntk.base.api.biography.model.BiographyCommentListRequest;
 import ntk.base.api.biography.model.BiographyCommentResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActGetCommentList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -53,8 +54,6 @@ public class ActGetCommentList extends AppCompatActivity implements AdapterView.
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
@@ -100,8 +99,7 @@ public class ActGetCommentList extends AppCompatActivity implements AdapterView.
         IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<BiographyCommentResponse> call = iBiography.GetCommentList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

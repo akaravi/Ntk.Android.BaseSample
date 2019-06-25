@@ -35,8 +35,6 @@ import utill.EasyPreference;
 
 public class ActUserMobileConfirm extends AppCompatActivity {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.txtMobileActUserMobileConfirm)

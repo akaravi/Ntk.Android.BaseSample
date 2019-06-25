@@ -38,6 +38,7 @@ import ntk.base.api.ticket.model.TicketingAnswerListRequest;
 import ntk.base.api.ticket.model.TicketingAnswerListResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActGetTicketAnswerList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -57,8 +58,6 @@ public class ActGetTicketAnswerList extends AppCompatActivity implements Adapter
     ProgressBar progressBar;
     @BindView(R.id.LinkTicketId)
     EditText LinkTicketId;
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
 
@@ -123,8 +122,7 @@ public class ActGetTicketAnswerList extends AppCompatActivity implements Adapter
         ITicket iTicket = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(ITicket.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<TicketingAnswerListResponse> call = iTicket.GetTicketAnswerList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

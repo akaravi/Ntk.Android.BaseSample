@@ -48,8 +48,6 @@ public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
     ProgressBar progressBarRemove;
     @BindView(R.id.txtIdAddOrRemove)
     EditText txtIdAddOrRemove;
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
@@ -150,7 +148,7 @@ public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
         INews iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INews.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
 
         Observable<NewsContentFavoriteRemoveResponse> call = iNews.SetContentFavoriteRemove(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())

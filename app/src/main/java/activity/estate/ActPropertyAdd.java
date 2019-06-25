@@ -32,12 +32,10 @@ import ntk.base.api.estate.model.EstatePropertyAddRequest;
 import ntk.base.api.estate.model.EstatePropertyAddResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActPropertyAdd extends AppCompatActivity {
 
-
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.txtLatitude)
@@ -178,7 +176,7 @@ public class ActPropertyAdd extends AppCompatActivity {
         IEstate iEstate = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IEstate.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
 
         Observable<EstatePropertyAddResponse> call = iEstate.SetPropertyAdd(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())

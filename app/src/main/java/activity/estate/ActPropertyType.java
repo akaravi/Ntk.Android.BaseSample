@@ -40,11 +40,10 @@ import ntk.base.api.estate.model.EstatePropertyTypeListResponse;
 import ntk.base.api.model.Filters;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActPropertyType extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.row_per_page_text)
@@ -125,7 +124,7 @@ public class ActPropertyType extends AppCompatActivity implements AdapterView.On
         IEstate iEstate = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IEstate.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
 
         Observable<EstatePropertyTypeListResponse> call = iEstate.GetPropertyType(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())

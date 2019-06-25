@@ -34,6 +34,7 @@ import ntk.base.api.ticket.model.TicketingSubmitRequest;
 import ntk.base.api.ticket.model.TicketingSubmitResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActSetTicketSubmit extends AppCompatActivity {
 
@@ -61,8 +62,6 @@ public class ActSetTicketSubmit extends AppCompatActivity {
     ProgressBar progressBar;
     @BindView(R.id.title)
     EditText title;
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.api_test_submit_button)
@@ -191,8 +190,7 @@ public class ActSetTicketSubmit extends AppCompatActivity {
         ITicket iTicket = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(ITicket.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<TicketingSubmitResponse> call = iTicket.SetTicketSubmit(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

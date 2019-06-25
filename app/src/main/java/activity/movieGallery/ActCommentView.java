@@ -32,11 +32,10 @@ import ntk.base.api.movieGallery.model.MovieGalleryCommentResponse;
 import ntk.base.api.movieGallery.model.MovieGalleryCommentViewRequest;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActCommentView extends AppCompatActivity {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.txtId)
@@ -95,7 +94,7 @@ public class ActCommentView extends AppCompatActivity {
         IMovieGallery iMovieGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMovieGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
 
         Observable<MovieGalleryCommentResponse> call = iMovieGallery.GetCommentView(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())

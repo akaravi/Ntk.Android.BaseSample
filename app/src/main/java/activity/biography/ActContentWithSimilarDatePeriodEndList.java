@@ -37,11 +37,10 @@ import ntk.base.api.biography.model.BiographyContentResponse;
 import ntk.base.api.biography.model.BiographyContentWithSimilarDatePeriodEndListRequest;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActContentWithSimilarDatePeriodEndList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.row_per_page_text)
@@ -127,15 +126,12 @@ public class ActContentWithSimilarDatePeriodEndList extends AppCompatActivity im
                 request.SearchDayMin=Integer.valueOf(SearchDayMin.getText().toString());
             }
         }
-        Log.i("0000000000000000", "getData: " + request.SearchDayMax);
-        Log.i("0000000000000000", "getData: " + request.SearchDayMin);
 
         RetrofitManager manager = new RetrofitManager(ActContentWithSimilarDatePeriodEndList.this);
         IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<BiographyContentResponse> call = iBiography.GetContentWithSimilarDatePeriodEndList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

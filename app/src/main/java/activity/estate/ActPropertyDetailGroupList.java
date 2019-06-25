@@ -34,13 +34,13 @@ import ntk.base.api.estate.model.EstatePropertyDetailGroupListRequest;
 import ntk.base.api.estate.model.EstatePropertyDetailGroupListResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActPropertyDetailGroupList extends AppCompatActivity {
 
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
+
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.txtPropertyTypeId)
@@ -86,8 +86,7 @@ public class ActPropertyDetailGroupList extends AppCompatActivity {
         IEstate iEstate = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IEstate.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
-
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
         Observable<EstatePropertyDetailGroupListResponse> call = iEstate.GetPropertyDetailGroupList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

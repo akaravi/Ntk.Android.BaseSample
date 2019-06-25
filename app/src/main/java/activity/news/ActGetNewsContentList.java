@@ -58,8 +58,6 @@ public class ActGetNewsContentList extends AppCompatActivity implements AdapterV
     EditText currentPageNumberText;
     @BindView(R.id.sort_column_text)
     EditText sortColumnText;
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     private List<Long> TagIds = new ArrayList<>();

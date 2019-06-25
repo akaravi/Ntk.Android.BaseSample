@@ -40,8 +40,6 @@ import utill.EasyPreference;
 
 public class ActCommentAdd extends AppCompatActivity {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.txtWriter)

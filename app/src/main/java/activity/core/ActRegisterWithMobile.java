@@ -34,6 +34,7 @@ import ntk.base.api.core.model.CoreUserRegisterByMobileResponse;
 import ntk.base.api.core.model.CoreUserResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActRegisterWithMobile extends AppCompatActivity {
 
@@ -41,8 +42,6 @@ public class ActRegisterWithMobile extends AppCompatActivity {
     EditText Mobile;
     @BindView(R.id.txtCodeActRegisterWithMobile)
     EditText Code;
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.api_test_submit_button)
@@ -89,7 +88,7 @@ public class ActRegisterWithMobile extends AppCompatActivity {
         ICore iCore = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(ICore.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
 
         Observable<CoreUserResponse> call = iCore.RegisterWithMobile(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())

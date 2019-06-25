@@ -61,8 +61,6 @@ public class ActGetContentView extends AppCompatActivity implements AdapterView.
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     private List<Long> TagIds = new ArrayList<>();

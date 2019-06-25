@@ -36,6 +36,7 @@ import ntk.base.api.news.model.NewsContentFavoriteListRequest;
 import ntk.base.api.news.model.NewsContentFavoriteListResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActGetContentFavoriteList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -53,8 +54,6 @@ public class ActGetContentFavoriteList extends AppCompatActivity implements Adap
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
@@ -100,7 +99,7 @@ public class ActGetContentFavoriteList extends AppCompatActivity implements Adap
         INews iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INews.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
 
         Observable<NewsContentFavoriteListResponse> call = iNews.GetContentFavoriteList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())

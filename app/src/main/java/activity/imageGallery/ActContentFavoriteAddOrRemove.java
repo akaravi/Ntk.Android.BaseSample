@@ -36,11 +36,10 @@ import ntk.base.api.imageGallery.model.ImageGalleryContentFavoriteRemoveRequest;
 import ntk.base.api.imageGallery.model.ImageGalleryContentFavoriteRemoveResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import utill.EasyPreference;
 
 public class ActContentFavoriteAddOrRemove extends AppCompatActivity {
 
-    @BindView(R.id.txtPackageName)
-    EditText txtPackageName;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
     @BindView(R.id.txtIdAddOrRemove)
@@ -102,7 +101,7 @@ public class ActContentFavoriteAddOrRemove extends AppCompatActivity {
         IImageGallery iImageGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IImageGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
 
         Observable<ImageGalleryContentFavoriteAddResponse> call = iImageGallery.SetContentFavoriteAdd(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
@@ -152,7 +151,7 @@ public class ActContentFavoriteAddOrRemove extends AppCompatActivity {
         IImageGallery iImageGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IImageGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", txtPackageName.getText().toString());
+        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
 
         Observable<ImageGalleryContentFavoriteRemoveResponse> call = iImageGallery.SetContentFavoriteRemove(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
