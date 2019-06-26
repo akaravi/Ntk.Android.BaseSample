@@ -183,7 +183,6 @@ public class ActBlogContentFavoriteAddOrRemove extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActBlog.class));
         finish();
         return super.onSupportNavigateUp();
     }

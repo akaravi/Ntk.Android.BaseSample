@@ -178,63 +178,48 @@ public class Main extends AppCompatActivity {
                     switch (view.getId()) {
                         case 0:
                             startActivity(new Intent(context, ActCore.class));
-                            finish();
                             break;
                         case 1:
                             startActivity(new Intent(context, ActArticle.class));
-                            finish();
                             break;
                         case 2:
                             startActivity(new Intent(context, ActNews.class));
-                            finish();
                             break;
                         case 3:
                             startActivity(new Intent(context, ActPooling.class));
-                            finish();
                             break;
                         case 4:
                             startActivity(new Intent(context, ActTicket.class));
-                            finish();
                             break;
                         case 5:
                             startActivity(new Intent(context, ActBiography.class));
-                            finish();
                             break;
                         case 6:
                             startActivity(new Intent(context, ActApplication.class));
-                            finish();
                             break;
                         case 7:
                             startActivity(new Intent(context, ActEstate.class));
-                            finish();
                             break;
                         case 8:
                             startActivity(new Intent(context, ActFile.class));
-                            finish();
                             break;
                         case 9:
                             startActivity(new Intent(context, ActBlog.class));
-                            finish();
                             break;
                         case 10:
                             startActivity(new Intent(context, ActImageGallery.class));
-                            finish();
                             break;
                         case 11:
                             startActivity(new Intent(context, ActMovieGallery.class));
-                            finish();
                             break;
                         case 12:
                             startActivity(new Intent(context, ActMusicGallery.class));
-                            finish();
                             break;
                         case 13:
                             startActivity(new Intent(context, ActProduct.class));
-                            finish();
                             break;
                         case 14:
                             startActivity(new Intent(context, ActService.class));
-                            finish();
                             break;
                     }
                 }

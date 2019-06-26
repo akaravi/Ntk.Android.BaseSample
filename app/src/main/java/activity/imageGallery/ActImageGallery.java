@@ -56,7 +56,6 @@ public class ActImageGallery extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             startActivity(new Intent(this, Main.class));
-            finish();
             return true;
         }
         return super.onKeyDown(keyCode, event);
@@ -66,7 +65,6 @@ public class ActImageGallery extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         startActivity(new Intent(this, Main.class));
-        finish();
         return super.onSupportNavigateUp();
     }
 
@@ -95,47 +93,36 @@ public class ActImageGallery extends AppCompatActivity {
                     switch (view.getId()) {
                         case 0:
                             startActivity(new Intent(ActImageGallery.this, ActCategoryList.class));
-                            finish();
                             break;
                         case 1:
                             startActivity(new Intent(ActImageGallery.this, ActCategoryTagList.class));
-                            finish();
                             break;
                         case 2:
                             startActivity(new Intent(ActImageGallery.this, ActContentView.class));
-                            finish();
                             break;
                         case 3:
                             startActivity(new Intent(ActImageGallery.this, ActContentSimilarList.class));
-                            finish();
                             break;
                         case 4:
                             startActivity(new Intent(ActImageGallery.this, ActContentOtherInfoList.class));
-                            finish();
                             break;
                         case 5:
                             startActivity(new Intent(ActImageGallery.this, ActContentList.class));
-                            finish();
                             break;
                         case 6:
                             startActivity(new Intent(ActImageGallery.this, ActContentFavoriteList.class));
-                            finish();
                             break;
                         case 7:
                             startActivity(new Intent(ActImageGallery.this, ActContentFavoriteAddOrRemove.class));
-                            finish();
                             break;
                         case 8:
                             startActivity(new Intent(ActImageGallery.this, ActCommentList.class));
-                            finish();
                             break;
                         case 9:
                             startActivity(new Intent(ActImageGallery.this, ActContentCategoryList.class));
-                            finish();
                             break;
                         case 10:
                             startActivity(new Intent(ActImageGallery.this, ActTagList.class));
-                            finish();
                             break;
                     }
                 }

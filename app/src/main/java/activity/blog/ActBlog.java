@@ -95,55 +95,42 @@ public class ActBlog extends AppCompatActivity {
                     switch (view.getId()) {
                         case 0:
                             startActivity(new Intent(ActBlog.this, ActTagList.class));
-                            finish();
                             break;
                         case 1:
                             startActivity(new Intent(ActBlog.this, ActContentView.class));
-                            finish();
                             break;
                         case 2:
                             startActivity(new Intent(ActBlog.this, ActContentSimilarList.class));
-                            finish();
                             break;
                         case 3:
                             startActivity(new Intent(ActBlog.this, ActContentOtherInfoList.class));
-                            finish();
                             break;
                         case 4:
                             startActivity(new Intent(ActBlog.this, ActContentList.class));
-                            finish();
                             break;
                         case 5:
                             startActivity(new Intent(ActBlog.this, ActContentFavoriteList.class));
-                            finish();
                             break;
                         case 6:
                             startActivity(new Intent(ActBlog.this, ActContentCategoryList.class));
-                            finish();
                             break;
                         case 7:
                             startActivity(new Intent(ActBlog.this, ActCommentView.class));
-                            finish();
                             break;
                         case 8:
                             startActivity(new Intent(ActBlog.this, ActCommentList.class));
-                            finish();
                             break;
                         case 9:
                             startActivity(new Intent(ActBlog.this, ActCommentAdd.class));
-                            finish();
                             break;
                         case 10:
                             startActivity(new Intent(ActBlog.this, ActBlogContentFavoriteAddOrRemove.class));
-                            finish();
                             break;
                         case 11:
                             startActivity(new Intent(ActBlog.this, ActCategoryList.class));
-                            finish();
                             break;
                         case 12:
                             startActivity(new Intent(ActBlog.this, ActCategoryTagList.class));
-                            finish();
                             break;
 
                     }

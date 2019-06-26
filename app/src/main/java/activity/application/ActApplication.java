@@ -88,11 +88,9 @@ public class ActApplication extends AppCompatActivity {
                     switch (view.getId()) {
                         case 0:
                             startActivity(new Intent(ActApplication.this, ActGetResponseMain.class));
-                            finish();
                             break;
                          case 1:
                             startActivity(new Intent(ActApplication.this, ActIntro.class));
-                            finish();
                             break;
 
                     }

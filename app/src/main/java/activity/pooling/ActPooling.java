@@ -85,15 +85,12 @@ public class ActPooling extends AppCompatActivity {
                     switch (view.getId()) {
                         case 0:
                             startActivity(new Intent(ActPooling.this, ActGetCategoryList.class));
-                            finish();
                             break;
                         case 1:
                             startActivity(new Intent(ActPooling.this, ActGetContentList.class));
-                            finish();
                             break;
                         case 2:
                             startActivity(new Intent(ActPooling.this, ActSetSubmitPooling.class));
-                            finish();
                             break;
                     }
                 }

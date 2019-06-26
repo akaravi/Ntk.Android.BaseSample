@@ -104,83 +104,63 @@ public class ActBiography extends AppCompatActivity {
                     switch (view.getId()) {
                         case 0:
                             startActivity(new Intent(ActBiography.this, ActGetContentList.class));
-                            finish();
                             break;
                         case 1:
                             startActivity(new Intent(ActBiography.this, ActGetContentView.class));
-                            finish();
                             break;
                         case 2:
                             startActivity(new Intent(ActBiography.this, ActGetTagList.class));
-                            finish();
                             break;
                         case 3:
                             startActivity(new Intent(ActBiography.this, ActGetCategoryList.class));
-                            finish();
                             break;
                         case 4:
                             startActivity(new Intent(ActBiography.this, ActGetCategoryTagList.class));
-                            finish();
                             break;
                         case 5:
                             startActivity(new Intent(ActBiography.this, ActGetContentOtherInfoList.class));
-                            finish();
                             break;
                         case 6:
                             startActivity(new Intent(ActBiography.this, ActGetCommentList.class));
-                            finish();
                             break;
                         case 7:
                             startActivity(new Intent(ActBiography.this, ActSetContentFavoriteAddOrRemove.class));
-                            finish();
                             break;
                         case 8:
                             startActivity(new Intent(ActBiography.this, ActGetContentFavoriteList.class));
-                            finish();
                             break;
                         case 9:
                             startActivity(new Intent(ActBiography.this, ActSetComment.class));
-                            finish();
                             break;
                         case 10:
                             startActivity(new Intent(ActBiography.this, ActGetCommentView.class));
-                            finish();
                             break;
                         case 11:
                             startActivity(new Intent(ActBiography.this, ActContentCategoryList.class));
-                            finish();
                             break;
                         case 12:
                             startActivity(new Intent(ActBiography.this, ActContentSimilarList.class));
-                            finish();
                             break;
                         case 13:
                             startActivity(new Intent(ActBiography.this, ActContentWithDatePeriodEndList.class));
-                            finish();
                             break;
                         case 14:
                             startActivity(new Intent(ActBiography.this, ActContentWithDatePeriodStartList.class));
-                            finish();
                             break;
                         case 15:
                             startActivity(new Intent(ActBiography.this, ActContentWithSimilarDatePeriodEndList.class));
-                            finish();
                             break;
                         case 16:
                             startActivity(new Intent(ActBiography.this, ActContentWithSimilarDatePeriodStartDayAndMonthOfYearList.class));
-                            finish();
                             break;
                         case 17:
                             startActivity(new Intent(ActBiography.this, ActContentWithSimilarDatePeriodStartDayOfYearList.class));
-                            finish();
                             break;
                         case 18:
                             startActivity(new Intent(ActBiography.this, ActContentWithSimilarDatePeriodStartList.class));
-                            finish();
                             break;
                         case 19:
                             startActivity(new Intent(ActBiography.this, ActContentWithSimilarDatePeriodStartMonthOfYearList.class));
-                            finish();
                             break;
                     }
                 }

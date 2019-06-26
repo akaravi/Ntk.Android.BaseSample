@@ -30,8 +30,6 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.imageGallery.interfase.IImageGallery;
 import ntk.base.api.imageGallery.model.ImageGalleryContentFavoriteAddRequest;
 import ntk.base.api.imageGallery.model.ImageGalleryContentFavoriteAddResponse;
-import ntk.base.api.imageGallery.model.ImageGalleryContentFavoriteListRequest;
-import ntk.base.api.imageGallery.model.ImageGalleryContentFavoriteListResponse;
 import ntk.base.api.imageGallery.model.ImageGalleryContentFavoriteRemoveRequest;
 import ntk.base.api.imageGallery.model.ImageGalleryContentFavoriteRemoveResponse;
 import ntk.base.api.utill.RetrofitManager;
@@ -184,7 +182,6 @@ public class ActContentFavoriteAddOrRemove extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActImageGallery.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -192,7 +189,6 @@ public class ActContentFavoriteAddOrRemove extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActImageGallery.class));
             finish();
             return true;
         }

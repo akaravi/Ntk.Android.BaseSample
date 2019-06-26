@@ -82,7 +82,6 @@ public class ActFile extends AppCompatActivity {
                     switch (view.getId()) {
                         case 0:
                             startActivity(new Intent(ActFile.this, ActGetResponseMain.class));
-                            finish();
                             break;
                     }
                 }

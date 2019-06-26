@@ -90,51 +90,39 @@ public class ActCore extends AppCompatActivity {
                     switch (view.getId()) {
                         case 0:
                             startActivity(new Intent(ActCore.this, ActGetResponseMain.class));
-                            finish();
                             break;
                         case 1:
                             startActivity(new Intent(ActCore.this, ActGetAbout.class));
-                            finish();
                             break;
                         case 2:
                             startActivity(new Intent(ActCore.this, ActRegisterWithMobile.class));
-                            finish();
                             break;
                         case 3:
                             startActivity(new Intent(ActCore.this, ActLocation.class));
-                            finish();
                             break;
                         case 4:
                             startActivity(new Intent(ActCore.this, ActUserChangePassword.class));
-                            finish();
                             break;
                         case 5:
                             startActivity(new Intent(ActCore.this, ActUserEmailConfirm.class));
-                            finish();
                             break;
                         case 6:
                             startActivity(new Intent(ActCore.this, ActUserForgetPassword.class));
-                            finish();
                             break;
                         case 7:
                             startActivity(new Intent(ActCore.this, ActUserLogin.class));
-                            finish();
                             break;
                         case 8:
                             startActivity(new Intent(ActCore.this, ActUserLoginByMobile.class));
-                            finish();
                             break;
                         case 9:
                             startActivity(new Intent(ActCore.this, ActUserMobileConfirm.class));
-                            finish();
                             break;
                         case 10:
                             startActivity(new Intent(ActCore.this, ActUserRegister.class));
-                            finish();
                             break;
                         case 11:
                             startActivity(new Intent(ActCore.this, ActCreateFilterModel.class));
-                            finish();
                             break;
                     }
                 }

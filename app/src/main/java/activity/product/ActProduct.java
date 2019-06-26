@@ -83,7 +83,6 @@ public class ActProduct extends AppCompatActivity {
                     switch (view.getId()) {
                         case 0:
                             startActivity(new Intent(ActProduct.this, ActGetResponseMain.class));
-                            finish();
                             break;
                     }
                 }

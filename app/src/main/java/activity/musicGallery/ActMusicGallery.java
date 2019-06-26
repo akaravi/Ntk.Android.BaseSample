@@ -91,47 +91,36 @@ public class ActMusicGallery extends AppCompatActivity {
                     switch (view.getId()) {
                         case 0:
                             startActivity(new Intent(ActMusicGallery.this, ActTagList.class));
-                            finish();
                             break;
                         case 1:
                             startActivity(new Intent(ActMusicGallery.this, ActContentView.class));
-                            finish();
                             break;
                         case 2:
                             startActivity(new Intent(ActMusicGallery.this, ActContentSimilarList.class));
-                            finish();
                             break;
                         case 3:
                             startActivity(new Intent(ActMusicGallery.this, ActContentOtherInfoList.class));
-                            finish();
                             break;
                         case 4:
                             startActivity(new Intent(ActMusicGallery.this, ActContentList.class));
-                            finish();
                             break;
                         case 5:
                             startActivity(new Intent(ActMusicGallery.this, ActContentFavoriteList.class));
-                            finish();
                             break;
                         case 6:
                             startActivity(new Intent(ActMusicGallery.this, ActContentFavoriteAddOrRemove.class));
-                            finish();
                             break;
                         case 7:
                             startActivity(new Intent(ActMusicGallery.this, ActContentCategoryList.class));
-                            finish();
                             break;
                         case 8:
                             startActivity(new Intent(ActMusicGallery.this, ActCommentView.class));
-                            finish();
                             break;
                         case 9:
                             startActivity(new Intent(ActMusicGallery.this, ActCategoryList.class));
-                            finish();
                             break;
                         case 10:
                             startActivity(new Intent(ActMusicGallery.this, ActCommentAdd.class));
-                            finish();
                             break;
                     }
                 }

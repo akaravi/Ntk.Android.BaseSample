@@ -160,7 +160,6 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
     @Override
     public boolean onSupportNavigateUp() {
         startActivity(new Intent(this, ActMovieGallery.class));
-        finish();
         return super.onSupportNavigateUp();
     }
 

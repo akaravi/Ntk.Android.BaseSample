@@ -82,7 +82,6 @@ public class ActService extends AppCompatActivity {
                     switch (view.getId()) {
                         case 0:
                             startActivity(new Intent(ActService.this, ActGetResponseMain.class));
-                            finish();
                             break;
                     }
                 }

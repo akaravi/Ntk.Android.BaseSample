@@ -93,55 +93,42 @@ public class ActNews extends AppCompatActivity {
                     switch (view.getId()) {
                         case 0:
                             startActivity(new Intent(ActNews.this, ActGetNewsContentList.class));
-                            finish();
                             break;
                         case 1:
                             startActivity(new Intent(ActNews.this, ActGetContentView.class));
-                            finish();
                             break;
                         case 2:
                             startActivity(new Intent(ActNews.this, ActGetTagList.class));
-                            finish();
                             break;
                         case 3:
                             startActivity(new Intent(ActNews.this, ActGetCategoryList.class));
-                            finish();
                             break;
                         case 4:
                             startActivity(new Intent(ActNews.this, ActGetCategoryTagList.class));
-                            finish();
                             break;
                         case 5:
                             startActivity(new Intent(ActNews.this, ActGetContentOtherInfoList.class));
-                            finish();
                             break;
                         case 6:
                             startActivity(new Intent(ActNews.this, ActGetCommentList.class));
-                            finish();
                             break;
                         case 7:
                             startActivity(new Intent(ActNews.this, ActSetComment.class));
-                            finish();
                             break;
                         case 8:
                             startActivity(new Intent(ActNews.this, ActGetCommentView.class));
-                            finish();
                             break;
                         case 9:
                             startActivity(new Intent(ActNews.this, ActSetContentFavoriteAddOrRemove.class));
-                            finish();
                             break;
                         case 10:
                             startActivity(new Intent(ActNews.this, ActGetContentFavoriteList.class));
-                            finish();
                             break;
                         case 11:
                             startActivity(new Intent(ActNews.this, ActContentSimilarList.class));
-                            finish();
                             break;
                         case 12:
                             startActivity(new Intent(ActNews.this, ActContentCategoryList.class));
-                            finish();
                             break;
                     }
                 }

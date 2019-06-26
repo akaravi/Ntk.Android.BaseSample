@@ -53,7 +53,6 @@ public class ActEstate extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             startActivity(new Intent(this, Main.class));
-            finish();
             return true;
         }
         return super.onKeyDown(keyCode, event);
@@ -92,39 +91,30 @@ public class ActEstate extends AppCompatActivity {
                     switch (view.getId()) {
                         case 0:
                             startActivity(new Intent(ActEstate.this, ActContractType.class));
-                            finish();
                             break;
                         case 1:
                             startActivity(new Intent(ActEstate.this, ActPropertyAdd.class));
-                            finish();
                             break;
                         case 2:
                             startActivity(new Intent(ActEstate.this, ActPropertyDetailGroupList.class));
-                            finish();
                             break;
                         case 3:
                             startActivity(new Intent(ActEstate.this, ActPropertyDetailList.class));
-                            finish();
                             break;
                         case 4:
                             startActivity(new Intent(ActEstate.this, ActPropertyFavoriteAddOrRemove.class));
-                            finish();
                             break;
                         case 5:
                             startActivity(new Intent(ActEstate.this, ActPropertyFavoriteList.class));
-                            finish();
                             break;
                         case 6:
                             startActivity(new Intent(ActEstate.this, ActPropertyList.class));
-                            finish();
                             break;
                         case 7:
                             startActivity(new Intent(ActEstate.this, ActPropertyType.class));
-                            finish();
                             break;
                         case 8:
                             startActivity(new Intent(ActEstate.this, ActPropertyView.class));
-                            finish();
                             break;
                     }
                 }

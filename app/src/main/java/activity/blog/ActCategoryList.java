@@ -159,7 +159,6 @@ public class ActCategoryList extends AppCompatActivity implements AdapterView.On
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActBlog.class));
         finish();
         return super.onSupportNavigateUp();
     }

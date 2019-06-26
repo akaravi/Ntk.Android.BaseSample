@@ -137,7 +137,6 @@ public class ActContentOtherInfoList extends AppCompatActivity implements Adapte
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(this, ActBlog.class));
         finish();
         return super.onSupportNavigateUp();
     }
@@ -145,7 +144,6 @@ public class ActContentOtherInfoList extends AppCompatActivity implements Adapte
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, ActBlog.class));
             finish();
             return true;
         }

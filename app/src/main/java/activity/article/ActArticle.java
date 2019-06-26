@@ -96,55 +96,42 @@ public class ActArticle extends AppCompatActivity {
                     switch (view.getId()) {
                         case 0:
                             startActivity(new Intent(ActArticle.this, GetArticleContentList.class).putExtra(LAYOUT_VALUE, "ArticleContentList"));
-                            finish();
                             break;
                         case 1:
                             startActivity(new Intent(ActArticle.this, GetArticleContentView.class).putExtra(LAYOUT_VALUE, "ArticleContentView"));
-                            finish();
                             break;
                         case 2:
                             startActivity(new Intent(ActArticle.this, GetArticleTagList.class).putExtra(LAYOUT_VALUE, "ArticleTagList"));
-                            finish();
                             break;
                         case 3:
                             startActivity(new Intent(ActArticle.this, GetArticleCategoryList.class).putExtra(LAYOUT_VALUE, "ArticleCategoryList"));
-                            finish();
                             break;
                         case 4:
                             startActivity(new Intent(ActArticle.this, GetArticleCategoryTagList.class).putExtra(LAYOUT_VALUE, "ArticleCategoryTagList"));
-                            finish();
                             break;
                         case 5:
                             startActivity(new Intent(ActArticle.this, GetArticleContentOtherInfoList.class).putExtra(LAYOUT_VALUE, "ArticleContentOtherInfoList"));
-                            finish();
                             break;
                         case 6:
                             startActivity(new Intent(ActArticle.this, GetArticleCommentList.class).putExtra(LAYOUT_VALUE, "ArticleCommentList"));
-                            finish();
                             break;
                         case 7:
                             startActivity(new Intent(ActArticle.this, GetArticleCommentAdd.class).putExtra(LAYOUT_VALUE, "ArticleCommentAddRequest"));
-                            finish();
                             break;
                         case 8:
                             startActivity(new Intent(ActArticle.this, GetArticleContentFavoriteAddOrRemove.class).putExtra(LAYOUT_VALUE, "ArticleContentFavoriteAddRequest"));
-                            finish();
                             break;
                         case 9:
                             startActivity(new Intent(ActArticle.this, ArticleCommentViewActivity.class).putExtra(LAYOUT_VALUE, "ArticleCommentView"));
-                            finish();
                             break;
                         case 10:
                             startActivity(new Intent(ActArticle.this, ArticleContentFavoriteListActivity.class).putExtra(LAYOUT_VALUE, "ArticleContentFavoriteList"));
-                            finish();
                             break;
                         case 11:
                             startActivity(new Intent(ActArticle.this, ActContentSimilarList.class));
-                            finish();
                             break;
                         case 12:
                             startActivity(new Intent(ActArticle.this, ActContentCategoryList.class));
-                            finish();
                             break;
                     }
                 }
