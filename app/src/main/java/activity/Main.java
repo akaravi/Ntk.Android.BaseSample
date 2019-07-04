@@ -45,6 +45,7 @@ import activity.service.ActService;
 import activity.ticketing.ActTicket;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import config.ConfigRestHeader;
 import config.ConfigStaticValue;
@@ -354,5 +355,13 @@ public class Main extends AppCompatActivity {
             return true;
         });
         dialog.show();
+    }
+
+    @OnClick(R.id.defaultValueBtn)
+    public void onDefaultValueBtnClick(){
+        url.setText("ntk.cms.android.academy.app10");
+        EasyPreference.with(Main.this).remove("url");
+        EasyPreference.with(Main.this).addString("url","ntk.cms.android.academy.app10");
+        packageName.setText("oco.ir/api/app");
     }
 }

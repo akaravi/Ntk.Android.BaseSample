@@ -50,6 +50,15 @@
             android:text="ntk.cms.android.academy.app10" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/defaultValueBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="نمایش مقادیر پیش فرض"
+        android:textColor="#fff"
+        android:textSize="18sp" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/main_recycler_view"
         android:layout_width="match_parent"
