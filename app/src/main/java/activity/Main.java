@@ -113,8 +113,13 @@ public class Main extends AppCompatActivity {
     }
 
     private void init() {
-        EasyPreference.with(this).addString("url", "oco.ir/api/app");
-        EasyPreference.with(this).addString("packageName", "ntk.cms.android.academy.app10");
+
+        url.setText("http://oco.ir/api/app");
+        packageName.setText("ntk.cms.android.academy.app");
+
+        EasyPreference.with(this).addString("url", "http://oco.ir/api/app");
+        EasyPreference.with(this).addString("packageName", "ntk.cms.android.academy.app");
+
         mainRecyclerView.setLayoutManager(new GridLayoutManager(Main.this, 2));
         mainRecyclerView.setAdapter(new MainRecyclerViewAdapter(this, apiNames));
         url.addTextChangedListener(new TextWatcher() {
@@ -130,8 +135,8 @@ public class Main extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                EasyPreference.with(Main.this).remove("url");
-                EasyPreference.with(Main.this).addString("url",s.toString());
+                EasyPreference.with(Main.this).remove("ApiBaseUrl");
+                EasyPreference.with(Main.this).addString("ApiBaseUrl",s.toString());
             }
         });
 
@@ -249,6 +254,7 @@ public class Main extends AppCompatActivity {
         if (EasyPreference.with(this).getString("configapp", "").isEmpty()) {
             HandelData();
         }
+
     }
 
     private void HandelData() {
@@ -359,9 +365,10 @@ public class Main extends AppCompatActivity {
 
     @OnClick(R.id.defaultValueBtn)
     public void onDefaultValueBtnClick(){
-        url.setText("ntk.cms.android.academy.app10");
-        EasyPreference.with(Main.this).remove("url");
-        EasyPreference.with(Main.this).addString("url","ntk.cms.android.academy.app10");
-        packageName.setText("oco.ir/api/app");
+
+        EasyPreference.with(Main.this).remove("ApiBaseUrl");
+        EasyPreference.with(Main.this).addString("ApiBaseUrl","http://oco.ir/api/app");
+        url.setText("http://oco.ir/api/app");
+        packageName.setText("ntk.cms.android.academy.app");
     }
 }

@@ -126,7 +126,7 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
         IMovieGallery iMovieGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMovieGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<MovieGalleryContentResponse> call = iMovieGallery.GetContentSimilarList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

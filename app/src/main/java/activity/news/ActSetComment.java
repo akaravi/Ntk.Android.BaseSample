@@ -121,7 +121,7 @@ public class ActSetComment extends AppCompatActivity {
         INews iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INews.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<NewsCommentResponse> call = iNews.SetComment(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

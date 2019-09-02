@@ -99,7 +99,7 @@ public class ActGetTicketList extends AppCompatActivity implements AdapterView.O
         ITicket iTicket = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(ITicket.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<TicketingListResponse> call = iTicket.GetTicketList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

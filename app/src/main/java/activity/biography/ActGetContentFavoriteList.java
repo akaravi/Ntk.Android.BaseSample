@@ -99,7 +99,7 @@ public class ActGetContentFavoriteList extends AppCompatActivity implements Adap
         IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<BiographyContentFavoriteListResponse> call = iBiography.GetContentFavoriteList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

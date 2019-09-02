@@ -9,7 +9,7 @@ public class ConfigStaticValue {
     public ConfigStaticValue(Context context) {
         privateContext = context;
         ApiBaseAppId = 0;
-        ApiBaseUrl = null;
+        ApiBaseUrl =null;// GetApiBaseUrl();
 //        ApiBaseUrl = "http://24b3272b.ngrok.io/";
 //        ApiBaseUrl = "http://c4b57f02.ngrok.io/";
         //ApiBaseUrl = "http://9c782c46.ngrok.io";

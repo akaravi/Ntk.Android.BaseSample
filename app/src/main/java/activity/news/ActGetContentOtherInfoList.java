@@ -100,7 +100,7 @@ public class ActGetContentOtherInfoList extends AppCompatActivity implements Ada
         INews iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INews.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
 
         Observable<NewsContentOtherInfoResponse> call = iNews.GetContentOtherInfoList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())

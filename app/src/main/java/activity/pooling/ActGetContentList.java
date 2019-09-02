@@ -122,7 +122,7 @@ public class ActGetContentList extends AppCompatActivity implements AdapterView.
         IPooling iPooling = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IPooling.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<PoolingContentListResponse> call = iPooling.GetContentList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

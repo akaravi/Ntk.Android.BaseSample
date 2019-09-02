@@ -126,7 +126,7 @@ public class ActContentCategoryList extends AppCompatActivity implements Adapter
         IMovieGallery iMovieGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMovieGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
 
         Observable<MovieGalleryContentResponse> call = iMovieGallery.GetContentCategoryList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())

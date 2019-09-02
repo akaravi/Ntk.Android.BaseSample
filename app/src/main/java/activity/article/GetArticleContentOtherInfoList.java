@@ -129,7 +129,7 @@ public class GetArticleContentOtherInfoList extends AppCompatActivity implements
         IArticle iArticle = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IArticle.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<ArticleContentOtherInfoResponse> call = iArticle.GetContentOtherInfoList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

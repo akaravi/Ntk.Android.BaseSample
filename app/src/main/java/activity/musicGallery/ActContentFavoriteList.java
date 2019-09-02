@@ -103,7 +103,7 @@ public class ActContentFavoriteList extends AppCompatActivity implements Adapter
         IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMusicGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<MusicGalleryContentFavoriteListResponse> call = iMusicGallery.GetContentFavoriteList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

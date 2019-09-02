@@ -105,7 +105,7 @@ public class ActCategoryTagList extends AppCompatActivity implements AdapterView
         IImageGallery iImageGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IImageGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<ImageGalleryCategoryTagResponse> call = iImageGallery.GetCategoryTagList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

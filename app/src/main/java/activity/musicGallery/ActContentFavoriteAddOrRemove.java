@@ -105,7 +105,7 @@ public class ActContentFavoriteAddOrRemove extends AppCompatActivity {
         IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMusicGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<MusicGalleryContentFavoriteAddResponse> call = iMusicGallery.SetContentFavoriteAdd(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -154,7 +154,7 @@ public class ActContentFavoriteAddOrRemove extends AppCompatActivity {
         IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMusicGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<MusicGalleryContentFavoriteRemoveResponse> call = iMusicGallery.SetContentFavoriteRemove(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

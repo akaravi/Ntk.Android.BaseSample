@@ -99,7 +99,7 @@ public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
         INews iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INews.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<NewsContentFavoriteAddResponse> call = iNews.SetContentFavoriteAdd(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -148,7 +148,7 @@ public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
         INews iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INews.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
 
         Observable<NewsContentFavoriteRemoveResponse> call = iNews.SetContentFavoriteRemove(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())

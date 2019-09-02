@@ -70,7 +70,7 @@ public class ActGetCategoryList extends AppCompatActivity {
         IPooling iPooling = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IPooling.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<PoolingCategoryResponse> call = iPooling.GetCategoryList(headers);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

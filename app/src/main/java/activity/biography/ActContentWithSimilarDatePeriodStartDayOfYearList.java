@@ -124,7 +124,7 @@ public class ActContentWithSimilarDatePeriodStartDayOfYearList extends AppCompat
         IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<BiographyContentResponse> call = iBiography.GetContentWithSimilarDatePeriodStartDayOfYearList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

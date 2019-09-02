@@ -96,7 +96,7 @@ public class ActSetScoreApplication extends AppCompatActivity {
         IApplication iApplication = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IApplication.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<ApplicationScoreResponse> call = iApplication.SetScoreApplication(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

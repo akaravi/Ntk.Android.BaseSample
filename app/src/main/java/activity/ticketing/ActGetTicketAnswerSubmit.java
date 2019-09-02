@@ -150,7 +150,7 @@ public class ActGetTicketAnswerSubmit extends AppCompatActivity {
         ITicket iTicket = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(ITicket.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<TicketingAnswerSubmitResponse> call = iTicket.GetTicketAnswerSubmit(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

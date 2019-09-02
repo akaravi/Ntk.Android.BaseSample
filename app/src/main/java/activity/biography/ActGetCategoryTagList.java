@@ -98,7 +98,7 @@ public class ActGetCategoryTagList extends AppCompatActivity implements AdapterV
         IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<BiographyCategoryTagResponse> call = iBiography.GetCategoryTagList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

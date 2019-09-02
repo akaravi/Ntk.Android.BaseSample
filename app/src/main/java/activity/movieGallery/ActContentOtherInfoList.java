@@ -103,7 +103,7 @@ public class ActContentOtherInfoList extends AppCompatActivity implements Adapte
         IMovieGallery iMovieGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMovieGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
 
         Observable<MovieGalleryContentOtherInfoResponse> call = iMovieGallery.GetContentOtherInfoList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())

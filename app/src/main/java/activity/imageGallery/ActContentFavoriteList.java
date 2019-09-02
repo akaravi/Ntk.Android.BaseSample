@@ -103,7 +103,7 @@ public class ActContentFavoriteList extends AppCompatActivity implements Adapter
         IImageGallery iImageGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IImageGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<ImageGalleryContentFavoriteListResponse> call = iImageGallery.GetContentFavoriteList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

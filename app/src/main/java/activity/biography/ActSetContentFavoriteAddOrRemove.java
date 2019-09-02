@@ -101,7 +101,7 @@ public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
         IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<BiographyContentFavoriteAddResponse> call = iBiography.SetContentFavoriteAdd(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -150,7 +150,7 @@ public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
         IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<BiographyContentFavoriteRemoveResponse> call = iBiography.SetContentFavoriteRemove(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

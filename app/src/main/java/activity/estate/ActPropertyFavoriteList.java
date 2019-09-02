@@ -126,7 +126,7 @@ public class ActPropertyFavoriteList extends AppCompatActivity implements Adapte
         IEstate iEstate = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IEstate.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
 
         Observable<EstatePropertyFavoriteListResponse> call = iEstate.GetPropertyFavoriteList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())

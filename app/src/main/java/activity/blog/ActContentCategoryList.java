@@ -125,7 +125,7 @@ public class ActContentCategoryList extends AppCompatActivity implements Adapter
         IBlog iBlog = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBlog.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<BlogContentResponse> call = iBlog.GetContentCategoryList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

@@ -124,7 +124,7 @@ public class ActPropertyType extends AppCompatActivity implements AdapterView.On
         IEstate iEstate = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IEstate.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
 
         Observable<EstatePropertyTypeListResponse> call = iEstate.GetPropertyType(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())

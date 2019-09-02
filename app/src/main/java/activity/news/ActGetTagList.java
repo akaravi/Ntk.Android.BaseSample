@@ -99,7 +99,7 @@ public class ActGetTagList extends AppCompatActivity implements AdapterView.OnIt
         INews iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INews.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<NewsTagResponse> call = iNews.GetTagList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

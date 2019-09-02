@@ -100,7 +100,7 @@ public class ActGetTicketFaqList extends AppCompatActivity implements AdapterVie
         ITicket iTicket = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(ITicket.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<TicketingFaqListResponse> call = iTicket.GetTicketFaqList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

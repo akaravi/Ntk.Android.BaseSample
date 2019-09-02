@@ -94,7 +94,7 @@ public class ActPropertyFavoriteAddOrRemove extends AppCompatActivity {
         IEstate iEstate = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IEstate.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
 
         Observable<EstatePropertyFavoriteAddResponse> call = iEstate.SetPropertyFavoriteAdd(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
@@ -144,7 +144,7 @@ public class ActPropertyFavoriteAddOrRemove extends AppCompatActivity {
         IEstate iEstate = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IEstate.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
 
         Observable<EstatePropertyFavoriteRemoveResponse> call = iEstate.SetPropertyFavoriteRemove(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())

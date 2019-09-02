@@ -103,7 +103,7 @@ public class GetArticleContentFavoriteAddOrRemove extends AppCompatActivity {
         IArticle iArticle = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IArticle.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<ArticleContentFavoriteAddResponse> call = iArticle.SetContentFavoriteAdd(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -153,7 +153,7 @@ public class GetArticleContentFavoriteAddOrRemove extends AppCompatActivity {
         IArticle iArticle = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IArticle.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<ArticleContentFavoriteRemoveResponse> call = iArticle.SetContentFavoriteRemove(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

@@ -120,7 +120,7 @@ public class ActContentList extends AppCompatActivity implements AdapterView.OnI
         IMovieGallery iMovieGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMovieGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
 
         Observable<MovieGalleryContentResponse> call = iMovieGallery.GetContentList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())

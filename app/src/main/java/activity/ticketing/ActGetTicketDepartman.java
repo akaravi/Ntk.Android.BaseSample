@@ -70,7 +70,7 @@ public class ActGetTicketDepartman extends AppCompatActivity {
         ITicket iTicket = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(ITicket.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
 
         Observable<TicketingDepartemenList> call = iTicket.GetTicketDepartman(headers);
         call.observeOn(AndroidSchedulers.mainThread())

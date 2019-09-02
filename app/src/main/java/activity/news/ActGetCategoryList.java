@@ -99,7 +99,7 @@ public class ActGetCategoryList extends AppCompatActivity implements AdapterView
         INews iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INews.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<NewsCategoryResponse> call = iNews.GetCategoryList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

@@ -72,7 +72,7 @@ public class ActIntro extends AppCompatActivity {
         IApplication iApplication = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IApplication.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("PackageName", EasyPreference.with(this).getString("packageName",""));
+
         Observable<ApplicationIntroResponse> call = iApplication.GetApplicationIntro(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
