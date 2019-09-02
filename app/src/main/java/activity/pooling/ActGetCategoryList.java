@@ -67,7 +67,7 @@ public class ActGetCategoryList extends AppCompatActivity {
 
     private void getData() {
         RetrofitManager manager = new RetrofitManager(ActGetCategoryList.this);
-        IPooling iPooling = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IPooling.class);
+        IPooling iPooling = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IPooling.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

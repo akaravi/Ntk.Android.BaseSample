@@ -104,7 +104,7 @@ public class ActCommentView extends AppCompatActivity {
             return;
         }
         RetrofitManager manager = new RetrofitManager(ActCommentView.this);
-        IImageGallery iImageGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IImageGallery.class);
+        IImageGallery iImageGallery = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IImageGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

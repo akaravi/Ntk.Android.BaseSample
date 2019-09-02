@@ -97,7 +97,7 @@ public class ActGetTicketFaqList extends AppCompatActivity implements AdapterVie
         request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
         request.SortColumn = sortColumnText.getText().toString();
         RetrofitManager manager = new RetrofitManager(ActGetTicketFaqList.this);
-        ITicket iTicket = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(ITicket.class);
+        ITicket iTicket = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(ITicket.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

@@ -114,7 +114,7 @@ public class ActGetNewsContentList extends AppCompatActivity implements AdapterV
             request.TagIds = TagIds;
         }
         RetrofitManager manager = new RetrofitManager(ActGetNewsContentList.this);
-        INews iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INews.class);
+        INews iNews = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(INews.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

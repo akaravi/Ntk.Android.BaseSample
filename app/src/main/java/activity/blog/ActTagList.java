@@ -103,7 +103,7 @@ public class ActTagList extends AppCompatActivity implements AdapterView.OnItemS
         request.SortColumn = sortColumnText.getText().toString();
 
         RetrofitManager manager = new RetrofitManager(ActTagList.this);
-        IBlog iBlog = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBlog.class);
+        IBlog iBlog = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IBlog.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

@@ -102,7 +102,7 @@ public class ActContentOtherInfoList extends AppCompatActivity implements Adapte
         request.SortColumn = sortColumnText.getText().toString();
 
         RetrofitManager manager = new RetrofitManager(ActContentOtherInfoList.this);
-        IBlog iBlog = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBlog.class);
+        IBlog iBlog = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IBlog.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

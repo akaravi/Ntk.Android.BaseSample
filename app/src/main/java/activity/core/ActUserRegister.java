@@ -128,7 +128,7 @@ public class ActUserRegister extends AppCompatActivity {
             return;
         }
         RetrofitManager manager = new RetrofitManager(ActUserRegister.this);
-        ICore iCore = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(ICore.class);
+        ICore iCore = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(ICore.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

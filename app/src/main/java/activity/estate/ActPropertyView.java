@@ -80,7 +80,7 @@ public class ActPropertyView extends AppCompatActivity {
             }
         }
         RetrofitManager manager = new RetrofitManager(ActPropertyView.this);
-        IEstate iEstate = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IEstate.class);
+        IEstate iEstate = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IEstate.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

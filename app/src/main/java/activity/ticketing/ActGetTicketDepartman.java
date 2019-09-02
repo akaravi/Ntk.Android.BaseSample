@@ -67,7 +67,7 @@ public class ActGetTicketDepartman extends AppCompatActivity {
 
     private void getData() {
         RetrofitManager manager = new RetrofitManager(ActGetTicketDepartman.this);
-        ITicket iTicket = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(ITicket.class);
+        ITicket iTicket = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(ITicket.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

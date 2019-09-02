@@ -97,7 +97,7 @@ public class ActBlogContentFavoriteAddOrRemove extends AppCompatActivity {
             return;
         }
         RetrofitManager manager = new RetrofitManager(ActBlogContentFavoriteAddOrRemove.this);
-        IBlog iBlog = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBlog.class);
+        IBlog iBlog = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IBlog.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
         headers.put("PackageName", txtPackageName.getText().toString());
@@ -147,7 +147,7 @@ public class ActBlogContentFavoriteAddOrRemove extends AppCompatActivity {
             return;
         }
         RetrofitManager manager = new RetrofitManager(ActBlogContentFavoriteAddOrRemove.this);
-        IBlog iBlog = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBlog.class);
+        IBlog iBlog = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IBlog.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
         headers.put("PackageName", txtPackageName.getText().toString());

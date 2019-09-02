@@ -119,7 +119,7 @@ public class ActGetTicketAnswerList extends AppCompatActivity implements Adapter
             request.filters = filters;
         }
         RetrofitManager manager = new RetrofitManager(ActGetTicketAnswerList.this);
-        ITicket iTicket = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(ITicket.class);
+        ITicket iTicket = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(ITicket.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

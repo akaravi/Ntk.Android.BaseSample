@@ -100,7 +100,7 @@ public class ActCommentList extends AppCompatActivity implements AdapterView.OnI
         request.SortColumn = sortColumnText.getText().toString();
 
         RetrofitManager manager = new RetrofitManager(ActCommentList.this);
-        IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMusicGallery.class);
+        IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IMusicGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

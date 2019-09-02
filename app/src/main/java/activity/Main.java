@@ -114,11 +114,13 @@ public class Main extends AppCompatActivity {
 
     private void init() {
 
-        url.setText("http://oco.ir/api/app");
-        packageName.setText("ntk.cms.android.academy.app");
+        String ApiBaseUrl_ = EasyPreference.with(this).getString("ApiBaseUrl", "http://oco.ir");
+        String packageName_ = EasyPreference.with(this).getString("packageName", "ntk.cms.android.academy.app");
+        url.setText(ApiBaseUrl_);
+        packageName.setText(packageName_);
 
-        EasyPreference.with(this).addString("url", "http://oco.ir/api/app");
-        EasyPreference.with(this).addString("packageName", "ntk.cms.android.academy.app");
+        EasyPreference.with(this).addString("ApiBaseUrl", ApiBaseUrl_);
+        EasyPreference.with(this).addString("packageName", packageName_);
 
         mainRecyclerView.setLayoutManager(new GridLayoutManager(Main.this, 2));
         mainRecyclerView.setAdapter(new MainRecyclerViewAdapter(this, apiNames));
@@ -136,7 +138,7 @@ public class Main extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 EasyPreference.with(Main.this).remove("ApiBaseUrl");
-                EasyPreference.with(Main.this).addString("ApiBaseUrl",s.toString());
+                EasyPreference.with(Main.this).addString("ApiBaseUrl", s.toString());
             }
         });
 
@@ -247,6 +249,17 @@ public class Main extends AppCompatActivity {
         }
     }
 
+    @OnClick(R.id.defaultValueBtn)
+    public void onDefaultValueBtnClick(){
+
+        EasyPreference.with(Main.this).remove("ApiBaseUrl");
+        EasyPreference.with(Main.this).addString("ApiBaseUrl","http://oco.ir");
+
+        EasyPreference.with(Main.this).remove("packageName");
+        EasyPreference.with(Main.this).addString("packageName","ntk.cms.android.academy.app");
+        url.setText("http://oco.ir");
+        packageName.setText("ntk.cms.android.academy.app");
+    }
 
     @Override
     protected void onStart() {
@@ -363,12 +376,4 @@ public class Main extends AppCompatActivity {
         dialog.show();
     }
 
-    @OnClick(R.id.defaultValueBtn)
-    public void onDefaultValueBtnClick(){
-
-        EasyPreference.with(Main.this).remove("ApiBaseUrl");
-        EasyPreference.with(Main.this).addString("ApiBaseUrl","http://oco.ir/api/app");
-        url.setText("http://oco.ir/api/app");
-        packageName.setText("ntk.cms.android.academy.app");
-    }
 }

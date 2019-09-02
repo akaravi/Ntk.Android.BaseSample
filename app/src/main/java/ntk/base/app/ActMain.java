@@ -65,7 +65,7 @@ public class ActMain extends AppCompatActivity {
             request.RowPerPage = 20;
 
             RetrofitManager manager = new RetrofitManager(ActMain.this);
-            INews iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INews.class);
+            INews iNews = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(INews.class);
             Map<String, String> headers = new HashMap<>();
             headers.put("layout", "newscontentlist");
 

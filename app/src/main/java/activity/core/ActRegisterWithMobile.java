@@ -85,7 +85,7 @@ public class ActRegisterWithMobile extends AppCompatActivity {
             request.Code = Code.getText().toString();
         }
         RetrofitManager manager = new RetrofitManager(ActRegisterWithMobile.this);
-        ICore iCore = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(ICore.class);
+        ICore iCore = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(ICore.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

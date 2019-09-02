@@ -101,7 +101,7 @@ public class ArticleCommentViewActivity extends AppCompatActivity {
         }
         request.ActionClientOrder = likeValue;
         RetrofitManager manager = new RetrofitManager(ArticleCommentViewActivity.this);
-        IArticle iArticle = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IArticle.class);
+        IArticle iArticle = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IArticle.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

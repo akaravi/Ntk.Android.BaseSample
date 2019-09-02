@@ -127,7 +127,7 @@ public class GetArticleCategoryList extends AppCompatActivity implements Adapter
             request.filters = filters;
         }
         RetrofitManager manager = new RetrofitManager(GetArticleCategoryList.this);
-        IArticle iArticle = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IArticle.class);
+        IArticle iArticle = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IArticle.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

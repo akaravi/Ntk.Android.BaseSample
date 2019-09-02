@@ -128,7 +128,7 @@ public class GetArticleCommentList extends AppCompatActivity implements AdapterV
         }
 
         RetrofitManager manager = new RetrofitManager(GetArticleCommentList.this);
-        IArticle iArticle = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IArticle.class);
+        IArticle iArticle = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IArticle.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

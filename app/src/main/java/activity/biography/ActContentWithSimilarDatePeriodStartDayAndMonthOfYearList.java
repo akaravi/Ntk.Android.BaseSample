@@ -136,7 +136,7 @@ public class ActContentWithSimilarDatePeriodStartDayAndMonthOfYearList extends A
             return;
         }
         RetrofitManager manager = new RetrofitManager(ActContentWithSimilarDatePeriodStartDayAndMonthOfYearList.this);
-        IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
+        IBiography iBiography = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

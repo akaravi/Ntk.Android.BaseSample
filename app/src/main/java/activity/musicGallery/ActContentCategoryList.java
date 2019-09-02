@@ -118,7 +118,7 @@ public class ActContentCategoryList extends AppCompatActivity implements Adapter
             request.filters = filters;
         }
         RetrofitManager manager = new RetrofitManager(ActContentCategoryList.this);
-        IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMusicGallery.class);
+        IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IMusicGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

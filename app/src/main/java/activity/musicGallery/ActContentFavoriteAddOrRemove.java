@@ -102,7 +102,7 @@ public class ActContentFavoriteAddOrRemove extends AppCompatActivity {
             return;
         }
         RetrofitManager manager = new RetrofitManager(ActContentFavoriteAddOrRemove.this);
-        IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMusicGallery.class);
+        IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IMusicGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
@@ -151,7 +151,7 @@ public class ActContentFavoriteAddOrRemove extends AppCompatActivity {
             return;
         }
         RetrofitManager manager = new RetrofitManager(ActContentFavoriteAddOrRemove.this);
-        IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMusicGallery.class);
+        IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IMusicGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

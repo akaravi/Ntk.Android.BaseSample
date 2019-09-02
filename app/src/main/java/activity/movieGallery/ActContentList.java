@@ -117,7 +117,7 @@ public class ActContentList extends AppCompatActivity implements AdapterView.OnI
             request.TagIds = TagIds;
         }
         RetrofitManager manager = new RetrofitManager(ActContentList.this);
-        IMovieGallery iMovieGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMovieGallery.class);
+        IMovieGallery iMovieGallery = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IMovieGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

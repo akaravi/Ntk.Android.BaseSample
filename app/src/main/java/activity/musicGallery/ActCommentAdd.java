@@ -103,7 +103,7 @@ public class ActCommentAdd extends AppCompatActivity {
             }
         }
         RetrofitManager manager = new RetrofitManager(ActCommentAdd.this);
-        IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMusicGallery.class);
+        IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IMusicGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

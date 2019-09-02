@@ -18,7 +18,7 @@ public class ConfigStaticValue {
     }
 
     private Context privateContext;
-    public String ApiBaseUrl;
+    private String ApiBaseUrl ;
 
     public void UrlPreferenceUseed() {
         if (privateContext != null) {

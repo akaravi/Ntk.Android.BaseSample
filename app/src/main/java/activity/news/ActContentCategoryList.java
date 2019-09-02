@@ -123,7 +123,7 @@ public class ActContentCategoryList extends AppCompatActivity implements Adapter
             request.filters = filters;
         }
         RetrofitManager manager = new RetrofitManager(ActContentCategoryList.this);
-        INews iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INews.class);
+        INews iNews = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(INews.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

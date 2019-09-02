@@ -119,7 +119,7 @@ public class ActGetContentList extends AppCompatActivity implements AdapterView.
             request.filters = filters;
         }
         RetrofitManager manager = new RetrofitManager(ActGetContentList.this);
-        IPooling iPooling = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IPooling.class);
+        IPooling iPooling = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IPooling.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

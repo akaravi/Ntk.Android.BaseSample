@@ -123,7 +123,7 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
             request.filters = filters;
         }
         RetrofitManager manager = new RetrofitManager(ActContentSimilarList.this);
-        IImageGallery iImageGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IImageGallery.class);
+        IImageGallery iImageGallery = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IImageGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

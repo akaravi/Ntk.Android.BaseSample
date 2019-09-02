@@ -135,7 +135,7 @@ public class ActGetContentList extends AppCompatActivity implements AdapterView.
             request.filters = filters;
         }
         RetrofitManager manager = new RetrofitManager(ActGetContentList.this);
-        IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
+        IBiography iBiography = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

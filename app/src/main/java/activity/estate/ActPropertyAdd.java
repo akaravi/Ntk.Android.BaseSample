@@ -173,7 +173,7 @@ public class ActPropertyAdd extends AppCompatActivity {
             request.fileStream = Long.valueOf(fileStream.getText().toString());
         }
         RetrofitManager manager = new RetrofitManager(ActPropertyAdd.this);
-        IEstate iEstate = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IEstate.class);
+        IEstate iEstate = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IEstate.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

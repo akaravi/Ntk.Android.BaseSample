@@ -100,7 +100,7 @@ public class ActCategoryTagList extends AppCompatActivity implements AdapterView
         request.SortColumn = sortColumnText.getText().toString();
 
         RetrofitManager manager = new RetrofitManager(ActCategoryTagList.this);
-        IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMusicGallery.class);
+        IMusicGallery iMusicGallery = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IMusicGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

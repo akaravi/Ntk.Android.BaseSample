@@ -128,7 +128,7 @@ public class GetArticleCategoryTagList extends AppCompatActivity implements Adap
             request.filters = filters;
         }
         RetrofitManager manager = new RetrofitManager(GetArticleCategoryTagList.this);
-        IArticle iArticle = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IArticle.class);
+        IArticle iArticle = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IArticle.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

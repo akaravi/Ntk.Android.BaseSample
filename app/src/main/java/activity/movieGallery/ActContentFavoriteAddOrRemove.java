@@ -96,7 +96,7 @@ public class ActContentFavoriteAddOrRemove extends AppCompatActivity {
             return;
         }
         RetrofitManager manager = new RetrofitManager(ActContentFavoriteAddOrRemove.this);
-        IMovieGallery iMovieGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMovieGallery.class);
+        IMovieGallery iMovieGallery = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IMovieGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
@@ -146,7 +146,7 @@ public class ActContentFavoriteAddOrRemove extends AppCompatActivity {
             return;
         }
         RetrofitManager manager = new RetrofitManager(ActContentFavoriteAddOrRemove.this);
-        IMovieGallery iMovieGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMovieGallery.class);
+        IMovieGallery iMovieGallery = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IMovieGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

@@ -143,7 +143,7 @@ public class ActGetContentView extends AppCompatActivity implements AdapterView.
         }
 
         RetrofitManager manager = new RetrofitManager(ActGetContentView.this);
-        INews iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INews.class);
+        INews iNews = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(INews.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

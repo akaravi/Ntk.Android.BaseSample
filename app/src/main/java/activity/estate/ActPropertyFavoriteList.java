@@ -123,7 +123,7 @@ public class ActPropertyFavoriteList extends AppCompatActivity implements Adapte
             request.filters = filters;
         }
         RetrofitManager manager = new RetrofitManager(ActPropertyFavoriteList.this);
-        IEstate iEstate = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IEstate.class);
+        IEstate iEstate = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IEstate.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

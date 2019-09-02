@@ -127,7 +127,7 @@ public class ActContentWithDatePeriodEndList extends AppCompatActivity implement
         request.SearchDateMax=SearchDateMax.getDayOfMonth()+"/"+ SearchDateMax.getMonth()+"/"+SearchDateMax.getYear()+" 12:00:00 AM";
 
         RetrofitManager manager = new RetrofitManager(ActContentWithDatePeriodEndList.this);
-        IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
+        IBiography iBiography = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

@@ -105,7 +105,7 @@ public class ActCommentAdd extends AppCompatActivity {
             }
         }
         RetrofitManager manager = new RetrofitManager(ActCommentAdd.this);
-        IMovieGallery iMovieGallery = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IMovieGallery.class);
+        IMovieGallery iMovieGallery = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IMovieGallery.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
         headers.put("PackageName", EasyPreference.with(this).getString("packageName", ""));

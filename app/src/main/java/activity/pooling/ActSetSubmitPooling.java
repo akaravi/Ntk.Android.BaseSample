@@ -133,7 +133,7 @@ public class ActSetSubmitPooling extends AppCompatActivity {
             return;
         }
         RetrofitManager manager = new RetrofitManager(ActSetSubmitPooling.this);
-        IPooling iPooling = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IPooling.class);
+        IPooling iPooling = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IPooling.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

@@ -187,7 +187,7 @@ public class ActSetTicketSubmit extends AppCompatActivity {
             request.virtual_Departemen = ticketingDepartemen;
         }
         RetrofitManager manager = new RetrofitManager(ActSetTicketSubmit.this);
-        ITicket iTicket = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(ITicket.class);
+        ITicket iTicket = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(ITicket.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

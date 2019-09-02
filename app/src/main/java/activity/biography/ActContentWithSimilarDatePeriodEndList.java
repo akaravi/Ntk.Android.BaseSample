@@ -128,7 +128,7 @@ public class ActContentWithSimilarDatePeriodEndList extends AppCompatActivity im
         }
 
         RetrofitManager manager = new RetrofitManager(ActContentWithSimilarDatePeriodEndList.this);
-        IBiography iBiography = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBiography.class);
+        IBiography iBiography = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

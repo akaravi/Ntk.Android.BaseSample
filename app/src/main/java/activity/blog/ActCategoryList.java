@@ -123,7 +123,7 @@ public class ActCategoryList extends AppCompatActivity implements AdapterView.On
             request.filters = filters;
         }
         RetrofitManager manager = new RetrofitManager(ActCategoryList.this);
-        IBlog iBlog = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IBlog.class);
+        IBlog iBlog = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IBlog.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 

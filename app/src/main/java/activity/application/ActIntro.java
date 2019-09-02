@@ -69,7 +69,7 @@ public class ActIntro extends AppCompatActivity {
         ApplicationIntroRequest request = new ApplicationIntroRequest();
 
         RetrofitManager manager = new RetrofitManager(ActIntro.this);
-        IApplication iApplication = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(IApplication.class);
+        IApplication iApplication = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IApplication.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
