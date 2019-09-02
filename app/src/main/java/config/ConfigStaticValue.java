@@ -9,7 +9,7 @@ public class ConfigStaticValue {
     public ConfigStaticValue(Context context) {
         privateContext = context;
         ApiBaseAppId = 0;
-        ApiBaseUrl =null;// GetApiBaseUrl();
+        ApiBaseUrl =null;
 //        ApiBaseUrl = "http://24b3272b.ngrok.io/";
 //        ApiBaseUrl = "http://c4b57f02.ngrok.io/";
         //ApiBaseUrl = "http://9c782c46.ngrok.io";
@@ -20,22 +20,22 @@ public class ConfigStaticValue {
     private Context privateContext;
     private String ApiBaseUrl ;
 
-    public void UrlPreferenceUseed() {
-        if (privateContext != null) {
-            int ApiBaseUrlPreferenceUseed = EasyPreference.with(privateContext).getInt("ApiBaseUrlUseed", 0);
-            ApiBaseUrlPreferenceUseed++;
-            EasyPreference.with(privateContext).addInt("ApiBaseUrlUseed", ApiBaseUrlPreferenceUseed);
-        }
-    }
+    //public void UrlPreferenceUseed() {
+    //    if (privateContext != null) {
+    //        int ApiBaseUrlPreferenceUseed = EasyPreference.with(privateContext).getInt("ApiBaseUrlUseed", 0);
+    //        ApiBaseUrlPreferenceUseed++;
+    //        EasyPreference.with(privateContext).addInt("ApiBaseUrlUseed", ApiBaseUrlPreferenceUseed);
+    //    }
+    //}
 
     public String GetApiBaseUrl() {
         if (privateContext != null) {
             String ApiBaseUrlPreference = "";
-            int ApiBaseUrlPreferenceUseed = 0;
+            //int ApiBaseUrlPreferenceUseed = 0;
             ApiBaseUrlPreference = EasyPreference.with(privateContext).getString("ApiBaseUrl", "");
-            ApiBaseUrlPreferenceUseed = EasyPreference.with(privateContext).getInt("ApiBaseUrlUseed", 0);
-            if (ApiBaseUrlPreference != null && !ApiBaseUrlPreference.isEmpty() && ApiBaseUrlPreferenceUseed < 10) {
-                UrlPreferenceUseed();
+            //ApiBaseUrlPreferenceUseed = EasyPreference.with(privateContext).getInt("ApiBaseUrlUseed", 0);
+            if (ApiBaseUrlPreference != null && !ApiBaseUrlPreference.isEmpty()){// && ApiBaseUrlPreferenceUseed < 10) {
+                //UrlPreferenceUseed();
                 return ApiBaseUrlPreference;
             }
         }
