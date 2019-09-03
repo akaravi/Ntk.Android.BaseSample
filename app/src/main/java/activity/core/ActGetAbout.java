@@ -77,7 +77,7 @@ public class ActGetAbout extends AppCompatActivity {
 
                     @Override
                     public void onNext(CoreAboutUsResponse response) {
-                        JsonDialog cdd = new JsonDialog(ActGetAbout.this, response);
+                        JsonDialog cdd = new JsonDialog(ActGetAbout.this, response.Item);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
