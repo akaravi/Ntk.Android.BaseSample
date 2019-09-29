@@ -33,7 +33,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.pooling.interfase.IPooling;
 import ntk.base.api.pooling.model.PoolingSubmitRequest;
 import ntk.base.api.pooling.model.PoolingSubmitResponse;
-import ntk.base.api.pooling.model.PoolingVote;
+import ntk.base.api.pooling.viewModel.PoolingVote;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 import utill.EasyPreference;

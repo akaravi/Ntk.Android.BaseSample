@@ -33,7 +33,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.model.Filters;
+import ntk.base.api.baseModel.Filters;
 import ntk.base.api.news.interfase.INews;
 import ntk.base.api.news.model.NewsContentCategoryListRequest;
 import ntk.base.api.news.model.NewsContentResponse;

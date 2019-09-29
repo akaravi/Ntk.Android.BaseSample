@@ -33,7 +33,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.model.Filters;
+import ntk.base.api.baseModel.Filters;
 import ntk.base.api.pooling.interfase.IPooling;
 import ntk.base.api.pooling.model.PoolingContentListRequest;
 import ntk.base.api.pooling.model.PoolingContentListResponse;

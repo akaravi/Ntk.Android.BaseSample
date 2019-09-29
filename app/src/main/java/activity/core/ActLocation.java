@@ -35,7 +35,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.core.interfase.ICore;
 import ntk.base.api.core.model.CoreLocationRequest;
 import ntk.base.api.core.model.CoreLocationResponse;
-import ntk.base.api.model.Filters;
+import ntk.base.api.baseModel.Filters;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 import utill.EasyPreference;

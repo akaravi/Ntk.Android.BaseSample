@@ -36,7 +36,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.blog.interfase.IBlog;
 import ntk.base.api.blog.model.BlogContentResponse;
 import ntk.base.api.blog.model.BlogContentSimilarListRequest;
-import ntk.base.api.model.Filters;
+import ntk.base.api.baseModel.Filters;
 import ntk.base.api.news.interfase.INews;
 import ntk.base.api.news.model.NewsContentResponse;
 import ntk.base.api.news.model.NewsContentSimilarListRequest;

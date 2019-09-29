@@ -37,7 +37,7 @@ import ntk.base.api.estate.model.EstatePropertyFavoriteListRequest;
 import ntk.base.api.estate.model.EstatePropertyFavoriteListResponse;
 import ntk.base.api.estate.model.EstatePropertyListRequest;
 import ntk.base.api.estate.model.EstatePropertyListResponse;
-import ntk.base.api.model.Filters;
+import ntk.base.api.baseModel.Filters;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 import utill.EasyPreference;

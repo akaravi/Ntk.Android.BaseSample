@@ -35,7 +35,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.biography.interfase.IBiography;
 import ntk.base.api.biography.model.BiographyContentCategoryListRequest;
 import ntk.base.api.biography.model.BiographyContentResponse;
-import ntk.base.api.model.Filters;
+import ntk.base.api.baseModel.Filters;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 import utill.EasyPreference;

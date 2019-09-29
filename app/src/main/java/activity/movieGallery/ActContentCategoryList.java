@@ -36,7 +36,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.imageGallery.interfase.IImageGallery;
 import ntk.base.api.imageGallery.model.ImageGalleryContentCategoryListRequest;
 import ntk.base.api.imageGallery.model.ImageGalleryContentResponse;
-import ntk.base.api.model.Filters;
+import ntk.base.api.baseModel.Filters;
 import ntk.base.api.movieGallery.interfase.IMovieGallery;
 import ntk.base.api.movieGallery.model.MovieGalleryContentCategoryListRequest;
 import ntk.base.api.movieGallery.model.MovieGalleryContentResponse;

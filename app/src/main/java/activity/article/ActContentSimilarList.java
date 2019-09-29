@@ -38,7 +38,7 @@ import ntk.base.api.article.model.ArticleCategoryRequest;
 import ntk.base.api.article.model.ArticleCategoryResponse;
 import ntk.base.api.article.model.ArticleContentResponse;
 import ntk.base.api.article.model.ArticleContentSimilarListRequest;
-import ntk.base.api.model.Filters;
+import ntk.base.api.baseModel.Filters;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 import utill.EasyPreference;

@@ -32,7 +32,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.model.Filters;
+import ntk.base.api.baseModel.Filters;
 import ntk.base.api.musicGallery.interfase.IMusicGallery;
 import ntk.base.api.musicGallery.model.MusicGalleryContentCategoryListRequest;
 import ntk.base.api.musicGallery.model.MusicGalleryContentResponse;

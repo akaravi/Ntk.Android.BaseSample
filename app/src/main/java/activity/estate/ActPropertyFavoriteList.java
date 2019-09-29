@@ -37,7 +37,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.estate.interfase.IEstate;
 import ntk.base.api.estate.model.EstatePropertyFavoriteListRequest;
 import ntk.base.api.estate.model.EstatePropertyFavoriteListResponse;
-import ntk.base.api.model.Filters;
+import ntk.base.api.baseModel.Filters;
 import ntk.base.api.news.interfase.INews;
 import ntk.base.api.news.model.NewsContentCategoryListRequest;
 import ntk.base.api.news.model.NewsContentResponse;

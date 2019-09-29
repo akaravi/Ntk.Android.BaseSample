@@ -37,7 +37,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.imageGallery.interfase.IImageGallery;
 import ntk.base.api.imageGallery.model.ImageGalleryContentCategoryListRequest;
 import ntk.base.api.imageGallery.model.ImageGalleryContentResponse;
-import ntk.base.api.model.Filters;
+import ntk.base.api.baseModel.Filters;
 import ntk.base.api.news.interfase.INews;
 import ntk.base.api.news.model.NewsContentCategoryListRequest;
 import ntk.base.api.news.model.NewsContentResponse;

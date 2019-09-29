@@ -35,7 +35,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.article.interfase.IArticle;
 import ntk.base.api.article.model.ArticleCommentListRequest;
 import ntk.base.api.article.model.ArticleCommentResponse;
-import ntk.base.api.model.Filters;
+import ntk.base.api.baseModel.Filters;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 import utill.EasyPreference;
