@@ -55,7 +55,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.core.interfase.ICore;
-import ntk.base.api.core.viewModel.CoreMain;
+import ntk.base.api.core.entity.CoreMain;
 import ntk.base.api.core.model.MainCoreResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.BuildConfig;

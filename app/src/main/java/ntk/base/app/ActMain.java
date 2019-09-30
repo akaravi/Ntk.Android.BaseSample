@@ -28,7 +28,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.article.model.ArticleCategoryRequest;
 import ntk.base.api.core.interfase.ICore;
 import ntk.base.api.file.interfase.IFile;
-import ntk.base.api.file.viewModel.FileUploadModel;
+import ntk.base.api.file.entity.FileUploadModel;
 import ntk.base.api.baseModel.FilterModel;
 import ntk.base.api.news.interfase.INews;
 import ntk.base.api.news.model.NewsContentListRequest;

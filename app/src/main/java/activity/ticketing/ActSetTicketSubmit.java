@@ -29,7 +29,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.ticket.interfase.ITicket;
-import ntk.base.api.ticket.viewModel.TicketingDepartemen;
+import ntk.base.api.ticket.entity.TicketingDepartemen;
 import ntk.base.api.ticket.model.TicketingSubmitRequest;
 import ntk.base.api.ticket.model.TicketingSubmitResponse;
 import ntk.base.api.utill.RetrofitManager;
