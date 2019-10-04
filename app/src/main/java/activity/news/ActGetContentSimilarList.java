@@ -1,6 +1,5 @@
-package activity.article;
+package activity.news;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
@@ -21,7 +20,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import activity.Main;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -33,26 +31,17 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.article.interfase.IArticle;
-import ntk.base.api.article.model.ArticleCategoryRequest;
-import ntk.base.api.article.model.ArticleCategoryResponse;
-import ntk.base.api.article.model.ArticleContentResponse;
-import ntk.base.api.article.model.ArticleContentSimilarListRequest;
 import ntk.base.api.baseModel.Filters;
+import ntk.base.api.news.interfase.INews;
+import ntk.base.api.news.model.NewsContentResponse;
+import ntk.base.api.news.model.NewsContentSimilarListRequest;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
-public class ActContentSimilarList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ActGetContentSimilarList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.lblLayout)
     TextView lblLayout;
-    @BindView(R.id.txtLinkContentId)
-    EditText txtLinkContentId;
-    @BindView(R.id.api_test_submit_button)
-    Button apiTestSubmitButton;
-    @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
     @BindView(R.id.row_per_page_text)
     EditText rowPerPageText;
     @BindView(R.id.sort_type_spinner)
@@ -63,6 +52,12 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
     EditText currentPageNumberText;
     @BindView(R.id.sort_column_text)
     EditText sortColumnText;
+    @BindView(R.id.txtLinkContentId)
+    EditText txtLinkContentId;
+    @BindView(R.id.api_test_submit_button)
+    Button apiTestSubmitButton;
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
     private List<String> sort_type = new ArrayList<String>();
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
@@ -71,16 +66,16 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_article_content_similar_list);
+        setContentView(R.layout.act_news_content_similar_list);
         ButterKnife.bind(this);
-        init();
+        initialize();
     }
 
-    private void init() {
-        lblLayout.setText("ArticleContentSimilarList");
+    private void initialize() {
+        lblLayout.setText("NewsContentSimilarList");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("ArticleContentSimilarList");
+        getSupportActionBar().setTitle("NewsContentSimilarList");
         sort_type.add("Descnding_Sort");
         sort_type.add("Ascnding_Sort");
         sort_type.add("Random_Sort");
@@ -95,7 +90,7 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
     }
 
     private void getData() {
-        ArticleContentSimilarListRequest request = new ArticleContentSimilarListRequest();
+        NewsContentSimilarListRequest request = new NewsContentSimilarListRequest();
         request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
         request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
         request.SortType = sort_Type_posistion;
@@ -124,22 +119,22 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
             filters.add(f);
             request.filters = filters;
         }
-        RetrofitManager manager = new RetrofitManager(ActContentSimilarList.this);
-        IArticle iArticle = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IArticle.class);
+        RetrofitManager manager = new RetrofitManager(ActGetContentSimilarList.this);
+        INews iNews = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(INews.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-        Observable<ArticleContentResponse> call = iArticle.GetContentSimilarList(headers, request);
+        Observable<NewsContentResponse> call = iNews.GetContentSimilarList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<ArticleContentResponse>() {
+                .subscribe(new Observer<NewsContentResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(ArticleContentResponse response) {
-                        JsonDialog cdd = new JsonDialog(ActContentSimilarList.this, response);
+                    public void onNext(NewsContentResponse response) {
+                        JsonDialog cdd = new JsonDialog(ActGetContentSimilarList.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -148,7 +143,7 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
                     public void onError(Throwable e) {
                         progressBar.setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(ActContentSimilarList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActGetContentSimilarList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override

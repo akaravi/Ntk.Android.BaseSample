@@ -1,6 +1,5 @@
 package activity.article;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +20,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import activity.Main;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -34,17 +32,17 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.article.interfase.IArticle;
-import ntk.base.api.article.model.ArticleCategoryTagRequest;
-import ntk.base.api.article.model.ArticleCategoryTagResponse;
+import ntk.base.api.article.model.ArticleCategoryRequest;
+import ntk.base.api.article.model.ArticleCategoryResponse;
 import ntk.base.api.baseModel.Filters;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
-public class GetArticleCategoryTagList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ActGetArticleCategoryList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.lblLayout)
     TextView lblLayout;
+    private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
     @BindView(R.id.row_per_page_text)
     EditText rowPerPageText;
     @BindView(R.id.sort_type_spinner)
@@ -64,7 +62,6 @@ public class GetArticleCategoryTagList extends AppCompatActivity implements Adap
 
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
     private List<String> sort_type = new ArrayList<String>();
-    private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
     private int sort_Type_posistion;
 
     @Override
@@ -79,13 +76,13 @@ public class GetArticleCategoryTagList extends AppCompatActivity implements Adap
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_article_get_article_category_tag_list);
+        setContentView(R.layout.act_article_get_article_category_list);
         ButterKnife.bind(this);
         init();
     }
 
     private void init() {
-        lblLayout.setText("ArticleCategoryTagList");
+        lblLayout.setText("ArticleCategoryList");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle(getIntent().getStringExtra(ActArticle.LAYOUT_VALUE));
@@ -103,7 +100,7 @@ public class GetArticleCategoryTagList extends AppCompatActivity implements Adap
     }
 
     private void getData() {
-        ArticleCategoryTagRequest request = new ArticleCategoryTagRequest();
+        ArticleCategoryRequest request = new ArticleCategoryRequest();
         request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
         request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
         request.SortType = sort_Type_posistion;
@@ -127,22 +124,22 @@ public class GetArticleCategoryTagList extends AppCompatActivity implements Adap
             filters.add(f);
             request.filters = filters;
         }
-        RetrofitManager manager = new RetrofitManager(GetArticleCategoryTagList.this);
+        RetrofitManager manager = new RetrofitManager(ActGetArticleCategoryList.this);
         IArticle iArticle = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IArticle.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-        Observable<ArticleCategoryTagResponse> call = iArticle.GetCategoryTagList(headers, request);
+        Observable<ArticleCategoryResponse> call = iArticle.GetCategoryList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<ArticleCategoryTagResponse>() {
+                .subscribe(new Observer<ArticleCategoryResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(ArticleCategoryTagResponse response) {
-                        JsonDialog cdd = new JsonDialog(GetArticleCategoryTagList.this, response);
+                    public void onNext(ArticleCategoryResponse response) {
+                        JsonDialog cdd = new JsonDialog(ActGetArticleCategoryList.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -151,7 +148,7 @@ public class GetArticleCategoryTagList extends AppCompatActivity implements Adap
                     public void onError(Throwable e) {
                         progressBar.setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(GetArticleCategoryTagList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActGetArticleCategoryList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override

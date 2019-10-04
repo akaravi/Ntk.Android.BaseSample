@@ -13,10 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import activity.Main;
 import activity.news.ActGetCommentView;
-import activity.news.ActGetNewsContentList;
-import activity.news.ActNews;
+import activity.news.ActGetContentList;
 import activity.news.ActSetComment;
 import butterknife.BindView;
 import butterknife.ButterKnife;

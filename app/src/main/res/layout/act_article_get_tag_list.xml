@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_margin="@dimen/extra_padding"
     android:orientation="vertical"
-    tools:context="activity.article.GetArticleTagList">
+    tools:context="activity.article.ActGetArticleTagList">
 
     <include layout="@layout/header" />
 

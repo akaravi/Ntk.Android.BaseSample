@@ -1,4 +1,4 @@
-package activity.blog;
+package activity.object;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -29,17 +29,16 @@ import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.blog.interfase.IBlog;
-import ntk.base.api.blog.model.BlogContentListRequest;
-import ntk.base.api.blog.model.BlogContentListResponse;
+import io.reactivex.schedulers.Schedulers;;
+import ntk.base.api.object.interfase.IObject;
+
+import ntk.base.api.object.model.ObjectPropertyTypeRequest;
+import ntk.base.api.object.model.ObjectPropertyTypeResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
-public class ActContentList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ActGetPropertyTypeActList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    @BindView(R.id.lblLayout)
-    TextView lblLayout;
     @BindView(R.id.row_per_page_text)
     EditText rowPerPageText;
     @BindView(R.id.sort_type_spinner)
@@ -50,15 +49,12 @@ public class ActContentList extends AppCompatActivity implements AdapterView.OnI
     EditText currentPageNumberText;
     @BindView(R.id.sort_column_text)
     EditText sortColumnText;
-    @BindView(R.id.txtTag)
-    EditText txtTag;
-    @BindView(R.id.btnAdd)
-    Button btnAdd;
     @BindView(R.id.api_test_submit_button)
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    private List<Long> TagIds = new ArrayList<>();
+    @BindView(R.id.lblLayout)
+    TextView lblLayout;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
     private List<String> sort_type = new ArrayList<String>();
@@ -67,16 +63,16 @@ public class ActContentList extends AppCompatActivity implements AdapterView.OnI
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_blog_content_list);
+        setContentView(R.layout.act_object_get_property_type_list);
         ButterKnife.bind(this);
         initialize();
     }
 
     private void initialize() {
-        lblLayout.setText("BlogContentList");
+        lblLayout.setText("NewsCategoryList");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("BlogContentList");
+        getSupportActionBar().setTitle("NewsCategoryList");
         sort_type.add("Descnding_Sort");
         sort_type.add("Ascnding_Sort");
         sort_type.add("Random_Sort");
@@ -90,42 +86,30 @@ public class ActContentList extends AppCompatActivity implements AdapterView.OnI
         getData();
     }
 
-    @OnClick(R.id.btnAdd)
-    public void onAddClick(View v) {
-        try {
-            TagIds.add(Long.valueOf(txtTag.getText().toString()));
-            txtTag.setText("");
-        } catch (Exception e) {
-            txtTag.setError("inValid Info !!");
-        }
-    }
-
     private void getData() {
-        BlogContentListRequest request = new BlogContentListRequest();
+        ObjectPropertyTypeRequest request = new ObjectPropertyTypeRequest();
         request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
         request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
         request.SortType = sort_Type_posistion;
         request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
         request.SortColumn = sortColumnText.getText().toString();
-        if (!TagIds.isEmpty()) {
-            request.TagIds = TagIds;
-        }
-        RetrofitManager manager = new RetrofitManager(ActContentList.this);
-        IBlog iBlog = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IBlog.class);
+
+        RetrofitManager manager = new RetrofitManager(ActGetPropertyTypeActList.this);
+        IObject iObject = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IObject.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-        Observable<BlogContentListResponse> call = iBlog.GetContentList(headers, request);
+        Observable<ObjectPropertyTypeResponse> call = iObject.GetPropertyTypeActList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<BlogContentListResponse>() {
+                .subscribe(new Observer<ObjectPropertyTypeResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(BlogContentListResponse response) {
-                        JsonDialog cdd = new JsonDialog(ActContentList.this, response);
+                    public void onNext(ObjectPropertyTypeResponse response) {
+                        JsonDialog cdd = new JsonDialog(ActGetPropertyTypeActList.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -134,7 +118,7 @@ public class ActContentList extends AppCompatActivity implements AdapterView.OnI
                     public void onError(Throwable e) {
                         progressBar.setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(ActContentList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActGetPropertyTypeActList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override

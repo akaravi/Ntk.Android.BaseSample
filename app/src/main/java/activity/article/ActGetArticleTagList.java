@@ -1,6 +1,5 @@
-package activity.news;
+package activity.article;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -31,23 +30,14 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.news.interfase.INews;
-import ntk.base.api.news.model.NewsContentListRequest;
-import ntk.base.api.news.model.NewsContentResponse;
+import ntk.base.api.article.interfase.IArticle;
+import ntk.base.api.article.model.ArticleTagRequest;
+import ntk.base.api.article.model.ArticleTagResponse;
+import ntk.base.api.baseModel.Filters;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
-public class ActGetNewsContentList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-
-    @BindView(R.id.txtTag)
-    EditText txtTag;
-    @BindView(R.id.btnAdd)
-    Button btnAdd;
-    @BindView(R.id.api_test_submit_button)
-    Button apiTestSubmitButton;
-    @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
+public class ActGetArticleTagList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     @BindView(R.id.row_per_page_text)
     EditText rowPerPageText;
     @BindView(R.id.sort_type_spinner)
@@ -58,28 +48,41 @@ public class ActGetNewsContentList extends AppCompatActivity implements AdapterV
     EditText currentPageNumberText;
     @BindView(R.id.sort_column_text)
     EditText sortColumnText;
+    @BindView(R.id.api_test_submit_button)
+    Button apiTestSubmitButton;
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
+    @BindView(R.id.link_category_tag_id)
+    EditText linkCategoryTagId;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
-    private List<Long> TagIds = new ArrayList<>();
-    private ConfigRestHeader configRestHeader = new ConfigRestHeader();
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
+    private ConfigRestHeader configRestHeader = new ConfigRestHeader();
     private List<String> sort_type = new ArrayList<String>();
     private int sort_Type_posistion;
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_news_get_content_list);
+        setContentView(R.layout.act_article_get_tag_list);
         ButterKnife.bind(this);
-        initialize();
+        init();
     }
 
-    private void initialize() {
-        lblLayout.setText("NewsContentList");
+    private void init() {
+        lblLayout.setText("ArticleTagList");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("NewsContentList");
+        getSupportActionBar().setTitle(getIntent().getStringExtra(ActArticle.LAYOUT_VALUE));
         sort_type.add("Descnding_Sort");
         sort_type.add("Ascnding_Sort");
         sort_type.add("Random_Sort");
@@ -88,47 +91,52 @@ public class ActGetNewsContentList extends AppCompatActivity implements AdapterV
     }
 
     @OnClick(R.id.api_test_submit_button)
-    public void onSubmitClick(View v) {
+    public void onClick(View v) {
         progressBar.setVisibility(View.VISIBLE);
         getData();
     }
 
-    @OnClick(R.id.btnAdd)
-    public void onAddClick(View v) {
-        try {
-            TagIds.add(Long.valueOf(txtTag.getText().toString()));
-            txtTag.setText("");
-        } catch (Exception e) {
-            txtTag.setError("inValid Info !!");
-        }
-    }
-
     private void getData() {
-        NewsContentListRequest request = new NewsContentListRequest();
+        ArticleTagRequest request = new ArticleTagRequest();
         request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
         request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
         request.SortType = sort_Type_posistion;
         request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
         request.SortColumn = sortColumnText.getText().toString();
-        if (!TagIds.isEmpty()) {
-            request.TagIds = TagIds;
+        long linkCategoryId = 0;
+        try {
+            if (!linkCategoryTagId.getText().toString().matches("")) {
+                linkCategoryId = Long.valueOf(linkCategoryTagId.getText().toString());
+            }
+        } catch (Exception e) {
+            linkCategoryTagId.setError("inValid Info !!");
+            progressBar.setVisibility(View.GONE);
+            return;
         }
-        RetrofitManager manager = new RetrofitManager(ActGetNewsContentList.this);
-        INews iNews = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(INews.class);
+        if (linkCategoryId > 0) {
+            List<Filters> filters = new ArrayList<>();
+            Filters f = new Filters();
+            f.PropertyName = "LinkCategoryTagId";
+            f.IntValue1 = linkCategoryId;
+            filters.add(f);
+            request.filters = filters;
+        }
+        RetrofitManager manager = new RetrofitManager(ActGetArticleTagList.this);
+        IArticle iArticle = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IArticle.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-        Observable<NewsContentResponse> call = iNews.GetContentList(headers, request);
+        Observable<ArticleTagResponse> call = iArticle.GetTagList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<NewsContentResponse>() {
+                .subscribe(new Observer<ArticleTagResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(NewsContentResponse response) {
-                        JsonDialog cdd = new JsonDialog(ActGetNewsContentList.this, response);
+                    public void onNext(ArticleTagResponse response) {
+                        JsonDialog cdd = new JsonDialog(ActGetArticleTagList.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -137,7 +145,7 @@ public class ActGetNewsContentList extends AppCompatActivity implements AdapterV
                     public void onError(Throwable e) {
                         progressBar.setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(ActGetNewsContentList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActGetArticleTagList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -151,15 +159,6 @@ public class ActGetNewsContentList extends AppCompatActivity implements AdapterV
     public boolean onSupportNavigateUp() {
         finish();
         return super.onSupportNavigateUp();
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            finish();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
     }
 
     @Override

@@ -22,7 +22,7 @@
         <activity android:name="activity.blog.ActContentOtherInfoList" />
         <activity android:name="activity.blog.ActContentList" />
         <activity android:name="activity.blog.ActContentFavoriteList" />
-        <activity android:name="activity.blog.ActBlogContentFavoriteAddOrRemove" />
+        <activity android:name="activity.blog.ActContentFavoriteAddOrRemove" />
         <activity android:name="activity.blog.ActContentCategoryList" />
         <activity android:name="activity.blog.ActCommentView" />
         <activity android:name="activity.blog.ActCommentList" />
@@ -97,10 +97,10 @@
         <activity android:name="activity.core.ActLocation" />
         <activity android:name="activity.core.ActRegisterWithMobile" />
         <activity android:name="activity.application.ActApplication" />
-        <activity android:name="activity.news.ActContentCategoryList" />
-        <activity android:name="activity.news.ActContentSimilarList" />
-        <activity android:name="activity.article.ActContentCategoryList" />
-        <activity android:name="activity.article.ActContentSimilarList" />
+        <activity android:name="activity.news.ActGetContentCategoryList" />
+        <activity android:name="activity.news.ActGetContentSimilarList" />
+        <activity android:name="activity.article.ActGetContentCategoryList" />
+        <activity android:name="activity.article.ActGetContentSimilarList" />
         <activity android:name="activity.biography.ActContentWithSimilarDatePeriodStartMonthOfYearList" />
         <activity android:name="activity.biography.ActContentWithSimilarDatePeriodStartList" />
         <activity android:name="activity.biography.ActContentWithSimilarDatePeriodStartDayOfYearList" />
@@ -135,7 +135,7 @@
         <activity android:name="activity.news.ActGetCategoryList" />
         <activity android:name="activity.news.ActGetTagList" />
         <activity android:name="activity.news.ActGetContentView" />
-        <activity android:name="activity.news.ActGetNewsContentList" />
+        <activity android:name="activity.news.ActGetContentList" />
         <activity android:name="activity.ticketing.ActTicket" />
         <activity android:name="activity.ticketing.ActGetTicketDepartman" />
         <activity android:name="activity.ticketing.ActGetTicketAnswerList" />
@@ -148,8 +148,8 @@
         <activity android:name="activity.pooling.ActGetCategoryList" />
         <activity android:name="activity.pooling.ActGetContentList" />
         <activity android:name="activity.news.ActNews" />
-        <activity android:name="activity.article.ArticleContentFavoriteListActivity" />
-        <activity android:name="activity.article.ArticleCommentViewActivity" />
+        <activity android:name="activity.article.ActGetContentFavoriteList" />
+        <activity android:name="activity.article.ActGetCommentView" />
         <activity android:name="activity.Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -158,15 +158,18 @@
             </intent-filter>
         </activity>
         <activity android:name="activity.article.ActArticle" />
-        <activity android:name="activity.article.GetArticleContentList" />
-        <activity android:name="activity.article.GetArticleContentView" />
-        <activity android:name="activity.article.GetArticleTagList" />
-        <activity android:name="activity.article.GetArticleCategoryList" />
-        <activity android:name="activity.article.GetArticleCategoryTagList" />
-        <activity android:name="activity.article.GetArticleContentOtherInfoList" />
-        <activity android:name="activity.article.GetArticleCommentList" />
-        <activity android:name="activity.article.GetArticleCommentAdd" />
-        <activity android:name="activity.article.GetArticleContentFavoriteAddOrRemove" />
+        <activity android:name="activity.article.ActGetArticleContentList" />
+        <activity android:name="activity.article.ActGetArticleContentView" />
+        <activity android:name="activity.article.ActGetArticleTagList" />
+        <activity android:name="activity.article.ActGetArticleCategoryList" />
+        <activity android:name="activity.article.ActGetArticleCategoryTagList" />
+        <activity android:name="activity.article.ActGetArticleContentOtherInfoList" />
+        <activity android:name="activity.article.ActGetArticleCommentList" />
+        <activity android:name="activity.article.ActGetArticleCommentAdd" />
+        <activity android:name="activity.article.ActGetArticleContentFavoriteAddOrRemove" />
+        <activity android:name="activity.object.ActObject"/>
+        <activity android:name="activity.object.ActGetGroupList"/>
+        <activity android:name="activity.object.ActGetPropertyTypeActList"/>
     </application>
 
 </manifest>

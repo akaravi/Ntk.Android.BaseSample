@@ -21,8 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import activity.news.ActContentCategoryList;
-import activity.news.ActNews;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -38,12 +36,8 @@ import ntk.base.api.estate.interfase.IEstate;
 import ntk.base.api.estate.model.EstatePropertyFavoriteListRequest;
 import ntk.base.api.estate.model.EstatePropertyFavoriteListResponse;
 import ntk.base.api.baseModel.Filters;
-import ntk.base.api.news.interfase.INews;
-import ntk.base.api.news.model.NewsContentCategoryListRequest;
-import ntk.base.api.news.model.NewsContentResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
 public class ActPropertyFavoriteList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 

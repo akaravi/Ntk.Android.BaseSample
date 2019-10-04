@@ -13,9 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import activity.Main;
-import activity.core.ActGetResponseMain;
-import activity.file.ActFile;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ntk.base.app.R;
@@ -124,7 +121,7 @@ public class ActBlog extends AppCompatActivity {
                             startActivity(new Intent(ActBlog.this, ActCommentAdd.class));
                             break;
                         case 10:
-                            startActivity(new Intent(ActBlog.this, ActBlogContentFavoriteAddOrRemove.class));
+                            startActivity(new Intent(ActBlog.this, ActContentFavoriteAddOrRemove.class));
                             break;
                         case 11:
                             startActivity(new Intent(ActBlog.this, ActCategoryList.class));

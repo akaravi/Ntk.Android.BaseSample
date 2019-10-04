@@ -1,9 +1,7 @@
-package activity.news;
+package activity.object;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -21,7 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import activity.article.ActArticle;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -33,21 +30,14 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.article.interfase.IArticle;
-import ntk.base.api.article.model.ArticleContentResponse;
-import ntk.base.api.article.model.ArticleContentSimilarListRequest;
-import ntk.base.api.baseModel.Filters;
-import ntk.base.api.news.interfase.INews;
-import ntk.base.api.news.model.NewsContentResponse;
-import ntk.base.api.news.model.NewsContentSimilarListRequest;
+import ntk.base.api.object.interfase.IObject;
+import ntk.base.api.object.model.ObjectGroupRequest;
+import ntk.base.api.object.model.ObjectGroupResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
-public class ActContentSimilarList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ActGetGroupList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    @BindView(R.id.lblLayout)
-    TextView lblLayout;
     @BindView(R.id.row_per_page_text)
     EditText rowPerPageText;
     @BindView(R.id.sort_type_spinner)
@@ -58,30 +48,30 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
     EditText currentPageNumberText;
     @BindView(R.id.sort_column_text)
     EditText sortColumnText;
-    @BindView(R.id.txtLinkContentId)
-    EditText txtLinkContentId;
     @BindView(R.id.api_test_submit_button)
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
+    @BindView(R.id.lblLayout)
+    TextView lblLayout;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
-    private List<String> sort_type = new ArrayList<String>();
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
+    private List<String> sort_type = new ArrayList<String>();
     private int sort_Type_posistion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_news_content_similar_list);
+        setContentView(R.layout.act_object_get_group_list);
         ButterKnife.bind(this);
         initialize();
     }
 
     private void initialize() {
-        lblLayout.setText("NewsContentSimilarList");
+        lblLayout.setText("ObjectGroupList");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("NewsContentSimilarList");
+        getSupportActionBar().setTitle("ObjectGroupList");
         sort_type.add("Descnding_Sort");
         sort_type.add("Ascnding_Sort");
         sort_type.add("Random_Sort");
@@ -90,57 +80,35 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
     }
 
     @OnClick(R.id.api_test_submit_button)
-    public void onClick(View v) {
+    public void onSubmitClick(View v) {
         progressBar.setVisibility(View.VISIBLE);
         getData();
     }
 
     private void getData() {
-        NewsContentSimilarListRequest request = new NewsContentSimilarListRequest();
+        ObjectGroupRequest request = new ObjectGroupRequest();
         request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
         request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
         request.SortType = sort_Type_posistion;
         request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
         request.SortColumn = sortColumnText.getText().toString();
-        long LinkContentId = 0;
-        if (!txtLinkContentId.getText().toString().matches("")) {
-            if (txtLinkContentId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
-                txtLinkContentId.setError("inValid Info !!");
-                progressBar.setVisibility(View.GONE);
-                return;
-            } else {
-                txtLinkContentId.setError(null);
-                LinkContentId = Long.valueOf(txtLinkContentId.getText().toString());
-            }
-        } else {
-            txtLinkContentId.setError("Required !!");
-            progressBar.setVisibility(View.GONE);
-            return;
-        }
-        if (LinkContentId > 0) {
-            List<Filters> filters = new ArrayList<>();
-            Filters f = new Filters();
-            f.PropertyName = "LinkContentId";
-            f.IntValue1 = LinkContentId;
-            filters.add(f);
-            request.filters = filters;
-        }
-        RetrofitManager manager = new RetrofitManager(ActContentSimilarList.this);
-        INews iNews = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(INews.class);
+
+        RetrofitManager manager = new RetrofitManager(ActGetGroupList.this);
+        IObject iObject = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IObject.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-        Observable<NewsContentResponse> call = iNews.GetContentSimilarList(headers, request);
+        Observable<ObjectGroupResponse> call = iObject.GetGroupActList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<NewsContentResponse>() {
+                .subscribe(new Observer<ObjectGroupResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(NewsContentResponse response) {
-                        JsonDialog cdd = new JsonDialog(ActContentSimilarList.this, response);
+                    public void onNext(ObjectGroupResponse response) {
+                        JsonDialog cdd = new JsonDialog(ActGetGroupList.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -149,7 +117,7 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
                     public void onError(Throwable e) {
                         progressBar.setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(ActContentSimilarList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActGetGroupList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -157,23 +125,12 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
                         progressBar.setVisibility(View.GONE);
                     }
                 });
-
     }
 
     @Override
     public boolean onSupportNavigateUp() {
         finish();
         return super.onSupportNavigateUp();
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        sort_Type_posistion = position;
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     @Override
@@ -185,4 +142,13 @@ public class ActContentSimilarList extends AppCompatActivity implements AdapterV
         return super.onKeyDown(keyCode, event);
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        sort_Type_posistion = position;
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }

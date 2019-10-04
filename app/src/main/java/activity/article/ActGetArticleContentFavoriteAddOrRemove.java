@@ -1,6 +1,5 @@
 package activity.article;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -35,9 +34,8 @@ import ntk.base.api.article.model.ArticleContentFavoriteRemoveRequest;
 import ntk.base.api.article.model.ArticleContentFavoriteRemoveResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
-public class GetArticleContentFavoriteAddOrRemove extends AppCompatActivity {
+public class ActGetArticleContentFavoriteAddOrRemove extends AppCompatActivity {
 
     @BindView(R.id.lblLayout)
     TextView lblLayout;
@@ -99,7 +97,7 @@ public class GetArticleContentFavoriteAddOrRemove extends AppCompatActivity {
             progressBars.get(0).setVisibility(View.GONE);
             return;
         }
-        RetrofitManager manager = new RetrofitManager(GetArticleContentFavoriteAddOrRemove.this);
+        RetrofitManager manager = new RetrofitManager(ActGetArticleContentFavoriteAddOrRemove.this);
         IArticle iArticle = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IArticle.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
@@ -114,7 +112,7 @@ public class GetArticleContentFavoriteAddOrRemove extends AppCompatActivity {
 
                     @Override
                     public void onNext(ArticleContentFavoriteAddResponse response) {
-                        JsonDialog cdd = new JsonDialog(GetArticleContentFavoriteAddOrRemove.this, response);
+                        JsonDialog cdd = new JsonDialog(ActGetArticleContentFavoriteAddOrRemove.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -123,7 +121,7 @@ public class GetArticleContentFavoriteAddOrRemove extends AppCompatActivity {
                     public void onError(Throwable e) {
                         progressBars.get(0).setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(GetArticleContentFavoriteAddOrRemove.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActGetArticleContentFavoriteAddOrRemove.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -149,7 +147,7 @@ public class GetArticleContentFavoriteAddOrRemove extends AppCompatActivity {
             progressBars.get(1).setVisibility(View.GONE);
             return;
         }
-        RetrofitManager manager = new RetrofitManager(GetArticleContentFavoriteAddOrRemove.this);
+        RetrofitManager manager = new RetrofitManager(ActGetArticleContentFavoriteAddOrRemove.this);
         IArticle iArticle = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IArticle.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
@@ -164,7 +162,7 @@ public class GetArticleContentFavoriteAddOrRemove extends AppCompatActivity {
 
                     @Override
                     public void onNext(ArticleContentFavoriteRemoveResponse response) {
-                        JsonDialog cdd = new JsonDialog(GetArticleContentFavoriteAddOrRemove.this, response);
+                        JsonDialog cdd = new JsonDialog(ActGetArticleContentFavoriteAddOrRemove.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -173,7 +171,7 @@ public class GetArticleContentFavoriteAddOrRemove extends AppCompatActivity {
                     public void onError(Throwable e) {
                         progressBars.get(1).setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(GetArticleContentFavoriteAddOrRemove.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActGetArticleContentFavoriteAddOrRemove.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override

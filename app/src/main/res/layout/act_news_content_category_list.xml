@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_margin="@dimen/standard_padding"
     android:orientation="vertical"
-    tools:context="activity.news.ActContentCategoryList">
+    tools:context="activity.news.ActGetContentCategoryList">
 
     <include layout="@layout/header" />
 

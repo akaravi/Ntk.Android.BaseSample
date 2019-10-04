@@ -1,4 +1,4 @@
-package activity.news;
+package activity.object;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,23 +17,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ntk.base.app.R;
 
-public class ActNews extends AppCompatActivity {
+public class ActObject extends AppCompatActivity {
     public static String LAYOUT_VALUE = "LAYOUT_VALUE";
     @BindView(R.id.api_recycler_view)
     RecyclerView apiRecyclerView;
-    private String[] articleList = new String[]{"News Content List",
-            "News Content View",
-            "News Tag List",
-            "News Category List",
-            "News Category Tag List",
-            "News Content Other Info List",
-            "News Comment List",
-            "News Comment Add",
-            "News Comment View",
-            "News Content Favorite Add Or Remove",
-            "News Content Favorite List",
-            "NewsContentSimilarList",
-            "NewsContentCategoryList"};
+    private String[] articleList = new String[]{"Object Group List",
+            "Object PropertyType List"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,44 +80,12 @@ public class ActNews extends AppCompatActivity {
                 public void onClick(View view) {
                     switch (view.getId()) {
                         case 0:
-                            startActivity(new Intent(ActNews.this, ActGetContentList.class));
+                            startActivity(new Intent(ActObject.this, ActGetGroupList.class));
                             break;
                         case 1:
-                            startActivity(new Intent(ActNews.this, ActGetContentView.class));
+                            startActivity(new Intent(ActObject.this, ActGetPropertyTypeActList.class));
                             break;
-                        case 2:
-                            startActivity(new Intent(ActNews.this, ActGetTagList.class));
-                            break;
-                        case 3:
-                            startActivity(new Intent(ActNews.this, ActGetCategoryList.class));
-                            break;
-                        case 4:
-                            startActivity(new Intent(ActNews.this, ActGetCategoryTagList.class));
-                            break;
-                        case 5:
-                            startActivity(new Intent(ActNews.this, ActGetContentOtherInfoList.class));
-                            break;
-                        case 6:
-                            startActivity(new Intent(ActNews.this, ActGetCommentList.class));
-                            break;
-                        case 7:
-                            startActivity(new Intent(ActNews.this, ActSetComment.class));
-                            break;
-                        case 8:
-                            startActivity(new Intent(ActNews.this, ActGetCommentView.class));
-                            break;
-                        case 9:
-                            startActivity(new Intent(ActNews.this, ActSetContentFavoriteAddOrRemove.class));
-                            break;
-                        case 10:
-                            startActivity(new Intent(ActNews.this, ActGetContentFavoriteList.class));
-                            break;
-                        case 11:
-                            startActivity(new Intent(ActNews.this, ActGetContentSimilarList.class));
-                            break;
-                        case 12:
-                            startActivity(new Intent(ActNews.this, ActGetContentCategoryList.class));
-                            break;
+
                     }
                 }
             });

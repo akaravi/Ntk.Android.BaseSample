@@ -35,7 +35,7 @@ import ntk.base.api.blog.model.BlogContentFavoriteRemoveResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
-public class ActBlogContentFavoriteAddOrRemove extends AppCompatActivity {
+public class ActContentFavoriteAddOrRemove extends AppCompatActivity {
 
     EditText txtPackageName;
     @BindView(R.id.lblLayout)
@@ -96,7 +96,7 @@ public class ActBlogContentFavoriteAddOrRemove extends AppCompatActivity {
             progressBarAdd.setVisibility(View.GONE);
             return;
         }
-        RetrofitManager manager = new RetrofitManager(ActBlogContentFavoriteAddOrRemove.this);
+        RetrofitManager manager = new RetrofitManager(ActContentFavoriteAddOrRemove.this);
         IBlog iBlog = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IBlog.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
@@ -112,7 +112,7 @@ public class ActBlogContentFavoriteAddOrRemove extends AppCompatActivity {
 
                     @Override
                     public void onNext(BlogContentFavoriteAddResponse response) {
-                        JsonDialog cdd = new JsonDialog(ActBlogContentFavoriteAddOrRemove.this, response);
+                        JsonDialog cdd = new JsonDialog(ActContentFavoriteAddOrRemove.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -121,7 +121,7 @@ public class ActBlogContentFavoriteAddOrRemove extends AppCompatActivity {
                     public void onError(Throwable e) {
                         progressBarAdd.setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(ActBlogContentFavoriteAddOrRemove.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActContentFavoriteAddOrRemove.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -146,7 +146,7 @@ public class ActBlogContentFavoriteAddOrRemove extends AppCompatActivity {
             progressBarRemove.setVisibility(View.GONE);
             return;
         }
-        RetrofitManager manager = new RetrofitManager(ActBlogContentFavoriteAddOrRemove.this);
+        RetrofitManager manager = new RetrofitManager(ActContentFavoriteAddOrRemove.this);
         IBlog iBlog = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IBlog.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
@@ -162,7 +162,7 @@ public class ActBlogContentFavoriteAddOrRemove extends AppCompatActivity {
 
                     @Override
                     public void onNext(BlogContentFavoriteRemoveResponse response) {
-                        JsonDialog cdd = new JsonDialog(ActBlogContentFavoriteAddOrRemove.this, response);
+                        JsonDialog cdd = new JsonDialog(ActContentFavoriteAddOrRemove.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -171,7 +171,7 @@ public class ActBlogContentFavoriteAddOrRemove extends AppCompatActivity {
                     public void onError(Throwable e) {
                         progressBarRemove.setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(ActBlogContentFavoriteAddOrRemove.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActContentFavoriteAddOrRemove.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override

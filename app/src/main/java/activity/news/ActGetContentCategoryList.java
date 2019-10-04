@@ -1,12 +1,13 @@
-package activity.article;
+package activity.news;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -30,25 +31,17 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.article.interfase.IArticle;
-import ntk.base.api.article.model.ArticleContentFavoriteListRequest;
-import ntk.base.api.article.model.ArticleContentFavoriteListResponse;
 import ntk.base.api.baseModel.Filters;
+import ntk.base.api.news.interfase.INews;
+import ntk.base.api.news.model.NewsContentCategoryListRequest;
+import ntk.base.api.news.model.NewsContentResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
-public class ArticleContentFavoriteListActivity extends AppCompatActivity {
+public class ActGetContentCategoryList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.lblLayout)
     TextView lblLayout;
-    private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
-    @BindView(R.id.category_id)
-    EditText categoryId;
-    @BindView(R.id.api_test_submit_button)
-    Button apiTestSubmitButton;
-    @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
     @BindView(R.id.row_per_page_text)
     EditText rowPerPageText;
     @BindView(R.id.sort_type_spinner)
@@ -59,25 +52,35 @@ public class ArticleContentFavoriteListActivity extends AppCompatActivity {
     EditText currentPageNumberText;
     @BindView(R.id.sort_column_text)
     EditText sortColumnText;
+    @BindView(R.id.txtLinkContentId)
+    EditText txtLinkContentId;
+    @BindView(R.id.api_test_submit_button)
+    Button apiTestSubmitButton;
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
-    private String layout;
     private List<String> sort_type = new ArrayList<String>();
+    private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
     private int sort_Type_posistion;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_article_content_favorite_list);
+        setContentView(R.layout.act_news_content_category_list);
         ButterKnife.bind(this);
         initialize();
     }
 
     private void initialize() {
-        lblLayout.setText("ArticleContentFavoriteList");
+        lblLayout.setText("NewsContentCategoryList");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle(getIntent().getStringExtra(ActArticle.LAYOUT_VALUE));
+        getSupportActionBar().setTitle("NewsContentCategoryList");
+        sort_type.add("Descnding_Sort");
+        sort_type.add("Ascnding_Sort");
+        sort_type.add("Random_Sort");
+        sortTypeSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sort_type));
+        sortTypeSpinner.setOnItemSelectedListener(this);
     }
 
     @OnClick(R.id.api_test_submit_button)
@@ -87,45 +90,51 @@ public class ArticleContentFavoriteListActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        ArticleContentFavoriteListRequest request = new ArticleContentFavoriteListRequest();
+        NewsContentCategoryListRequest request = new NewsContentCategoryListRequest();
         request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
         request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
         request.SortType = sort_Type_posistion;
         request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
         request.SortColumn = sortColumnText.getText().toString();
-        long linkCategoryId = 0;
-        if (!categoryId.getText().toString().matches("")) {
-            if (categoryId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
-                categoryId.setError("InValide Info !!");
+        long LinkContentId = 0;
+        if (!txtLinkContentId.getText().toString().matches("")) {
+            if (txtLinkContentId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
+                txtLinkContentId.setError("inValid Info !!");
+                progressBar.setVisibility(View.GONE);
+                return;
             } else {
-                linkCategoryId = Long.valueOf(categoryId.getText().toString());
+                txtLinkContentId.setError(null);
+                LinkContentId = Long.valueOf(txtLinkContentId.getText().toString());
             }
-            if (linkCategoryId > 0) {
-                List<Filters> filters = new ArrayList<>();
-                Filters f = new Filters();
-                f.PropertyName = "linkCategoryId";
-                f.IntValue1 = linkCategoryId;
-                filters.add(f);
-                request.filters = filters;
-            }
+        } else {
+            txtLinkContentId.setError("Required !!");
+            progressBar.setVisibility(View.GONE);
+            return;
         }
-        RetrofitManager manager = new RetrofitManager(ArticleContentFavoriteListActivity.this);
-        IArticle iArticle = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IArticle.class);
+        if (LinkContentId > 0) {
+            List<Filters> filters = new ArrayList<>();
+            Filters f = new Filters();
+            f.PropertyName = "LinkContentId";
+            f.IntValue1 = LinkContentId;
+            filters.add(f);
+            request.filters = filters;
+        }
+        RetrofitManager manager = new RetrofitManager(ActGetContentCategoryList.this);
+        INews iNews = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(INews.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-        Observable<ArticleContentFavoriteListResponse> call = iArticle.GetContentFavoriteList(headers, request);
+        Observable<NewsContentResponse> call = iNews.GetContentCategoryList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ArticleContentFavoriteListResponse>() {
+                .subscribe(new Observer<NewsContentResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(ArticleContentFavoriteListResponse response) {
-                        JsonDialog cdd = new JsonDialog(ArticleContentFavoriteListActivity.this, response);
+                    public void onNext(NewsContentResponse response) {
+                        JsonDialog cdd = new JsonDialog(ActGetContentCategoryList.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -134,7 +143,7 @@ public class ArticleContentFavoriteListActivity extends AppCompatActivity {
                     public void onError(Throwable e) {
                         progressBar.setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(ArticleContentFavoriteListActivity.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActGetContentCategoryList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -152,6 +161,16 @@ public class ArticleContentFavoriteListActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        sort_Type_posistion = position;
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             finish();
@@ -159,4 +178,5 @@ public class ArticleContentFavoriteListActivity extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
 }

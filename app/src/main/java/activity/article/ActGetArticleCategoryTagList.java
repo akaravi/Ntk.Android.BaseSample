@@ -1,6 +1,5 @@
 package activity.article;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -33,18 +32,16 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.article.interfase.IArticle;
-import ntk.base.api.article.model.ArticleContentOtherInfoRequest;
-import ntk.base.api.article.model.ArticleContentOtherInfoResponse;
+import ntk.base.api.article.model.ArticleCategoryTagRequest;
+import ntk.base.api.article.model.ArticleCategoryTagResponse;
 import ntk.base.api.baseModel.Filters;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
-public class GetArticleContentOtherInfoList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ActGetArticleCategoryTagList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.lblLayout)
     TextView lblLayout;
-    private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
     @BindView(R.id.row_per_page_text)
     EditText rowPerPageText;
     @BindView(R.id.sort_type_spinner)
@@ -59,10 +56,12 @@ public class GetArticleContentOtherInfoList extends AppCompatActivity implements
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    @BindView(R.id.content_id_text)
-    EditText contentIdText;
+    @BindView(R.id.link_parent_id)
+    EditText linkParentId;
+
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
     private List<String> sort_type = new ArrayList<String>();
+    private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
     private int sort_Type_posistion;
 
     @Override
@@ -77,13 +76,13 @@ public class GetArticleContentOtherInfoList extends AppCompatActivity implements
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_article_get_content_other_info_list);
+        setContentView(R.layout.act_article_get_article_category_tag_list);
         ButterKnife.bind(this);
         init();
     }
 
     private void init() {
-        lblLayout.setText("ArticleContentOtherInfoList");
+        lblLayout.setText("ArticleCategoryTagList");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle(getIntent().getStringExtra(ActArticle.LAYOUT_VALUE));
@@ -101,46 +100,46 @@ public class GetArticleContentOtherInfoList extends AppCompatActivity implements
     }
 
     private void getData() {
-        ArticleContentOtherInfoRequest request = new ArticleContentOtherInfoRequest();
+        ArticleCategoryTagRequest request = new ArticleCategoryTagRequest();
         request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
         request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
         request.SortType = sort_Type_posistion;
         request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
         request.SortColumn = sortColumnText.getText().toString();
-        long linkContentId = 0;
+        long ParentId = 0;
         try {
-            if (!contentIdText.getText().toString().matches("")) {
-                linkContentId = Long.valueOf(contentIdText.getText().toString());
+            if (!linkParentId.getText().toString().matches("")) {
+                ParentId = Long.valueOf(linkParentId.getText().toString());
             }
         } catch (Exception e) {
-            contentIdText.setError("inValid Info !!");
+            linkParentId.setError("inValid Info !!");
             progressBar.setVisibility(View.GONE);
             return;
         }
-        if (linkContentId > 0) {
+        if (ParentId > 0) {
             List<Filters> filters = new ArrayList<>();
             Filters f = new Filters();
-            f.PropertyName = "LinkContentId";
-            f.IntValue1 = linkContentId;
+            f.PropertyName = "LinkParentId";
+            f.IntValue1 = ParentId;
             filters.add(f);
             request.filters = filters;
         }
-        RetrofitManager manager = new RetrofitManager(GetArticleContentOtherInfoList.this);
+        RetrofitManager manager = new RetrofitManager(ActGetArticleCategoryTagList.this);
         IArticle iArticle = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IArticle.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-        Observable<ArticleContentOtherInfoResponse> call = iArticle.GetContentOtherInfoList(headers, request);
+        Observable<ArticleCategoryTagResponse> call = iArticle.GetCategoryTagList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<ArticleContentOtherInfoResponse>() {
+                .subscribe(new Observer<ArticleCategoryTagResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(ArticleContentOtherInfoResponse response) {
-                        JsonDialog cdd = new JsonDialog(GetArticleContentOtherInfoList.this, response);
+                    public void onNext(ArticleCategoryTagResponse response) {
+                        JsonDialog cdd = new JsonDialog(ActGetArticleCategoryTagList.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -149,7 +148,7 @@ public class GetArticleContentOtherInfoList extends AppCompatActivity implements
                     public void onError(Throwable e) {
                         progressBar.setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(GetArticleContentOtherInfoList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActGetArticleCategoryTagList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -157,6 +156,7 @@ public class GetArticleContentOtherInfoList extends AppCompatActivity implements
                         progressBar.setVisibility(View.GONE);
                     }
                 });
+
     }
 
     @Override

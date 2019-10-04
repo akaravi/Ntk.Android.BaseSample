@@ -1,9 +1,8 @@
 package activity.article;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -33,18 +32,17 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.article.interfase.IArticle;
-import ntk.base.api.article.model.ArticleContentCategoryListRequest;
-import ntk.base.api.article.model.ArticleContentResponse;
-import ntk.base.api.article.model.ArticleContentSimilarListRequest;
+import ntk.base.api.article.model.ArticleCommentListRequest;
+import ntk.base.api.article.model.ArticleCommentResponse;
 import ntk.base.api.baseModel.Filters;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
-public class ActContentCategoryList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ActGetArticleCommentList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.lblLayout)
     TextView lblLayout;
+    private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
     @BindView(R.id.row_per_page_text)
     EditText rowPerPageText;
     @BindView(R.id.sort_type_spinner)
@@ -55,31 +53,39 @@ public class ActContentCategoryList extends AppCompatActivity implements Adapter
     EditText currentPageNumberText;
     @BindView(R.id.sort_column_text)
     EditText sortColumnText;
-    @BindView(R.id.txtLinkContentId)
-    EditText txtLinkContentId;
     @BindView(R.id.api_test_submit_button)
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
+    @BindView(R.id.linkContentId)
+    EditText linkContentId;
+
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
     private List<String> sort_type = new ArrayList<String>();
-    private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
     private int sort_Type_posistion;
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_article_content_category_list);
+        setContentView(R.layout.act_article_get_comment_list);
         ButterKnife.bind(this);
         init();
     }
 
     private void init() {
-        lblLayout.setText("ArticleContentCategoryList");
+        lblLayout.setText("ArticleCommentList");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("ArticleContentCategoryList");
+        getSupportActionBar().setTitle(getIntent().getStringExtra(ActArticle.LAYOUT_VALUE));
         sort_type.add("Descnding_Sort");
         sort_type.add("Ascnding_Sort");
         sort_type.add("Random_Sort");
@@ -94,51 +100,47 @@ public class ActContentCategoryList extends AppCompatActivity implements Adapter
     }
 
     private void getData() {
-        ArticleContentCategoryListRequest request = new ArticleContentCategoryListRequest();
+        ArticleCommentListRequest request = new ArticleCommentListRequest();
         request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
         request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
         request.SortType = sort_Type_posistion;
         request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
         request.SortColumn = sortColumnText.getText().toString();
-        long LinkContentId = 0;
-        if (!txtLinkContentId.getText().toString().matches("")) {
-            if (txtLinkContentId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
-                txtLinkContentId.setError("inValid Info !!");
-                progressBar.setVisibility(View.GONE);
-                return;
-            } else {
-                txtLinkContentId.setError(null);
-                LinkContentId = Long.valueOf(txtLinkContentId.getText().toString());
+        long ContentId = 0;
+        try {
+            if (!linkContentId.getText().toString().matches("")) {
+                ContentId = Long.valueOf(linkContentId.getText().toString());
             }
-        } else {
-            txtLinkContentId.setError("Required !!");
+        } catch (Exception e) {
+            linkContentId.setError("inValid Info !!");
             progressBar.setVisibility(View.GONE);
             return;
         }
-        if (LinkContentId > 0) {
+        if (ContentId > 0) {
             List<Filters> filters = new ArrayList<>();
             Filters f = new Filters();
             f.PropertyName = "LinkContentId";
-            f.IntValue1 = LinkContentId;
+            f.IntValue1 = ContentId;
             filters.add(f);
             request.filters = filters;
         }
-        RetrofitManager manager = new RetrofitManager(ActContentCategoryList.this);
+
+        RetrofitManager manager = new RetrofitManager(ActGetArticleCommentList.this);
         IArticle iArticle = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IArticle.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-        Observable<ArticleContentResponse> call = iArticle.GetContentCategoryList(headers, request);
+        Observable<ArticleCommentResponse> call = iArticle.GetCommentList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<ArticleContentResponse>() {
+                .subscribe(new Observer<ArticleCommentResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(ArticleContentResponse response) {
-                        JsonDialog cdd = new JsonDialog(ActContentCategoryList.this, response);
+                    public void onNext(ArticleCommentResponse response) {
+                        JsonDialog cdd = new JsonDialog(ActGetArticleCommentList.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -147,7 +149,7 @@ public class ActContentCategoryList extends AppCompatActivity implements Adapter
                     public void onError(Throwable e) {
                         progressBar.setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(ActContentCategoryList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActGetArticleCommentList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -173,14 +175,4 @@ public class ActContentCategoryList extends AppCompatActivity implements Adapter
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            finish();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
 }

@@ -10,7 +10,7 @@
     android:layout_height="match_parent"
     android:layout_margin="@dimen/standard_padding"
     android:orientation="vertical"
-    tools:context="activity.news.ActGetNewsContentList"> <include layout="@layout/header" />
+    tools:context="activity.news.ActGetContentList"> <include layout="@layout/header" />
 
     <include layout="@layout/body" />
 

@@ -39,6 +39,7 @@ import activity.imageGallery.ActImageGallery;
 import activity.movieGallery.ActMovieGallery;
 import activity.musicGallery.ActMusicGallery;
 import activity.news.ActNews;
+import activity.object.ActObject;
 import activity.pooling.ActPooling;
 import activity.product.ActProduct;
 import activity.service.ActService;
@@ -115,7 +116,7 @@ public class Main extends AppCompatActivity {
     private void init() {
 
         String ApiBaseUrl_ = EasyPreference.with(this).getString("ApiBaseUrl", "http://oco.ir");
-        String packageName_ = EasyPreference.with(this).getString("packageName", "ntk.cms.android.academy.app");
+        String packageName_ = EasyPreference.with(this).getString("packageName", "ntk.cms.android.basesample.app");
         url.setText(ApiBaseUrl_);
         packageName.setText(packageName_);
 
@@ -229,6 +230,9 @@ public class Main extends AppCompatActivity {
                         case 14:
                             startActivity(new Intent(context, ActService.class));
                             break;
+                        case 24:
+                            startActivity(new Intent(context, ActObject.class));
+                            break;
                     }
                 }
             });
@@ -256,9 +260,9 @@ public class Main extends AppCompatActivity {
         EasyPreference.with(Main.this).addString("ApiBaseUrl","http://oco.ir");
 
         EasyPreference.with(Main.this).remove("packageName");
-        EasyPreference.with(Main.this).addString("packageName","ntk.cms.android.academy.app");
+        EasyPreference.with(Main.this).addString("packageName","ntk.cms.android.basesample.app");
         url.setText("http://oco.ir");
-        packageName.setText("ntk.cms.android.academy.app");
+        packageName.setText("ntk.cms.android.basesample.app");
     }
 
     @Override

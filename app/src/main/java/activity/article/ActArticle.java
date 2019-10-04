@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import activity.Main;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ntk.base.app.R;
@@ -95,43 +94,43 @@ public class ActArticle extends AppCompatActivity {
                 public void onClick(View view) {
                     switch (view.getId()) {
                         case 0:
-                            startActivity(new Intent(ActArticle.this, GetArticleContentList.class).putExtra(LAYOUT_VALUE, "ArticleContentList"));
+                            startActivity(new Intent(ActArticle.this, ActGetArticleContentList.class).putExtra(LAYOUT_VALUE, "ArticleContentList"));
                             break;
                         case 1:
-                            startActivity(new Intent(ActArticle.this, GetArticleContentView.class).putExtra(LAYOUT_VALUE, "ArticleContentView"));
+                            startActivity(new Intent(ActArticle.this, ActGetArticleContentView.class).putExtra(LAYOUT_VALUE, "ArticleContentView"));
                             break;
                         case 2:
-                            startActivity(new Intent(ActArticle.this, GetArticleTagList.class).putExtra(LAYOUT_VALUE, "ArticleTagList"));
+                            startActivity(new Intent(ActArticle.this, ActGetArticleTagList.class).putExtra(LAYOUT_VALUE, "ArticleTagList"));
                             break;
                         case 3:
-                            startActivity(new Intent(ActArticle.this, GetArticleCategoryList.class).putExtra(LAYOUT_VALUE, "ArticleCategoryList"));
+                            startActivity(new Intent(ActArticle.this, ActGetArticleCategoryList.class).putExtra(LAYOUT_VALUE, "ArticleCategoryList"));
                             break;
                         case 4:
-                            startActivity(new Intent(ActArticle.this, GetArticleCategoryTagList.class).putExtra(LAYOUT_VALUE, "ArticleCategoryTagList"));
+                            startActivity(new Intent(ActArticle.this, ActGetArticleCategoryTagList.class).putExtra(LAYOUT_VALUE, "ArticleCategoryTagList"));
                             break;
                         case 5:
-                            startActivity(new Intent(ActArticle.this, GetArticleContentOtherInfoList.class).putExtra(LAYOUT_VALUE, "ArticleContentOtherInfoList"));
+                            startActivity(new Intent(ActArticle.this, ActGetArticleContentOtherInfoList.class).putExtra(LAYOUT_VALUE, "ArticleContentOtherInfoList"));
                             break;
                         case 6:
-                            startActivity(new Intent(ActArticle.this, GetArticleCommentList.class).putExtra(LAYOUT_VALUE, "ArticleCommentList"));
+                            startActivity(new Intent(ActArticle.this, ActGetArticleCommentList.class).putExtra(LAYOUT_VALUE, "ArticleCommentList"));
                             break;
                         case 7:
-                            startActivity(new Intent(ActArticle.this, GetArticleCommentAdd.class).putExtra(LAYOUT_VALUE, "ArticleCommentAddRequest"));
+                            startActivity(new Intent(ActArticle.this, ActGetArticleCommentAdd.class).putExtra(LAYOUT_VALUE, "ArticleCommentAddRequest"));
                             break;
                         case 8:
-                            startActivity(new Intent(ActArticle.this, GetArticleContentFavoriteAddOrRemove.class).putExtra(LAYOUT_VALUE, "ArticleContentFavoriteAddRequest"));
+                            startActivity(new Intent(ActArticle.this, ActGetArticleContentFavoriteAddOrRemove.class).putExtra(LAYOUT_VALUE, "ArticleContentFavoriteAddRequest"));
                             break;
                         case 9:
-                            startActivity(new Intent(ActArticle.this, ArticleCommentViewActivity.class).putExtra(LAYOUT_VALUE, "ArticleCommentView"));
+                            startActivity(new Intent(ActArticle.this, ActGetCommentView.class).putExtra(LAYOUT_VALUE, "ArticleCommentView"));
                             break;
                         case 10:
-                            startActivity(new Intent(ActArticle.this, ArticleContentFavoriteListActivity.class).putExtra(LAYOUT_VALUE, "ArticleContentFavoriteList"));
+                            startActivity(new Intent(ActArticle.this, ActGetContentFavoriteList.class).putExtra(LAYOUT_VALUE, "ArticleContentFavoriteList"));
                             break;
                         case 11:
-                            startActivity(new Intent(ActArticle.this, ActContentSimilarList.class));
+                            startActivity(new Intent(ActArticle.this, ActGetContentSimilarList.class));
                             break;
                         case 12:
-                            startActivity(new Intent(ActArticle.this, ActContentCategoryList.class));
+                            startActivity(new Intent(ActArticle.this, ActGetContentCategoryList.class));
                             break;
                     }
                 }

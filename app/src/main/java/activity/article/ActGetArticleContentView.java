@@ -1,6 +1,5 @@
 package activity.article;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -32,9 +31,8 @@ import ntk.base.api.article.model.ArticleContentResponse;
 import ntk.base.api.article.model.ArticleContentViewRequest;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
-public class GetArticleContentView extends AppCompatActivity {
+public class ActGetArticleContentView extends AppCompatActivity {
 
     @BindView(R.id.lblLayout)
     TextView lblLayout;
@@ -77,7 +75,7 @@ public class GetArticleContentView extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
             return;
         }
-        RetrofitManager manager = new RetrofitManager(GetArticleContentView.this);
+        RetrofitManager manager = new RetrofitManager(ActGetArticleContentView.this);
         IArticle iArticle = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IArticle.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
@@ -92,7 +90,7 @@ public class GetArticleContentView extends AppCompatActivity {
 
                     @Override
                     public void onNext(ArticleContentResponse articleContentResponse) {
-                        JsonDialog cdd = new JsonDialog(GetArticleContentView.this, articleContentResponse);
+                        JsonDialog cdd = new JsonDialog(ActGetArticleContentView.this, articleContentResponse);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -101,7 +99,7 @@ public class GetArticleContentView extends AppCompatActivity {
                     public void onError(Throwable e) {
                         progressBar.setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(GetArticleContentView.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActGetArticleContentView.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override
