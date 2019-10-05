@@ -21,8 +21,25 @@ public class ActObject extends AppCompatActivity {
     public static String LAYOUT_VALUE = "LAYOUT_VALUE";
     @BindView(R.id.api_recycler_view)
     RecyclerView apiRecyclerView;
-    private String[] articleList = new String[]{"Object Group List",
-            "Object PropertyType List"};
+    private String[] articleList = new String[]{
+            "Object Group List",
+            "Object History Add",
+            "Object History List",
+            "Object History View",
+            "Object Property Add",
+            "Object Property List",
+            "Object Property View",
+            "Object Property ViewByJoinId",
+            "Object PropertyDetail List",
+            "Object PropertyDetailGroup List",
+            "Object PropertyDetailValue List",
+            "Object PropertySite List",
+            "Object PropertyType List",
+            "Object User List",
+            "Object UserGroup List",
+            "Object UserSite AddeByJoinId",
+            "Object UserSite List"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +52,7 @@ public class ActObject extends AppCompatActivity {
     private void init() {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("News");
+        getSupportActionBar().setTitle("Object");
         apiRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         apiRecyclerView.setAdapter(new ApiRecyclerViewAdapter(this, articleList));
     }
@@ -76,6 +93,9 @@ public class ActObject extends AppCompatActivity {
             apiViewHolder.button.setText(list[i]);
             apiViewHolder.button.setId(i);
             apiViewHolder.button.setOnClickListener(new View.OnClickListener() {
+
+
+
                 @Override
                 public void onClick(View view) {
                     switch (view.getId()) {
@@ -83,7 +103,60 @@ public class ActObject extends AppCompatActivity {
                             startActivity(new Intent(ActObject.this, ActGetGroupList.class));
                             break;
                         case 1:
-                            startActivity(new Intent(ActObject.this, ActGetPropertyTypeActList.class));
+                            startActivity(new Intent(ActObject.this, ActSetHistoryAdd.class));
+                            break;
+                        case 2:
+                            startActivity(new Intent(ActObject.this, ActGetHistoryList.class));
+                            break;
+                        case 3:
+                            startActivity(new Intent(ActObject.this, ActGetHistoryView.class));
+                            break;
+
+                        case 4:
+                            startActivity(new Intent(ActObject.this, ActSetPropertyAdd.class));
+                            break;
+                        case 5:
+                            startActivity(new Intent(ActObject.this, ActGetPropertyList.class));
+                            break;
+                        case 6:
+                            startActivity(new Intent(ActObject.this, ActGetPropertyView.class));
+                            break;
+                        case 7:
+                            startActivity(new Intent(ActObject.this, ActGetPropertyViewByJoinId.class));
+                            break;
+
+
+                        case 8:
+                            startActivity(new Intent(ActObject.this, ActGetPropertyDetailList.class));
+                            break;
+                        case 9:
+                            startActivity(new Intent(ActObject.this, ActGetPropertyDetailGroupList.class));
+                            break;
+                        case 10:
+                            startActivity(new Intent(ActObject.this, ActGetPropertyDetailValueList.class));
+                            break;
+
+
+                        case 11:
+                            startActivity(new Intent(ActObject.this, ActGetPropertySiteList.class));
+                            break;
+                        case 12:
+                            startActivity(new Intent(ActObject.this, ActGetPropertyTypeList.class));
+                            break;
+
+
+
+                        case 13:
+                            startActivity(new Intent(ActObject.this, ActGetUserList.class));
+                            break;
+                        case 14:
+                            startActivity(new Intent(ActObject.this, ActGetUserGroupList.class));
+                            break;
+                        case 15:
+                            startActivity(new Intent(ActObject.this, ActSetUserSiteAddeByJoinId.class));
+                            break;
+                        case 16:
+                            startActivity(new Intent(ActObject.this, ActGetUserSiteList.class));
                             break;
 
                     }

@@ -29,15 +29,14 @@ import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;;
+import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.object.interfase.IObject;
-
-import ntk.base.api.object.model.ObjectPropertyTypeRequest;
-import ntk.base.api.object.model.ObjectPropertyTypeResponse;
+import ntk.base.api.object.model.ObjectGroupRequest;
+import ntk.base.api.object.model.ObjectGroupResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
-public class ActGetPropertyTypeActList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ActSetUserSiteAddeByJoinId extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.row_per_page_text)
     EditText rowPerPageText;
@@ -63,16 +62,16 @@ public class ActGetPropertyTypeActList extends AppCompatActivity implements Adap
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_object_get_property_type_list);
+        setContentView(R.layout.act_object_get_group_list);
         ButterKnife.bind(this);
         initialize();
     }
 
     private void initialize() {
-        lblLayout.setText("NewsCategoryList");
+        lblLayout.setText("ObjectUserSiteAddeByJoinId");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("NewsCategoryList");
+        getSupportActionBar().setTitle("ObjectUserSiteAddeByJoinId");
         sort_type.add("Descnding_Sort");
         sort_type.add("Ascnding_Sort");
         sort_type.add("Random_Sort");
@@ -87,29 +86,29 @@ public class ActGetPropertyTypeActList extends AppCompatActivity implements Adap
     }
 
     private void getData() {
-        ObjectPropertyTypeRequest request = new ObjectPropertyTypeRequest();
+        ObjectGroupRequest request = new ObjectGroupRequest();
         request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
         request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
         request.SortType = sort_Type_posistion;
         request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
         request.SortColumn = sortColumnText.getText().toString();
 
-        RetrofitManager manager = new RetrofitManager(ActGetPropertyTypeActList.this);
+        RetrofitManager manager = new RetrofitManager(ActSetUserSiteAddeByJoinId.this);
         IObject iObject = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IObject.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-        Observable<ObjectPropertyTypeResponse> call = iObject.GetPropertyTypeActList(headers, request);
+        Observable<ObjectGroupResponse> call = iObject.GetGroupActList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<ObjectPropertyTypeResponse>() {
+                .subscribe(new Observer<ObjectGroupResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(ObjectPropertyTypeResponse response) {
-                        JsonDialog cdd = new JsonDialog(ActGetPropertyTypeActList.this, response);
+                    public void onNext(ObjectGroupResponse response) {
+                        JsonDialog cdd = new JsonDialog(ActSetUserSiteAddeByJoinId.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
                     }
@@ -118,7 +117,7 @@ public class ActGetPropertyTypeActList extends AppCompatActivity implements Adap
                     public void onError(Throwable e) {
                         progressBar.setVisibility(View.GONE);
                         Log.i("Error", e.getMessage());
-                        Toast.makeText(ActGetPropertyTypeActList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActSetUserSiteAddeByJoinId.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override
