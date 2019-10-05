@@ -1,77 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="@dimen/standard_padding"
-    android:orientation="vertical"
-    tools:context="activity.imageGallery.ActCommentView">
-
-    <include layout="@layout/header" />
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/extra_padding"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/standard_padding"
+        android:orientation="vertical"
+        tools:context="activity.imageGallery.ActCommentView">
 
-        <TextView
-            style="@style/titleStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/extra_padding"
-            android:text="@string/body" />
+        <include layout="@layout/header" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="center_vertical"
-            android:background="@android:color/darker_gray" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/extra_padding"
-        android:orientation="horizontal">
-
-        <TextView
-            style="@style/titleStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/id" />
-
-        <EditText
-            android:id="@+id/txtId"
-            style="@style/textStyle"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:inputType="number" />
-    </LinearLayout>
+            android:layout_marginBottom="@dimen/extra_padding"
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/extra_padding"
-        android:orientation="horizontal">
+            <TextView
+                style="@style/titleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/extra_padding"
+                android:text="@string/body" />
 
-        <TextView
-            style="@style/titleStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/action_client_order" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center_vertical"
+                android:background="@android:color/darker_gray" />
 
-        <EditText
-            android:id="@+id/txtActionClientOrder"
-            style="@style/textStyle"
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:inputType="number" />
+            android:layout_marginBottom="@dimen/extra_padding"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/titleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/id" />
+
+            <EditText
+                android:id="@+id/txtId"
+                style="@style/textStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/extra_padding"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/titleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/action_client_order" />
+
+            <EditText
+                android:id="@+id/txtActionClientOrder"
+                style="@style/textStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <include layout="@layout/button" />
+
     </LinearLayout>
-
-    <include layout="@layout/button" />
-
-</LinearLayout>
+</android.support.v4.widget.NestedScrollView>

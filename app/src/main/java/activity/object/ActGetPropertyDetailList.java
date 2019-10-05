@@ -38,6 +38,7 @@ import ntk.base.api.object.model.ObjectPropertyDetailResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
+//ok
 public class ActGetPropertyDetailList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.row_per_page_text)
