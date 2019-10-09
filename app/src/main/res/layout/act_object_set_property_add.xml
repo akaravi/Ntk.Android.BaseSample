@@ -27,7 +27,7 @@
                 android:text="@string/id" />
 
             <EditText
-                android:id="@+id/txtId"
+                android:id="@+id/id"
                 style="@style/textStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
