@@ -187,7 +187,6 @@
         <activity android:name="activity.object.ActSetUserSiteAddeByJoinId"/>
 
 
-
     </application>
 
 </manifest>

@@ -33,21 +33,35 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.object.interfase.IObject;
 import ntk.base.api.object.model.ObjectGroupRequest;
 import ntk.base.api.object.model.ObjectGroupResponse;
+import ntk.base.api.object.model.ObjectPropertyActAddRequest;
+import ntk.base.api.object.model.ObjectPropertyResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
-public class ActSetPropertyAdd extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ActSetPropertyAdd extends AppCompatActivity {
 
-    @BindView(R.id.row_per_page_text)
-    EditText rowPerPageText;
-    @BindView(R.id.sort_type_spinner)
-    Spinner sortTypeSpinner;
-    @BindView(R.id.skip_row_data_text)
-    EditText skipRowDataText;
-    @BindView(R.id.current_page_number_text)
-    EditText currentPageNumberText;
-    @BindView(R.id.sort_column_text)
-    EditText sortColumnText;
+    @BindView(R.id.id)
+    EditText id;
+    @BindView(R.id.linkObjectUserId)
+    EditText linkObjectUserId;
+    @BindView(R.id.title)
+    EditText title;
+    @BindView(R.id.description)
+    EditText description;
+    @BindView(R.id.linkCmsUserId)
+    EditText linkCmsUserId;
+    @BindView(R.id.linkPropertyTypeId)
+    EditText linkPropertyTypeId;
+    @BindView(R.id.address)
+    EditText address;
+    @BindView(R.id.linkMainImageId)
+    EditText linkMainImageId;
+    @BindView(R.id.linkExtraImageIds)
+    EditText linkExtraImageIds;
+    @BindView(R.id.linkFileIds)
+    EditText linkFileIds;
+    @BindView(R.id.mainImageSrc)
+    EditText mainImageSrc;
     @BindView(R.id.api_test_submit_button)
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
@@ -56,13 +70,11 @@ public class ActSetPropertyAdd extends AppCompatActivity implements AdapterView.
     TextView lblLayout;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
-    private List<String> sort_type = new ArrayList<String>();
-    private int sort_Type_posistion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_object_get_group_list);
+        setContentView(R.layout.act_object_set_property_add);
         ButterKnife.bind(this);
         initialize();
     }
@@ -72,11 +84,7 @@ public class ActSetPropertyAdd extends AppCompatActivity implements AdapterView.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("ObjectPropertyAdd");
-        sort_type.add("Descnding_Sort");
-        sort_type.add("Ascnding_Sort");
-        sort_type.add("Random_Sort");
-        sortTypeSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sort_type));
-        sortTypeSpinner.setOnItemSelectedListener(this);
+
     }
 
     @OnClick(R.id.api_test_submit_button)
@@ -86,28 +94,33 @@ public class ActSetPropertyAdd extends AppCompatActivity implements AdapterView.
     }
 
     private void getData() {
-        ObjectGroupRequest request = new ObjectGroupRequest();
-        request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
-        request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
-        request.SortType = sort_Type_posistion;
-        request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
-        request.SortColumn = sortColumnText.getText().toString();
-
-        RetrofitManager manager = new RetrofitManager(ActSetPropertyAdd.this);
+        ObjectPropertyActAddRequest request = new ObjectPropertyActAddRequest();
+        request.Id = Long.parseLong(id.getText().toString());
+        request.LinkObjectUserId = Long.parseLong(linkObjectUserId.getText().toString());
+        request.Title = title.getText().toString();
+        request.Description = description.getText().toString();
+        request.LinkCmsUserId = Long.valueOf(linkCmsUserId.getText().toString());
+        request.LinkPropertyTypeId = Long.valueOf(linkPropertyTypeId.getText().toString());
+        request.Address = address.getText().toString();
+        request.LinkMainImageId = Long.valueOf(linkMainImageId.getText().toString());
+        request.LinkExtraImageIds = linkExtraImageIds.getText().toString();
+        request.LinkFileIds = linkFileIds.getText().toString();
+        request.MainImageSrc = mainImageSrc.getText().toString();
+                RetrofitManager manager = new RetrofitManager(ActSetPropertyAdd.this);
         IObject iObject = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IObject.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-        Observable<ObjectGroupResponse> call = iObject.GetGroupActList(headers, request);
+        Observable<ObjectPropertyResponse> call = iObject.SetPropertyActAdd(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<ObjectGroupResponse>() {
+                .subscribe(new Observer<ObjectPropertyResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(ObjectGroupResponse response) {
+                    public void onNext(ObjectPropertyResponse response) {
                         JsonDialog cdd = new JsonDialog(ActSetPropertyAdd.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
@@ -142,13 +155,4 @@ public class ActSetPropertyAdd extends AppCompatActivity implements AdapterView.
         return super.onKeyDown(keyCode, event);
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        sort_Type_posistion = position;
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 }

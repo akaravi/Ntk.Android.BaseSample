@@ -14,9 +14,51 @@
 
         <include layout="@layout/header" />
 
-        <include layout="@layout/body" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/extra_padding"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/titleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/join_id" />
+
+            <EditText
+                android:id="@+id/joinId"
+                style="@style/textStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:inputType="text" />
+        </LinearLayout>
+
 
         <include layout="@layout/button" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/extra_padding"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/titleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/linkObjectUserId" />
+
+        <EditText
+            android:id="@+id/linkObjectUserId"
+            style="@style/textStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:inputType="number" />
+    </LinearLayout>
+
 </android.support.v4.widget.NestedScrollView>

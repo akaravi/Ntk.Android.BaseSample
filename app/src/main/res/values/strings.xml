@@ -69,4 +69,17 @@
     <string name="layout">layout :</string>
     <string name="application_json">application/json</string>
     <string name="url">URL :</string>
+    <string name="link_property_id">LinkPropertyId</string>
+    <string name="PropertyTypeId">PropertyTypeId</string>
+    <string name="link_Member_Property_Id">LinkMemberPropertyId</string>
+    <string name="join_id">JoinId</string>
+    <string name="linkObjectUserId">LinkObjectUserId</string>
+    <string name="description">Description</string>
+    <string name="linkCmsUserId">LinkCmsUserId</string>
+    <string name="linkPpropertyTypeId">LinkPropertyTypeId</string>
+    <string name="address">Address</string>
+    <string name="linkMainImageId">LinkMainImageId</string>
+    <string name="linkExtraImageIds">LinkExtraImageIds</string>
+    <string name="linkFileIds">LinkFileIds</string>
+    <string name="mainImageSrc">MainImageSrc</string>
 </resources>

@@ -70,10 +70,10 @@ public class ActGetPropertySiteList extends AppCompatActivity implements Adapter
     }
 
     private void initialize() {
-        lblLayout.setText("ObjectPropertySiteList");
+        lblLayout.setText("ActGetPropertySiteList");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("ObjectPropertySiteList");
+        getSupportActionBar().setTitle("ActGetPropertySiteList");
         sort_type.add("Descnding_Sort");
         sort_type.add("Ascnding_Sort");
         sort_type.add("Random_Sort");

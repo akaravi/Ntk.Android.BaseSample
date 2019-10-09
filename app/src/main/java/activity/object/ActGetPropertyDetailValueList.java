@@ -56,6 +56,8 @@ public class ActGetPropertyDetailValueList extends AppCompatActivity implements 
     ProgressBar progressBar;
     @BindView(R.id.lblLayout)
     TextView lblLayout;
+    @BindView(R.id.propertyTypeId)
+    EditText propertyTypeId;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
     private List<String> sort_type = new ArrayList<String>();
@@ -94,7 +96,7 @@ public class ActGetPropertyDetailValueList extends AppCompatActivity implements 
         request.SortType = sort_Type_posistion;
         request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
         request.SortColumn = sortColumnText.getText().toString();
-
+        request.PropertyTypeId = Long.valueOf(propertyTypeId.getText().toString());
         RetrofitManager manager = new RetrofitManager(ActGetPropertyDetailValueList.this);
         IObject iObject = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IObject.class);
         Map<String, String> headers = new HashMap<>();

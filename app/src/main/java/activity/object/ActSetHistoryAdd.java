@@ -33,21 +33,19 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.object.interfase.IObject;
 import ntk.base.api.object.model.ObjectGroupRequest;
 import ntk.base.api.object.model.ObjectGroupResponse;
+import ntk.base.api.object.model.ObjectHistoryActAddRequest;
+import ntk.base.api.object.model.ObjectHistoryResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
-public class ActSetHistoryAdd extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ActSetHistoryAdd extends AppCompatActivity {
 
-    @BindView(R.id.row_per_page_text)
-    EditText rowPerPageText;
-    @BindView(R.id.sort_type_spinner)
-    Spinner sortTypeSpinner;
-    @BindView(R.id.skip_row_data_text)
-    EditText skipRowDataText;
-    @BindView(R.id.current_page_number_text)
-    EditText currentPageNumberText;
-    @BindView(R.id.sort_column_text)
-    EditText sortColumnText;
+    @BindView(R.id.txtId)
+    EditText id;
+    @BindView(R.id.title)
+    EditText title;
+    @BindView(R.id.linkPropertyId)
+    EditText linkPropertyId;
     @BindView(R.id.api_test_submit_button)
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
@@ -56,13 +54,11 @@ public class ActSetHistoryAdd extends AppCompatActivity implements AdapterView.O
     TextView lblLayout;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
-    private List<String> sort_type = new ArrayList<String>();
-    private int sort_Type_posistion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_object_get_group_list);
+        setContentView(R.layout.act_object_set_history_add);
         ButterKnife.bind(this);
         initialize();
     }
@@ -72,11 +68,6 @@ public class ActSetHistoryAdd extends AppCompatActivity implements AdapterView.O
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("ObjectHistoryAdd");
-        sort_type.add("Descnding_Sort");
-        sort_type.add("Ascnding_Sort");
-        sort_type.add("Random_Sort");
-        sortTypeSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sort_type));
-        sortTypeSpinner.setOnItemSelectedListener(this);
     }
 
     @OnClick(R.id.api_test_submit_button)
@@ -86,28 +77,26 @@ public class ActSetHistoryAdd extends AppCompatActivity implements AdapterView.O
     }
 
     private void getData() {
-        ObjectGroupRequest request = new ObjectGroupRequest();
-        request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
-        request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
-        request.SortType = sort_Type_posistion;
-        request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
-        request.SortColumn = sortColumnText.getText().toString();
+        ObjectHistoryActAddRequest request = new ObjectHistoryActAddRequest();
+        request.Id = Integer.valueOf(id.getText().toString());
+        request.Title = (title.getText().toString());
+        request.LinkPropertyId = Long.valueOf((linkPropertyId.getText().toString()));
 
         RetrofitManager manager = new RetrofitManager(ActSetHistoryAdd.this);
         IObject iObject = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IObject.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-        Observable<ObjectGroupResponse> call = iObject.GetGroupActList(headers, request);
+        Observable<ObjectHistoryResponse> call = iObject.GetHistoryActAdd(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<ObjectGroupResponse>() {
+                .subscribe(new Observer<ObjectHistoryResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(ObjectGroupResponse response) {
+                    public void onNext(ObjectHistoryResponse response) {
                         JsonDialog cdd = new JsonDialog(ActSetHistoryAdd.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
@@ -142,13 +131,4 @@ public class ActSetHistoryAdd extends AppCompatActivity implements AdapterView.O
         return super.onKeyDown(keyCode, event);
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        sort_Type_posistion = position;
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 }

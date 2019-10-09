@@ -33,22 +33,20 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.object.interfase.IObject;
 import ntk.base.api.object.model.ObjectGroupRequest;
 import ntk.base.api.object.model.ObjectGroupResponse;
+import ntk.base.api.object.model.ObjectPropertyActViewByJoinIdRequest;
+import ntk.base.api.object.model.ObjectPropertyResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
-public class ActGetPropertyViewByJoinId extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ActGetPropertyViewByJoinId extends AppCompatActivity {
 
-    @BindView(R.id.row_per_page_text)
-    EditText rowPerPageText;
-    @BindView(R.id.sort_type_spinner)
-    Spinner sortTypeSpinner;
-    @BindView(R.id.skip_row_data_text)
-    EditText skipRowDataText;
-    @BindView(R.id.current_page_number_text)
-    EditText currentPageNumberText;
-    @BindView(R.id.sort_column_text)
-    EditText sortColumnText;
-    @BindView(R.id.api_test_submit_button)
+    @BindView(R.id.linkMemberPropertyId)
+    EditText linkMemberPropertyId;
+    @BindView(R.id.linkMemberUserId)
+    EditText linkMemberUserId;
+    @BindView(R.id.joinId)
+    EditText joinId;
+
     Button apiTestSubmitButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
@@ -56,27 +54,22 @@ public class ActGetPropertyViewByJoinId extends AppCompatActivity implements Ada
     TextView lblLayout;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
-    private List<String> sort_type = new ArrayList<String>();
-    private int sort_Type_posistion;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_object_get_group_list);
+        setContentView(R.layout.act_object_get_property_view_by_join_id);
         ButterKnife.bind(this);
         initialize();
     }
 
     private void initialize() {
-        lblLayout.setText("ObjectPropertyViewByJoinId ");
+        lblLayout.setText("ObjectPropertyViewByJoinId");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("ObjectPropertyViewByJoinId");
-        sort_type.add("Descnding_Sort");
-        sort_type.add("Ascnding_Sort");
-        sort_type.add("Random_Sort");
-        sortTypeSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sort_type));
-        sortTypeSpinner.setOnItemSelectedListener(this);
+
     }
 
     @OnClick(R.id.api_test_submit_button)
@@ -86,28 +79,25 @@ public class ActGetPropertyViewByJoinId extends AppCompatActivity implements Ada
     }
 
     private void getData() {
-        ObjectGroupRequest request = new ObjectGroupRequest();
-        request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
-        request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
-        request.SortType = sort_Type_posistion;
-        request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
-        request.SortColumn = sortColumnText.getText().toString();
-
+        ObjectPropertyActViewByJoinIdRequest request = new ObjectPropertyActViewByJoinIdRequest();
+        request.LinkMemberPropertyId = Long.parseLong(linkMemberPropertyId.getText().toString());
+        request.LinkMemberUserId = Long.parseLong(linkMemberUserId.getText().toString());
+        request.JoinId = ((joinId.getText().toString()));
         RetrofitManager manager = new RetrofitManager(ActGetPropertyViewByJoinId.this);
         IObject iObject = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IObject.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-        Observable<ObjectGroupResponse> call = iObject.GetGroupActList(headers, request);
+        Observable<ObjectPropertyResponse> call = iObject.GetPropertyActViewByJoinId(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<ObjectGroupResponse>() {
+                .subscribe(new Observer<ObjectPropertyResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(ObjectGroupResponse response) {
+                    public void onNext(ObjectPropertyResponse response) {
                         JsonDialog cdd = new JsonDialog(ActGetPropertyViewByJoinId.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
@@ -142,13 +132,5 @@ public class ActGetPropertyViewByJoinId extends AppCompatActivity implements Ada
         return super.onKeyDown(keyCode, event);
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        sort_Type_posistion = position;
-    }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 }
