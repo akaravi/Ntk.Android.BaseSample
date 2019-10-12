@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/standard_padding"
+        android:orientation="vertical"
+        tools:context="activity.member.ActSetPropertyAdd">
+
+        <include layout="@layout/header" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/extra_padding"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/titleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/id" />
+
+            <EditText
+                android:id="@+id/id"
+                style="@style/textStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:inputType="number" />
+        </LinearLayout>
+
+    `
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/extra_padding"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/titleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title" />
+
+            <EditText
+                android:id="@+id/title"
+                style="@style/textStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/extra_padding"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/titleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/description" />
+
+            <EditText
+                android:id="@+id/description"
+                style="@style/textStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/extra_padding"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/textStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/linkCmsUserId" />
+
+            <EditText
+                android:id="@+id/linkCmsUserId"
+                style="@style/textStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/extra_padding"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/titleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/linkPpropertyTypeId" />
+
+            <EditText
+                android:id="@+id/linkPropertyTypeId"
+                style="@style/textStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/extra_padding"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/titleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/address" />
+
+            <EditText
+                android:id="@+id/address"
+                style="@style/textStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/extra_padding"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/titleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/linkMainImageId" />
+
+            <EditText
+                android:id="@+id/linkMainImageId"
+                style="@style/textStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/extra_padding"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/titleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/linkExtraImageIds" />
+
+            <EditText
+                android:id="@+id/linkExtraImageIds"
+                style="@style/textStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/extra_padding"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/titleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/linkFileIds" />
+
+            <EditText
+                android:id="@+id/linkFileIds"
+                style="@style/textStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/extra_padding"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/titleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mainImageSrc" />
+
+            <EditText
+                android:id="@+id/mainImageSrc"
+                style="@style/textStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <include layout="@layout/button" />
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

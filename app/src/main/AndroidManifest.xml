@@ -167,6 +167,7 @@
         <activity android:name="activity.article.ActGetArticleCommentList" />
         <activity android:name="activity.article.ActGetArticleCommentAdd" />
         <activity android:name="activity.article.ActGetArticleContentFavoriteAddOrRemove" />
+
         <activity android:name="activity.object.ActObject"/>
         <activity android:name="activity.object.ActGetGroupList"/>
         <activity android:name="activity.object.ActGetHistoryList"/>
@@ -186,6 +187,26 @@
         <activity android:name="activity.object.ActSetPropertyAdd"/>
         <activity android:name="activity.object.ActSetUserSiteAddeByJoinId"/>
 
+
+        <activity android:name="activity.member.ActMember"/>
+        <activity android:name="activity.member.ActGetGroupList"/>
+        <activity android:name="activity.member.ActGetHistoryList"/>
+        <activity android:name="activity.member.ActGetHistoryView"/>
+        <activity android:name="activity.member.ActGetPropertyDetailGroupList"/>
+        <activity android:name="activity.member.ActGetPropertyDetailList"/>
+        <activity android:name="activity.member.ActGetPropertyDetailValueList"/>
+        <activity android:name="activity.member.ActGetPropertyList"/>
+        <activity android:name="activity.member.ActGetPropertySiteList"/>
+        <activity android:name="activity.member.ActGetPropertyTypeList"/>
+        <activity android:name="activity.member.ActGetPropertyView"/>
+        <activity android:name="activity.member.ActGetPropertyViewByJoinId"/>
+        <activity android:name="activity.member.ActGetUserGroupList"/>
+        <activity android:name="activity.member.ActGetUserList"/>
+        <activity android:name="activity.member.ActGetUserSiteList"/>
+        <activity android:name="activity.member.ActSetHistoryAdd"/>
+        <activity android:name="activity.member.ActSetPropertyAdd"/>
+        <activity android:name="activity.member.ActSetUserSiteAddeByJoinId"/>
+        <activity android:name="activity.member.ActSetUserAdd"/>
 
     </application>
 

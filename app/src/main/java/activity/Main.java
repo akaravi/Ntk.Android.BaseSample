@@ -36,6 +36,7 @@ import activity.core.ActCore;
 import activity.estate.ActEstate;
 import activity.file.ActFile;
 import activity.imageGallery.ActImageGallery;
+import activity.member.ActMember;
 import activity.movieGallery.ActMovieGallery;
 import activity.musicGallery.ActMusicGallery;
 import activity.news.ActNews;
@@ -230,7 +231,10 @@ public class Main extends AppCompatActivity {
                         case 14:
                             startActivity(new Intent(context, ActService.class));
                             break;
-                        case 24:
+                        case 20:
+                            startActivity(new Intent(context, ActMember.class));
+                            break;
+                            case 24:
                             startActivity(new Intent(context, ActObject.class));
                             break;
                     }
