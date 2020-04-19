@@ -77,7 +77,7 @@ public class Main extends AppCompatActivity {
 
     @BindView(R.id.txtPackageName)
     EditText packageName;
-
+private String urlServerApi;
     private String[] apiNames = new String[]{
             "Core",
             "Article",
@@ -115,8 +115,8 @@ public class Main extends AppCompatActivity {
     }
 
     private void init() {
-
-        String ApiBaseUrl_ = EasyPreference.with(this).getString("ApiBaseUrl", "http://oco.ir");
+        urlServerApi="https://apicms.ir";
+        String ApiBaseUrl_ = EasyPreference.with(this).getString("ApiBaseUrl", urlServerApi);
         String packageName_ = EasyPreference.with(this).getString("packageName", "ntk.cms.android.basesample.app");
         url.setText(ApiBaseUrl_);
         packageName.setText(packageName_);
@@ -261,11 +261,11 @@ public class Main extends AppCompatActivity {
     public void onDefaultValueBtnClick(){
 
         EasyPreference.with(Main.this).remove("ApiBaseUrl");
-        EasyPreference.with(Main.this).addString("ApiBaseUrl","http://oco.ir");
+        EasyPreference.with(Main.this).addString("ApiBaseUrl",urlServerApi);
 
         EasyPreference.with(Main.this).remove("packageName");
         EasyPreference.with(Main.this).addString("packageName","ntk.cms.android.basesample.app");
-        url.setText("http://oco.ir");
+        url.setText(urlServerApi);
         packageName.setText("ntk.cms.android.basesample.app");
     }
 
