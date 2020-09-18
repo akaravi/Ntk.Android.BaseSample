@@ -3,10 +3,10 @@ package activity.estate;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +25,7 @@ public class ActEstate extends AppCompatActivity {
     RecyclerView apiRecyclerView;
     private String[] articleList = new String[]{"EstateContractType",
             "EstatePropertyAdd",
-            "EstatePropertyDetailGroupList",
+
             "EstatePropertyDetailList",
             "EstatePropertyFavoriteAddOrRemove",
             "EstatePropertyFavoriteList",
@@ -95,25 +95,23 @@ public class ActEstate extends AppCompatActivity {
                         case 1:
                             startActivity(new Intent(ActEstate.this, ActPropertyAdd.class));
                             break;
+
                         case 2:
-                            startActivity(new Intent(ActEstate.this, ActPropertyDetailGroupList.class));
-                            break;
-                        case 3:
                             startActivity(new Intent(ActEstate.this, ActPropertyDetailList.class));
                             break;
-                        case 4:
+                        case 3:
                             startActivity(new Intent(ActEstate.this, ActPropertyFavoriteAddOrRemove.class));
                             break;
-                        case 5:
+                        case 4:
                             startActivity(new Intent(ActEstate.this, ActPropertyFavoriteList.class));
                             break;
-                        case 6:
+                        case 5:
                             startActivity(new Intent(ActEstate.this, ActPropertyList.class));
                             break;
-                        case 7:
+                        case 6:
                             startActivity(new Intent(ActEstate.this, ActPropertyType.class));
                             break;
-                        case 8:
+                        case 7:
                             startActivity(new Intent(ActEstate.this, ActPropertyView.class));
                             break;
                     }

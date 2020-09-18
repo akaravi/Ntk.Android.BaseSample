@@ -5,11 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutCompat;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
@@ -35,10 +35,7 @@ import activity.blog.ActBlog;
 import activity.core.ActCore;
 import activity.estate.ActEstate;
 import activity.file.ActFile;
-import activity.imageGallery.ActImageGallery;
 import activity.member.ActMember;
-import activity.movieGallery.ActMovieGallery;
-import activity.musicGallery.ActMusicGallery;
 import activity.news.ActNews;
 import activity.object.ActObject;
 import activity.pooling.ActPooling;
@@ -89,9 +86,7 @@ private String urlServerApi;
             "Estate",
             "File",
             "Blog",
-            "Image Gallery ",
-            "Move Gallery",
-            "Music Gallery",
+
             "Product",
             "Service",
             "Quote",
@@ -216,25 +211,17 @@ private String urlServerApi;
                         case 9:
                             startActivity(new Intent(context, ActBlog.class));
                             break;
+
                         case 10:
-                            startActivity(new Intent(context, ActImageGallery.class));
-                            break;
-                        case 11:
-                            startActivity(new Intent(context, ActMovieGallery.class));
-                            break;
-                        case 12:
-                            startActivity(new Intent(context, ActMusicGallery.class));
-                            break;
-                        case 13:
                             startActivity(new Intent(context, ActProduct.class));
                             break;
-                        case 14:
+                        case 11:
                             startActivity(new Intent(context, ActService.class));
                             break;
-                        case 20:
+                        case 17:
                             startActivity(new Intent(context, ActMember.class));
                             break;
-                            case 24:
+                            case 21:
                             startActivity(new Intent(context, ActObject.class));
                             break;
                     }

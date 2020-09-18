@@ -2,7 +2,10 @@ package activity.pooling;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -155,7 +158,7 @@ public class ActSetSubmitPooling extends AppCompatActivity {
                     @Override
                     public void onError(Throwable e) {
                         progressBar.setVisibility(View.GONE);
-                        Log.i("Error", e.getMessage().toString());
+                        Log.i("Error", e.getMessage());
                         Toast.makeText(ActSetSubmitPooling.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 

@@ -2,7 +2,10 @@ package activity.biography;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -110,8 +113,8 @@ public class ActContentWithDatePeriodStartList extends AppCompatActivity impleme
         request.SearchDateMin=SearchDateMin.getDayOfMonth()+"/"+ SearchDateMin.getMonth()+"/"+SearchDateMin.getYear();
         request.SearchDateMax=SearchDateMax.getDayOfMonth()+"/"+ SearchDateMax.getMonth()+"/"+SearchDateMax.getYear();
 
-        Log.i("000000000000000000", "getData: Max : "+request.SearchDateMax.toString());
-        Log.i("000000000000000000", "getData: Min : "+request.SearchDateMin.toString());
+        Log.i("000000000000000000", "getData: Max : "+ request.SearchDateMax);
+        Log.i("000000000000000000", "getData: Min : "+ request.SearchDateMin);
         RetrofitManager manager = new RetrofitManager(ActContentWithDatePeriodStartList.this);
         IBiography iBiography = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(IBiography.class);
         Map<String, String> headers = new HashMap<>();
