@@ -5,11 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
@@ -86,7 +86,9 @@ private String urlServerApi;
             "Estate",
             "File",
             "Blog",
-
+            "Image Gallery ",
+            "Move Gallery",
+            "Music Gallery",
             "Product",
             "Service",
             "Quote",
@@ -211,17 +213,22 @@ private String urlServerApi;
                         case 9:
                             startActivity(new Intent(context, ActBlog.class));
                             break;
-
                         case 10:
-                            startActivity(new Intent(context, ActProduct.class));
                             break;
                         case 11:
+                            break;
+                        case 12:
+                            break;
+                        case 13:
+                            startActivity(new Intent(context, ActProduct.class));
+                            break;
+                        case 14:
                             startActivity(new Intent(context, ActService.class));
                             break;
-                        case 17:
+                        case 20:
                             startActivity(new Intent(context, ActMember.class));
                             break;
-                            case 21:
+                            case 24:
                             startActivity(new Intent(context, ActObject.class));
                             break;
                     }
