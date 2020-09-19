@@ -125,7 +125,7 @@ public class ActPropertyList extends AppCompatActivity implements AdapterView.On
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-        Observable<EstatePropertyListResponse> call = iEstate.GetPropertyList(headers, request);
+        Observable<EstatePropertyListResponse> call = iEstate.GetEstatePropertyActList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<EstatePropertyListResponse>() {

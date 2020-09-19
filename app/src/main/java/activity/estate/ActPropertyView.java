@@ -84,7 +84,7 @@ public class ActPropertyView extends AppCompatActivity {
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-        Observable<EstatePropertyViewResponse> call = iEstate.GetPropertyView(headers, request);
+        Observable<EstatePropertyViewResponse> call = iEstate.GetEstatePropertyActView(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<EstatePropertyViewResponse>() {

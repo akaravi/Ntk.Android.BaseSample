@@ -33,7 +33,6 @@
         <activity android:name="activity.estate.ActPropertyList" />
         <activity android:name="activity.estate.ActPropertyFavoriteList" />
         <activity android:name="activity.estate.ActPropertyFavoriteAddOrRemove" />
-        <activity android:name="activity.estate.ActPropertyDetailList" />
         <activity android:name="activity.estate.ActPropertyAdd" />
         <activity android:name="activity.estate.ActContractType" />
         <activity android:name="activity.movieGallery.ActTagList" />

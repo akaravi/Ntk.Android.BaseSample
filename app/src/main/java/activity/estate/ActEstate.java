@@ -23,15 +23,15 @@ public class ActEstate extends AppCompatActivity {
 
     @BindView(R.id.api_recycler_view)
     RecyclerView apiRecyclerView;
-    private String[] articleList = new String[]{"EstateContractType",
-            "EstatePropertyAdd",
-            "EstatePropertyDetailGroupList",
-            "EstatePropertyDetailList",
+    private String[] articleList = new String[]{
+            "EstateContractTypeActList",
+            "EstatePropertyTypeActList",
+            "EstatePropertyActAdd",
+            "EstatePropertyActList",
+            "EstatePropertyActView",
             "EstatePropertyFavoriteAddOrRemove",
             "EstatePropertyFavoriteList",
-            "EstatePropertyList",
-            "EstatePropertyType",
-            "EstatePropertyAdd"};
+        };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,28 +93,22 @@ public class ActEstate extends AppCompatActivity {
                             startActivity(new Intent(ActEstate.this, ActContractType.class));
                             break;
                         case 1:
-                            startActivity(new Intent(ActEstate.this, ActPropertyAdd.class));
-                            break;
-                        case 2:
-                            //startActivity(new Intent(ActEstate.this, ActPropertyDetailGroupList.class));
-                            break;
-                        case 3:
-                            startActivity(new Intent(ActEstate.this, ActPropertyDetailList.class));
-                            break;
-                        case 4:
-                            startActivity(new Intent(ActEstate.this, ActPropertyFavoriteAddOrRemove.class));
-                            break;
-                        case 5:
-                            startActivity(new Intent(ActEstate.this, ActPropertyFavoriteList.class));
-                            break;
-                        case 6:
-                            startActivity(new Intent(ActEstate.this, ActPropertyList.class));
-                            break;
-                        case 7:
                             startActivity(new Intent(ActEstate.this, ActPropertyType.class));
                             break;
-                        case 8:
+                        case 2:
+                            startActivity(new Intent(ActEstate.this, ActPropertyAdd.class));
+                            break;
+                        case 3:
+                            startActivity(new Intent(ActEstate.this, ActPropertyList.class));
+                            break;
+                        case 4:
                             startActivity(new Intent(ActEstate.this, ActPropertyView.class));
+                            break;
+                        case 5:
+                            startActivity(new Intent(ActEstate.this, ActPropertyFavoriteAddOrRemove.class));
+                            break;
+                        case 6:
+                            startActivity(new Intent(ActEstate.this, ActPropertyFavoriteList.class));
                             break;
                     }
                 }

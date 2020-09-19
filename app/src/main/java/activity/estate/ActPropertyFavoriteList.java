@@ -122,7 +122,7 @@ public class ActPropertyFavoriteList extends AppCompatActivity implements Adapte
         headers = configRestHeader.GetHeaders(this);
 
 
-        Observable<EstatePropertyFavoriteListResponse> call = iEstate.GetPropertyFavoriteList(headers, request);
+        Observable<EstatePropertyFavoriteListResponse> call = iEstate.GetEstatePropertyFavoriteActList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<EstatePropertyFavoriteListResponse>() {

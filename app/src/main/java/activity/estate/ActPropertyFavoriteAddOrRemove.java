@@ -96,7 +96,7 @@ public class ActPropertyFavoriteAddOrRemove extends AppCompatActivity {
         headers = configRestHeader.GetHeaders(this);
 
 
-        Observable<EstatePropertyFavoriteAddResponse> call = iEstate.SetPropertyFavoriteAdd(headers, request);
+        Observable<EstatePropertyFavoriteAddResponse> call = iEstate.SetEstatePropertyFavoriteActAdd(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<EstatePropertyFavoriteAddResponse>() {
@@ -146,7 +146,7 @@ public class ActPropertyFavoriteAddOrRemove extends AppCompatActivity {
         headers = configRestHeader.GetHeaders(this);
 
 
-        Observable<EstatePropertyFavoriteRemoveResponse> call = iEstate.SetPropertyFavoriteRemove(headers, request);
+        Observable<EstatePropertyFavoriteRemoveResponse> call = iEstate.SetEstatePropertyFavoriteActRemove(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<EstatePropertyFavoriteRemoveResponse>() {

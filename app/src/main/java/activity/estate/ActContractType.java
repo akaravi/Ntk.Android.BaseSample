@@ -30,6 +30,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.estate.interfase.IEstate;
+import ntk.base.api.estate.model.EstateContractTypeListRequest;
 import ntk.base.api.estate.model.EstateContractTypeListResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
@@ -71,8 +72,8 @@ public class ActContractType extends AppCompatActivity {
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-
-        Observable<EstateContractTypeListResponse> call = iEstate.GetContractType(headers);
+        EstateContractTypeListRequest request=new EstateContractTypeListRequest();
+        Observable<EstateContractTypeListResponse> call = iEstate.GetEstateContractTypeActList(headers,request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<EstateContractTypeListResponse>() {

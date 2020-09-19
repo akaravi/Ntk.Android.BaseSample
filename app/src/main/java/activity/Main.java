@@ -40,7 +40,6 @@ import activity.news.ActNews;
 import activity.object.ActObject;
 import activity.pooling.ActPooling;
 import activity.product.ActProduct;
-import activity.service.ActService;
 import activity.ticketing.ActTicket;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -86,12 +85,7 @@ private String urlServerApi;
             "Estate",
             "File",
             "Blog",
-            "Image Gallery ",
-            "Move Gallery",
-            "Music Gallery",
             "Product",
-            "Service",
-            "Quote",
             "Chart",
             "Link Management",
             "Reservation",
@@ -214,22 +208,37 @@ private String urlServerApi;
                             startActivity(new Intent(context, ActBlog.class));
                             break;
                         case 10:
-                            break;
-                        case 11:
-                            break;
-                        case 12:
-                            break;
-                        case 13:
                             startActivity(new Intent(context, ActProduct.class));
                             break;
-                        case 14:
-                            startActivity(new Intent(context, ActService.class));
+                        case 11:
+                            //Chart
                             break;
-                        case 20:
+                        case 12:
+                            //LinkManager
+                            break;
+                        case 13:
+                            //reservition
+                            break;
+                        case 14:
+                            //Bank Payment
+                            break;
+                        case 15:
                             startActivity(new Intent(context, ActMember.class));
                             break;
-                            case 24:
+                        case 16:
+                            //job
+                            break;
+                        case 17:
+                            //Advertisement
+                            break;
+                        case 18:
+                            //Vehicle
+                            break;
+                        case 19:
                             startActivity(new Intent(context, ActObject.class));
+                            break;
+                        case 20:
+                            //Shop
                             break;
                     }
                 }

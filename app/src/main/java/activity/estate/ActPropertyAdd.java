@@ -178,7 +178,7 @@ public class ActPropertyAdd extends AppCompatActivity {
         headers = configRestHeader.GetHeaders(this);
 
 
-        Observable<EstatePropertyAddResponse> call = iEstate.SetPropertyAdd(headers, request);
+        Observable<EstatePropertyAddResponse> call = iEstate.SetEstatePropertyActAdd(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<EstatePropertyAddResponse>() {
