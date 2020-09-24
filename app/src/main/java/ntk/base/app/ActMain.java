@@ -1,21 +1,15 @@
 package ntk.base.app;
 
-import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.codekidlabs.storagechooser.StorageChooser;
-import com.google.gson.Gson;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,21 +19,10 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.article.model.ArticleCategoryRequest;
-import ntk.base.api.core.interfase.ICore;
-import ntk.base.api.file.interfase.IFile;
-import ntk.base.api.file.entity.FileUploadModel;
-import ntk.base.api.baseModel.FilterModel;
 import ntk.base.api.news.interfase.INews;
 import ntk.base.api.news.model.NewsContentListRequest;
 import ntk.base.api.news.model.NewsContentResponse;
-import ntk.base.api.news.model.NewsContentViewRequest;
 import ntk.base.api.utill.RetrofitManager;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import utill.EasyPreference;
 
 public class ActMain extends AppCompatActivity {
     private ConfigStaticValue configStaticValue =new ConfigStaticValue(this);

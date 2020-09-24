@@ -1,8 +1,7 @@
 package activity.biography;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -34,7 +33,6 @@ import ntk.base.api.biography.model.BiographyContentFavoriteRemoveRequest;
 import ntk.base.api.biography.model.BiographyContentFavoriteRemoveResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
 public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
 

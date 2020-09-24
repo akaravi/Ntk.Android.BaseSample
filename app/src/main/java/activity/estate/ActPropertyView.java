@@ -1,8 +1,7 @@
 package activity.estate;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -32,7 +31,6 @@ import ntk.base.api.estate.model.EstatePropertyViewRequest;
 import ntk.base.api.estate.model.EstatePropertyViewResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
 public class ActPropertyView extends AppCompatActivity {
 

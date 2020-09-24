@@ -1,22 +1,17 @@
 package activity.object;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -31,8 +26,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.object.interfase.IObject;
-import ntk.base.api.object.model.ObjectGroupRequest;
-import ntk.base.api.object.model.ObjectGroupResponse;
 import ntk.base.api.object.model.ObjectPropertyActViewByJoinIdRequest;
 import ntk.base.api.object.model.ObjectPropertyResponse;
 import ntk.base.api.utill.RetrofitManager;

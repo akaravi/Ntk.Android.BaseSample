@@ -1,8 +1,7 @@
 package activity.news;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -27,15 +26,11 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.biography.interfase.IBiography;
-import ntk.base.api.biography.model.BiographyCommentAddRequest;
-import ntk.base.api.biography.model.BiographyCommentResponse;
 import ntk.base.api.news.interfase.INews;
 import ntk.base.api.news.model.NewsCommentAddRequest;
 import ntk.base.api.news.model.NewsCommentResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
 public class ActSetComment extends AppCompatActivity {
 

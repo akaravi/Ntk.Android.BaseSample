@@ -2,7 +2,7 @@ package activity.blog;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -21,8 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import activity.estate.ActEstate;
-import activity.estate.ActPropertyList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -37,13 +35,9 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.blog.interfase.IBlog;
 import ntk.base.api.blog.model.BlogCategoryListRequest;
 import ntk.base.api.blog.model.BlogCategoryListResponse;
-import ntk.base.api.estate.interfase.IEstate;
-import ntk.base.api.estate.model.EstatePropertyListRequest;
-import ntk.base.api.estate.model.EstatePropertyListResponse;
 import ntk.base.api.baseModel.Filters;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
 public class ActCategoryList extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 

@@ -1,8 +1,7 @@
 package activity.pooling;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -21,7 +20,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import activity.article.ActArticle;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -39,7 +37,6 @@ import ntk.base.api.pooling.model.PoolingContentListRequest;
 import ntk.base.api.pooling.model.PoolingContentListResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
 public class ActGetContentList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 

@@ -1,7 +1,7 @@
 package activity.member;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -28,8 +28,6 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.member.interfase.IMember;
 import ntk.base.api.member.model.MemberUserActAddRequest;
 import ntk.base.api.member.model.MemberUserResponse;
-import ntk.base.api.member.model.MemberUserSiteActAddeByJoinIdRequest;
-import ntk.base.api.member.model.MemberUserSiteResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 

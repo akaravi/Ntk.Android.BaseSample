@@ -1,7 +1,7 @@
 package activity.object;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -31,8 +31,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.object.interfase.IObject;
-import ntk.base.api.object.model.ObjectGroupRequest;
-import ntk.base.api.object.model.ObjectGroupResponse;
 import ntk.base.api.object.model.ObjectPropertyDetailRequest;
 import ntk.base.api.object.model.ObjectPropertyDetailResponse;
 import ntk.base.api.utill.RetrofitManager;

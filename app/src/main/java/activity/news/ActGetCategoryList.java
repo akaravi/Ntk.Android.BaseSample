@@ -1,8 +1,7 @@
 package activity.news;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -36,7 +35,6 @@ import ntk.base.api.news.model.NewsCategoryRequest;
 import ntk.base.api.news.model.NewsCategoryResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
 public class ActGetCategoryList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 

@@ -1,13 +1,11 @@
 package activity.pooling;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,7 +13,6 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
-import activity.article.ActArticle;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -28,11 +25,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.pooling.interfase.IPooling;
-import ntk.base.api.pooling.model.PoolingCategoryRequest;
 import ntk.base.api.pooling.model.PoolingCategoryResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
 public class ActGetCategoryList extends AppCompatActivity {
     @BindView(R.id.api_test_submit_button)

@@ -1,8 +1,7 @@
 package activity.blog;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -20,9 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import activity.Main;
-import activity.news.ActGetTagList;
-import activity.news.ActNews;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -37,12 +33,8 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.blog.interfase.IBlog;
 import ntk.base.api.blog.model.BlogTagRequest;
 import ntk.base.api.blog.model.BlogTagResponse;
-import ntk.base.api.news.interfase.INews;
-import ntk.base.api.news.model.NewsTagRequest;
-import ntk.base.api.news.model.NewsTagResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
 public class ActTagList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 

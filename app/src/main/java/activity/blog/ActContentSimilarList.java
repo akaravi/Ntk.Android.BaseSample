@@ -1,8 +1,7 @@
 package activity.blog;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -21,7 +20,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import activity.news.ActNews;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -37,12 +35,8 @@ import ntk.base.api.blog.interfase.IBlog;
 import ntk.base.api.blog.model.BlogContentResponse;
 import ntk.base.api.blog.model.BlogContentSimilarListRequest;
 import ntk.base.api.baseModel.Filters;
-import ntk.base.api.news.interfase.INews;
-import ntk.base.api.news.model.NewsContentResponse;
-import ntk.base.api.news.model.NewsContentSimilarListRequest;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
 public class ActContentSimilarList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 

@@ -1,8 +1,7 @@
 package activity.core;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -15,7 +14,6 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
-import activity.Main;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -28,13 +26,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.core.interfase.ICore;
-import ntk.base.api.core.model.CoreAboutUsResponse;
 import ntk.base.api.core.model.CoreUserRegisterByMobileRequest;
-import ntk.base.api.core.model.CoreUserRegisterByMobileResponse;
 import ntk.base.api.core.model.CoreUserResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
 public class ActRegisterWithMobile extends AppCompatActivity {
 

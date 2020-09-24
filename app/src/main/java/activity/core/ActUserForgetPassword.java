@@ -1,8 +1,7 @@
 package activity.core;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -27,13 +26,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.core.interfase.ICore;
-import ntk.base.api.core.model.CoreUserConfirmResponse;
-import ntk.base.api.core.model.CoreUserEmailConfirmRequest;
 import ntk.base.api.core.model.CoreUserForgetPasswordRequest;
 import ntk.base.api.core.model.CoreUserResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-import utill.EasyPreference;
 
 public class ActUserForgetPassword extends AppCompatActivity {
 
