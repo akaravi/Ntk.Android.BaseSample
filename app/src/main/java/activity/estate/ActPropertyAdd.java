@@ -32,7 +32,7 @@ import ntk.base.api.estate.model.EstatePropertyAddRequest;
 import ntk.base.api.estate.model.EstatePropertyAddResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-
+//check .0.34
 public class ActPropertyAdd extends AppCompatActivity {
 
     @BindView(R.id.lblLayout)

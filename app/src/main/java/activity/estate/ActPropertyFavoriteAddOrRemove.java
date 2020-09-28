@@ -32,7 +32,7 @@ import ntk.base.api.estate.model.EstatePropertyFavoriteRemoveRequest;
 import ntk.base.api.estate.model.EstatePropertyFavoriteRemoveResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
-
+//ok 0.34
 public class ActPropertyFavoriteAddOrRemove extends AppCompatActivity {
 
     @BindView(R.id.lblLayout)

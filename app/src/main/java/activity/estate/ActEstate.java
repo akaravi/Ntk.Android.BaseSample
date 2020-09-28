@@ -29,7 +29,7 @@ public class ActEstate extends AppCompatActivity {
             "EstatePropertyActList",
             "EstatePropertyActView",
             "EstatePropertyFavoriteAddOrRemove",
-            "EstatePropertyFavoriteList",
+            "EstatePropertyFavoriteList",//"EstatePropertyDetailList"
         };
 
     @Override
@@ -109,6 +109,9 @@ public class ActEstate extends AppCompatActivity {
                         case 6:
                             startActivity(new Intent(ActEstate.this, ActPropertyFavoriteList.class));
                             break;
+//                            case 7:
+//                            startActivity(new Intent(ActEstate.this, EstatePropertyDetailList.class));
+//                            break;
                     }
                 }
             });

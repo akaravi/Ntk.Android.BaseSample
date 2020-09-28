@@ -24,6 +24,7 @@
         <activity android:name="activity.blog.ActContentFavoriteList" />
         <activity android:name="activity.blog.ActContentFavoriteAddOrRemove" />
         <activity android:name="activity.blog.ActContentCategoryList" />
+        <activity android:name="activity.blog.ActContentCategoryList" />
         <activity android:name="activity.blog.ActCommentView" />
         <activity android:name="activity.blog.ActCommentList" />
         <activity android:name="activity.blog.ActCommentAdd" />
@@ -35,6 +36,7 @@
         <activity android:name="activity.estate.ActPropertyFavoriteAddOrRemove" />
         <activity android:name="activity.estate.ActPropertyAdd" />
         <activity android:name="activity.estate.ActContractType" />
+        <activity android:name="activity.estate.EstatePropertyDetailList" />
 
         <activity android:name="activity.file.ActGetContentList" />
 
