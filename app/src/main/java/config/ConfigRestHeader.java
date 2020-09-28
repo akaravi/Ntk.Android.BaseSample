@@ -5,11 +5,12 @@ import android.content.Context;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 
-
+import com.google.firebase.iid.FirebaseInstanceId;
 import java.util.HashMap;
 import java.util.Map;
 
 import ntk.base.app.BuildConfig;
+import utill.AppUtill;
 import utill.EasyPreference;
 
 public class ConfigRestHeader {
@@ -22,15 +23,17 @@ public class ConfigRestHeader {
         headers.put("LocationLong", "0");
         headers.put("LocationLat", "0");
         headers.put("DeviceId", Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID));
-        headers.put("DeviceBrand", "BaseSimple");
-        headers.put("NotificationId", "123");
-        headers.put("Country", context.getResources().getConfiguration().locale.getDisplayCountry());
-        headers.put("Language", context.getResources().getConfiguration().locale.getLanguage());
+        headers.put("DeviceBrand", AppUtill.GetDeviceName());
+        headers.put("Country", "IR");
+        headers.put("Language", "FA");
         headers.put("SimCard", manager.getSimOperatorName());
-        headers.put("AppBuildVer", "1");
-        headers.put("AppSourceVer", "2");
-        //not use default//headers.put("PackageName", BuildConfig.APPLICATION_ID);
-        headers.put("PackageName", EasyPreference.with(context).getString("packageName",""));
+        headers.put("PackageName", BuildConfig.APPLICATION_ID);
+        headers.put("AppBuildVer", String.valueOf(BuildConfig.VERSION_CODE));
+        headers.put("AppSourceVer", BuildConfig.VERSION_NAME);
+        String NotId = FirebaseInstanceId.getInstance().getToken();
+
+        if (NotId != null && !NotId.isEmpty() && !NotId.toLowerCase().equals("null"))
+            headers.put("NotificationId", NotId);
 
         return headers;
     }

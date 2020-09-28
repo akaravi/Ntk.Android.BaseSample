@@ -26,8 +26,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.core.interfase.ICore;
+import ntk.base.api.core.model.CoreUserConfirmMobileRequest;
 import ntk.base.api.core.model.CoreUserConfirmResponse;
-import ntk.base.api.core.model.CoreUserMobileConfirmRequest;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
@@ -68,7 +68,7 @@ public class ActUserMobileConfirm extends AppCompatActivity {
     }
 
     private void getData() {
-        CoreUserMobileConfirmRequest request = new CoreUserMobileConfirmRequest();
+        CoreUserConfirmMobileRequest request = new CoreUserConfirmMobileRequest();
         if (!Mobile.getText().toString().matches("")) {
             request.Mobile = Mobile.getText().toString();
         } else {

@@ -26,7 +26,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.core.interfase.ICore;
-import ntk.base.api.core.model.CoreUserLoginByMobileRequest;
+import ntk.base.api.core.model.CoreUserRegisterByMobileRequest;
 import ntk.base.api.core.model.CoreUserResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
@@ -70,10 +70,8 @@ public class ActUserLoginByMobile extends AppCompatActivity {
     }
 
     private void getData() {
-        CoreUserLoginByMobileRequest request = new CoreUserLoginByMobileRequest();
-        if (!lang.getText().toString().matches("")) {
-            request.lang = lang.getText().toString();
-        }
+        CoreUserRegisterByMobileRequest request = new CoreUserRegisterByMobileRequest();
+
         if (!Mobile.getText().toString().matches("")) {
             request.Mobile = Mobile.getText().toString();
         } else {
@@ -89,7 +87,7 @@ public class ActUserLoginByMobile extends AppCompatActivity {
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-        Observable<CoreUserResponse> call = iCore.userLoginByMobile(headers, request);
+        Observable<CoreUserResponse> call = iCore.RegisterWithMobile(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<CoreUserResponse>() {

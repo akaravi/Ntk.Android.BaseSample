@@ -26,8 +26,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.core.interfase.ICore;
+import ntk.base.api.core.model.CoreUserConfirmEmailRequest;
 import ntk.base.api.core.model.CoreUserConfirmResponse;
-import ntk.base.api.core.model.CoreUserEmailConfirmRequest;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
@@ -68,7 +68,7 @@ public class ActUserEmailConfirm extends AppCompatActivity {
     }
 
     private void getData() {
-        CoreUserEmailConfirmRequest request = new CoreUserEmailConfirmRequest();
+        CoreUserConfirmEmailRequest request = new CoreUserConfirmEmailRequest();
         if (!Email.getText().toString().matches("")) {
             request.Email = Email.getText().toString();
         } else {

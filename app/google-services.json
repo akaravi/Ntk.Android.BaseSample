@@ -40,7 +40,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:893852902485:android:231a9eae81face9e",
         "android_client_info": {
-          "package_name": "ntk.android.baseSample.APPNTK"
+          "package_name": "ntk.android.basesample"
         }
       },
       "oauth_client": [
