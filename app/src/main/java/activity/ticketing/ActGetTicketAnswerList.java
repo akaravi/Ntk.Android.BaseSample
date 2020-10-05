@@ -35,7 +35,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.baseModel.Filters;
 import ntk.base.api.ticket.interfase.ITicket;
 import ntk.base.api.ticket.model.TicketingAnswerListRequest;
-import ntk.base.api.ticket.model.TicketingAnswerListResponse;
+import ntk.base.api.ticket.model.TicketingAnswerResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
@@ -122,16 +122,16 @@ public class ActGetTicketAnswerList extends AppCompatActivity implements Adapter
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-        Observable<TicketingAnswerListResponse> call = iTicket.GetTicketAnswerList(headers, request);
+        Observable<TicketingAnswerResponse> call = iTicket.GetTicketAnswerActList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<TicketingAnswerListResponse>() {
+                .subscribe(new Observer<TicketingAnswerResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(TicketingAnswerListResponse response) {
+                    public void onNext(TicketingAnswerResponse response) {
                         JsonDialog cdd = new JsonDialog(ActGetTicketAnswerList.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();

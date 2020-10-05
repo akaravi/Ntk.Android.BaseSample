@@ -34,7 +34,8 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.ticket.interfase.ITicket;
 import ntk.base.api.ticket.model.TicketingListRequest;
-import ntk.base.api.ticket.model.TicketingListResponse;
+
+import ntk.base.api.ticket.model.TicketingTaskResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
@@ -99,16 +100,16 @@ public class ActGetTicketList extends AppCompatActivity implements AdapterView.O
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-        Observable<TicketingListResponse> call = iTicket.GetTicketList(headers, request);
+        Observable<TicketingTaskResponse> call = iTicket.GetTicketTaskActList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<TicketingListResponse>() {
+                .subscribe(new Observer<TicketingTaskResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(TicketingListResponse response) {
+                    public void onNext(TicketingTaskResponse response) {
                         JsonDialog cdd = new JsonDialog(ActGetTicketList.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();

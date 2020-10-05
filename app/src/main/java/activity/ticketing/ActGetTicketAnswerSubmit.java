@@ -2,7 +2,9 @@ package activity.ticketing;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -31,6 +33,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.ticket.interfase.ITicket;
+import ntk.base.api.ticket.model.TicketingAnswerResponse;
 import ntk.base.api.ticket.model.TicketingAnswerSubmitRequest;
 import ntk.base.api.ticket.model.TicketingAnswerSubmitResponse;
 import ntk.base.api.utill.RetrofitManager;
@@ -106,7 +109,7 @@ public class ActGetTicketAnswerSubmit extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 return;
             } else {
-                request.LinkTicketId = Long.valueOf(LinkTicketId.getText().toString());
+                request.LinkTaskId = Long.valueOf(LinkTicketId.getText().toString());
             }
         }
         if (!HtmlBody.getText().toString().matches("")) {
@@ -142,7 +145,7 @@ public class ActGetTicketAnswerSubmit extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 return;
             } else {
-                request.LinkTicketId = Long.valueOf(Id.getText().toString());
+                request.LinkTaskId = Long.valueOf(Id.getText().toString());
             }
         }
         RetrofitManager manager = new RetrofitManager(ActGetTicketAnswerSubmit.this);
@@ -150,16 +153,16 @@ public class ActGetTicketAnswerSubmit extends AppCompatActivity {
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-        Observable<TicketingAnswerSubmitResponse> call = iTicket.GetTicketAnswerSubmit(headers, request);
+        Observable<TicketingAnswerResponse> call = iTicket.GetTicketAnswerActSubmit(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<TicketingAnswerSubmitResponse>() {
+                .subscribe(new Observer<TicketingAnswerResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(TicketingAnswerSubmitResponse response) {
+                    public void onNext(TicketingAnswerResponse response) {
                         JsonDialog cdd = new JsonDialog(ActGetTicketAnswerSubmit.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();

@@ -30,8 +30,9 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.ticket.interfase.ITicket;
 import ntk.base.api.ticket.entity.TicketingDepartemen;
-import ntk.base.api.ticket.model.TicketingSubmitRequest;
-import ntk.base.api.ticket.model.TicketingSubmitResponse;
+import ntk.base.api.ticket.model.TicketingTaskResponse;
+import ntk.base.api.ticket.model.TicketingTaskSubmitRequest;
+import ntk.base.api.ticket.model.TicketingTaskResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
@@ -108,7 +109,7 @@ public class ActSetTicketSubmit extends AppCompatActivity {
     }
 
     private void getData() {
-        TicketingSubmitRequest request = new TicketingSubmitRequest();
+        TicketingTaskSubmitRequest request = new TicketingTaskSubmitRequest();
         if (!name.getText().toString().matches("")) {
             request.Name = name.getText().toString();
         }
@@ -155,7 +156,10 @@ public class ActSetTicketSubmit extends AppCompatActivity {
             }
         }
         if (!LinkTicketTypeId.getText().toString().matches("")) {
-            request.LinkTicketTypeId = TicketStatus.getText().toString();
+
+            String Str = TicketStatus.getText().toString();
+            long lg = Long.parseLong(Str);
+            request.LinkTicketTypeId = lg;
         }
         if (!TicketStatus.getText().toString().matches("")) {
             if (TicketStatus.getInputType() != InputType.TYPE_CLASS_NUMBER) {
@@ -190,16 +194,16 @@ public class ActSetTicketSubmit extends AppCompatActivity {
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-        Observable<TicketingSubmitResponse> call = iTicket.SetTicketSubmit(headers, request);
+        Observable<TicketingTaskResponse> call = iTicket.SetTicketTaskActSubmit(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<TicketingSubmitResponse>() {
+                .subscribe(new Observer<TicketingTaskResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(TicketingSubmitResponse response) {
+                    public void onNext(TicketingTaskResponse response) {
                         JsonDialog cdd = new JsonDialog(ActSetTicketSubmit.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();

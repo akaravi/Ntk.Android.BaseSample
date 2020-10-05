@@ -33,8 +33,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.ticket.interfase.ITicket;
-import ntk.base.api.ticket.model.TicketingFaqListRequest;
-import ntk.base.api.ticket.model.TicketingFaqListResponse;
+import ntk.base.api.ticket.model.TicketingFaqRequest;
+import ntk.base.api.ticket.model.TicketingFaqResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
@@ -89,7 +89,7 @@ public class ActGetTicketFaqList extends AppCompatActivity implements AdapterVie
     }
 
     private void getData() {
-        TicketingFaqListRequest request = new TicketingFaqListRequest();
+        TicketingFaqRequest request = new TicketingFaqRequest();
         request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
         request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
         request.SortType = sort_Type_posistion;
@@ -100,16 +100,16 @@ public class ActGetTicketFaqList extends AppCompatActivity implements AdapterVie
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-        Observable<TicketingFaqListResponse> call = iTicket.GetTicketFaqList(headers, request);
+        Observable<TicketingFaqResponse> call = iTicket.GetTicketFaqActList(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<TicketingFaqListResponse>() {
+                .subscribe(new Observer<TicketingFaqResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(TicketingFaqListResponse response) {
+                    public void onNext(TicketingFaqResponse response) {
                         JsonDialog cdd = new JsonDialog(ActGetTicketFaqList.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();

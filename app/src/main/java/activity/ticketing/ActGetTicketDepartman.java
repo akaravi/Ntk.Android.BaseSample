@@ -26,8 +26,9 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import ntk.base.api.baseModel.FilterModel;
 import ntk.base.api.ticket.interfase.ITicket;
-import ntk.base.api.ticket.model.TicketingDepartemenList;
+import ntk.base.api.ticket.model.TicketingDepartemenResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
@@ -69,17 +70,17 @@ public class ActGetTicketDepartman extends AppCompatActivity {
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
 
-
-        Observable<TicketingDepartemenList> call = iTicket.GetTicketDepartman(headers);
+        FilterModel request=new FilterModel();
+        Observable<TicketingDepartemenResponse> call = iTicket.GetTicketDepartmanActList(headers,request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<TicketingDepartemenList>() {
+                .subscribe(new Observer<TicketingDepartemenResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(TicketingDepartemenList response) {
+                    public void onNext(TicketingDepartemenResponse response) {
                         JsonDialog cdd = new JsonDialog(ActGetTicketDepartman.this, response);
                         cdd.setCanceledOnTouchOutside(false);
                         cdd.show();
