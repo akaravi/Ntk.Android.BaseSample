@@ -24,7 +24,6 @@
         <activity android:name="activity.blog.ActContentFavoriteList" />
         <activity android:name="activity.blog.ActContentFavoriteAddOrRemove" />
         <activity android:name="activity.blog.ActContentCategoryList" />
-        <activity android:name="activity.blog.ActContentCategoryList" />
         <activity android:name="activity.blog.ActCommentView" />
         <activity android:name="activity.blog.ActCommentList" />
         <activity android:name="activity.blog.ActCommentAdd" />
