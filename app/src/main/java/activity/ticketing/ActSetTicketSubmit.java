@@ -28,10 +28,11 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import ntk.base.api.ticket.entity.TicketingTask;
 import ntk.base.api.ticket.interfase.ITicket;
 import ntk.base.api.ticket.entity.TicketingDepartemen;
 import ntk.base.api.ticket.model.TicketingTaskResponse;
-import ntk.base.api.ticket.model.TicketingTaskSubmitRequest;
+
 import ntk.base.api.ticket.model.TicketingTaskResponse;
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
@@ -109,9 +110,9 @@ public class ActSetTicketSubmit extends AppCompatActivity {
     }
 
     private void getData() {
-        TicketingTaskSubmitRequest request = new TicketingTaskSubmitRequest();
+        TicketingTask request = new TicketingTask();
         if (!name.getText().toString().matches("")) {
-            request.Name = name.getText().toString();
+            request.FullName = name.getText().toString();
         }
         if (!email.getText().toString().matches("")) {
             request.Email = email.getText().toString();
@@ -119,11 +120,12 @@ public class ActSetTicketSubmit extends AppCompatActivity {
         if (!phoneNo.getText().toString().matches("")) {
             request.PhoneNo = phoneNo.getText().toString();
         }
-        if (!uploadName.getText().toString().matches("")) {
-            request.UploadName = uploadName.getText().toString();
-        }
+//        if (!uploadName.getText().toString().matches("")) {
+//            request.UploadName = uploadName.getText().toString();
+//        }
         if (!LinkTicketingDepartemenId.getText().toString().matches("")) {
-            request.LinkTicketingDepartemenId = LinkTicketingDepartemenId.getText().toString();
+            long lg=Long.parseLong(LinkTicketingDepartemenId.getText().toString());
+            request.LinkTicketingDepartemenId = lg;
         }
         if (!Id.getText().toString().matches("")) {
             if (Id.getInputType() != InputType.TYPE_CLASS_NUMBER) {

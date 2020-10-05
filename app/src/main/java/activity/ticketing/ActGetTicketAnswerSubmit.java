@@ -35,7 +35,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.ticket.interfase.ITicket;
 import ntk.base.api.ticket.model.TicketingAnswerResponse;
 import ntk.base.api.ticket.model.TicketingAnswerSubmitRequest;
-import ntk.base.api.ticket.model.TicketingAnswerSubmitResponse;
+
 import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
 
