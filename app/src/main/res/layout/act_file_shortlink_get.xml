@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+
+    android:paddingRight="16dp">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="you can Get Created short Link Only By key"
+        android:textColor="#fff" />
+
+    <EditText
+        android:id="@+id/shortLinkEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="***@*****"
+        android:maxLength="9"
+        android:textColor="#fff" />
+
+    <include
+        layout="@layout/sub_captcha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/generateBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get Link" />
+</LinearLayout>

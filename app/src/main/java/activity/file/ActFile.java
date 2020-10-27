@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import activity.core.ActGetResponseMain;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ntk.base.app.R;
@@ -80,7 +79,10 @@ public class ActFile extends AppCompatActivity {
                 public void onClick(View view) {
                     switch (view.getId()) {
                         case 0:
-                            startActivity(new Intent(ActFile.this, ActGetResponseMain.class));
+                            startActivity(new Intent(ActFile.this, ActLinkManagementTargetActShortLinkGet.class));
+                            break;
+                        case 1:
+                            startActivity(new Intent(ActFile.this, ActLinkManagementTargetActShortLinkSet.class));
                             break;
                     }
                 }
