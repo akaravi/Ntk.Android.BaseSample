@@ -1,7 +1,9 @@
 package activity.news;
 
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -28,13 +30,19 @@ import dialog.JsonDialog;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.internal.observers.BlockingBaseObserver;
 import io.reactivex.schedulers.Schedulers;
+import ntk.base.api.baseModel.FilterModel;
+import ntk.base.api.news.entity.NewsContent;
 import ntk.base.api.news.interfase.INews;
 import ntk.base.api.news.model.NewsContentListRequest;
 import ntk.base.api.news.model.NewsContentResponse;
 import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
+import ntk.base.entityModel.base.ErrorException;
+import ntk.base.services.news.NewsContentService;
 
 public class ActGetContentList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -88,7 +96,8 @@ public class ActGetContentList extends AppCompatActivity implements AdapterView.
     @OnClick(R.id.api_test_submit_button)
     public void onSubmitClick(View v) {
         progressBar.setVisibility(View.VISIBLE);
-        getData();
+        //getData();
+        getDataV2();
     }
 
     @OnClick(R.id.btnAdd)
@@ -143,6 +152,47 @@ public class ActGetContentList extends AppCompatActivity implements AdapterView.
                         progressBar.setVisibility(View.GONE);
                     }
                 });
+    }
+
+    private void getDataV2() {
+        ntk.base.entityModel.base.FilterModel request = new ntk.base.entityModel.base.FilterModel();
+        request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
+        request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
+        request.SortType = sort_Type_posistion;
+        request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
+        request.SortColumn = sortColumnText.getText().toString();
+
+
+        Map<String, String> headers = new HashMap<>();
+        headers = configRestHeader.GetHeaders(this);
+        NewsContentService newsContentService = new NewsContentService(this, headers);
+        newsContentService.getAll(request).subscribeOn(Schedulers.io()).subscribe(new Observer<ErrorException<NewsContent>>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(@NonNull ErrorException<NewsContent> response) {
+                JsonDialog cdd = new JsonDialog(ActGetContentList.this, response);
+                cdd.setCanceledOnTouchOutside(false);
+                cdd.show();
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                progressBar.setVisibility(View.GONE);
+                Log.i("Error", e.getMessage());
+                Toast.makeText(ActGetContentList.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onComplete() {
+                progressBar.setVisibility(View.GONE);
+
+            }
+        });
+
     }
 
     @Override
