@@ -29,7 +29,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.baseModel.FilterModel;
 import ntk.base.api.ticket.interfase.ITicket;
 import ntk.base.api.ticket.model.TicketingDepartemenResponse;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActGetTicketDepartman extends AppCompatActivity {

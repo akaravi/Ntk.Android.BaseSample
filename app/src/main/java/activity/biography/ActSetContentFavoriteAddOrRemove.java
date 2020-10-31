@@ -31,7 +31,7 @@ import ntk.base.api.biography.model.BiographyContentFavoriteAddRequest;
 import ntk.base.api.biography.model.BiographyContentFavoriteAddResponse;
 import ntk.base.api.biography.model.BiographyContentFavoriteRemoveRequest;
 import ntk.base.api.biography.model.BiographyContentFavoriteRemoveResponse;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {

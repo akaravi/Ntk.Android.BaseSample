@@ -35,7 +35,7 @@ import ntk.base.api.baseModel.Filters;
 import ntk.base.api.news.interfase.INews;
 import ntk.base.api.news.model.NewsContentResponse;
 import ntk.base.api.news.model.NewsContentSimilarListRequest;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActGetContentSimilarList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

@@ -22,7 +22,8 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.news.interfase.INews;
 import ntk.base.api.news.model.NewsContentListRequest;
 import ntk.base.api.news.model.NewsContentResponse;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
+import okhttp3.ResponseBody;
 
 public class ActMain extends AppCompatActivity {
     private ConfigStaticValue configStaticValue =new ConfigStaticValue(this);
@@ -117,18 +118,18 @@ public class ActMain extends AppCompatActivity {
         headers.put("packagename", "ntk.cms.vitrin.app");
 
         RetrofitManager manager = new RetrofitManager(ActMain.this);
-        Observable<String> observable = manager.FileUpload(null, fileUri, headers);
+        Observable<ResponseBody> observable = manager.FileUpload("", fileUri, headers);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<String>() {
+                .subscribe(new Observer<ResponseBody>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(String s) {
-                        Log.i("Ok", s);
+                    public void onNext(ResponseBody s) {
+                        Log.i("Ok", s.toString());
                         textViewLog.setText("Ok : " + s);
                     }
 

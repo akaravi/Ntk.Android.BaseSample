@@ -30,8 +30,9 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.application.interfase.IApplication;
 import ntk.base.api.application.model.ApplicationScoreRequest;
 import ntk.base.api.application.model.ApplicationScoreResponse;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
+
 
 public class ActSetScoreApplication extends AppCompatActivity {
 

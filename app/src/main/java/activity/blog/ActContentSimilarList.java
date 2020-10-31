@@ -35,7 +35,7 @@ import ntk.base.api.blog.interfase.IBlog;
 import ntk.base.api.blog.model.BlogContentResponse;
 import ntk.base.api.blog.model.BlogContentSimilarListRequest;
 import ntk.base.api.baseModel.Filters;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActContentSimilarList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

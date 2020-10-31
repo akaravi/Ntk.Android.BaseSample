@@ -36,7 +36,7 @@ import ntk.base.api.estate.interfase.IEstate;
 import ntk.base.api.estate.model.EstatePropertyTypeListRequest;
 import ntk.base.api.estate.model.EstatePropertyTypeListResponse;
 import ntk.base.api.baseModel.Filters;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActPropertyType extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

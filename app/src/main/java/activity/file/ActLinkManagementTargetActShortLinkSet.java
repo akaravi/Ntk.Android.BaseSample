@@ -28,7 +28,7 @@ import ntk.base.api.linkManagemen.interfase.ILinkManagement;
 import ntk.base.api.linkManagemen.model.LinkManagementTargetActShortLinkGetRequest;
 import ntk.base.api.linkManagemen.model.LinkManagementTargetActShortLinkSetRequest;
 import ntk.base.api.linkManagemen.model.LinkManagementTargetActShortLinkSetResponce;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 import utill.AppUtill;
 

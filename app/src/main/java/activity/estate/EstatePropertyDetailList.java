@@ -34,7 +34,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.baseModel.Filters;
 import ntk.base.api.estate.interfase.IEstate;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 
 import ntk.base.app.R;
 //need to remove

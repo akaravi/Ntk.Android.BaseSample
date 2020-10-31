@@ -28,7 +28,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.object.interfase.IObject;
 import ntk.base.api.object.model.ObjectUserSiteActAddeByJoinIdRequest;
 import ntk.base.api.object.model.ObjectUserSiteResponse;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActSetUserSiteAddeByJoinId extends AppCompatActivity {

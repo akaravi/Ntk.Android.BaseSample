@@ -33,7 +33,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.object.interfase.IObject;
 import ntk.base.api.object.model.ObjectPropertyDetailValueRequest;
 import ntk.base.api.object.model.ObjectPropertyDetailValueResponse;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActGetPropertyDetailValueList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

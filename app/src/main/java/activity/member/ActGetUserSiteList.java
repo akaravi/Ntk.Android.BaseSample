@@ -33,7 +33,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.member.interfase.IMember;
 import ntk.base.api.member.model.MemberUserSiteRequest;
 import ntk.base.api.member.model.MemberUserSiteResponse;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 //OK

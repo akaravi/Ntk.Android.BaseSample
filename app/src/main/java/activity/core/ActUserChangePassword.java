@@ -28,7 +28,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.core.interfase.ICore;
 import ntk.base.api.core.model.CoreUserChangePasswordRequest;
 import ntk.base.api.core.model.CoreUserResponse;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActUserChangePassword extends AppCompatActivity {

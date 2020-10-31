@@ -35,7 +35,7 @@ import ntk.base.api.biography.interfase.IBiography;
 import ntk.base.api.biography.model.BiographyContentResponse;
 import ntk.base.api.biography.model.BiographyContentSimilarListRequest;
 import ntk.base.api.baseModel.Filters;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActContentSimilarList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

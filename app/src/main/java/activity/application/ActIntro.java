@@ -28,8 +28,8 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.application.interfase.IApplication;
 import ntk.base.api.application.model.ApplicationIntroRequest;
 import ntk.base.api.application.model.ApplicationIntroResponse;
-import ntk.base.api.utill.RetrofitManager;
 import ntk.base.app.R;
+import ntk.base.config.RetrofitManager;
 
 public class ActIntro extends AppCompatActivity {
 

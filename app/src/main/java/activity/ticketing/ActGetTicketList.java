@@ -36,7 +36,7 @@ import ntk.base.api.ticket.interfase.ITicket;
 import ntk.base.api.ticket.model.TicketingListRequest;
 
 import ntk.base.api.ticket.model.TicketingTaskResponse;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActGetTicketList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

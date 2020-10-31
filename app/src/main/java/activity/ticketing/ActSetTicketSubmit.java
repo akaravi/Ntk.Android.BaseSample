@@ -34,7 +34,7 @@ import ntk.base.api.ticket.entity.TicketingDepartemen;
 import ntk.base.api.ticket.model.TicketingTaskResponse;
 
 import ntk.base.api.ticket.model.TicketingTaskResponse;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActSetTicketSubmit extends AppCompatActivity {

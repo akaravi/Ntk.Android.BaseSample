@@ -32,7 +32,7 @@ import ntk.base.api.pooling.interfase.IPooling;
 import ntk.base.api.pooling.model.PoolingSubmitRequest;
 import ntk.base.api.pooling.model.PoolingSubmitResponse;
 import ntk.base.api.pooling.entity.PoolingVote;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActSetSubmitPooling extends AppCompatActivity {

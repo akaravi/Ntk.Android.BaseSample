@@ -31,7 +31,7 @@ import ntk.base.api.news.model.NewsContentFavoriteAddRequest;
 import ntk.base.api.news.model.NewsContentFavoriteAddResponse;
 import ntk.base.api.news.model.NewsContentFavoriteRemoveRequest;
 import ntk.base.api.news.model.NewsContentFavoriteRemoveResponse;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {

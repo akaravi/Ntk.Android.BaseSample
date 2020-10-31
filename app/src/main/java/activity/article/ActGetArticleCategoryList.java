@@ -35,7 +35,7 @@ import ntk.base.api.article.interfase.IArticle;
 import ntk.base.api.article.model.ArticleCategoryRequest;
 import ntk.base.api.article.model.ArticleCategoryResponse;
 import ntk.base.api.baseModel.Filters;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActGetArticleCategoryList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

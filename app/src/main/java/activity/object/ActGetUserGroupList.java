@@ -33,7 +33,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.object.interfase.IObject;
 import ntk.base.api.object.model.ObjectUserGroupRequest;
 import ntk.base.api.object.model.ObjectUserGroupResponse;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActGetUserGroupList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

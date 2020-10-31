@@ -34,7 +34,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.biography.interfase.IBiography;
 import ntk.base.api.biography.model.BiographyContentResponse;
 import ntk.base.api.biography.model.BiographyContentWithSimilarDatePeriodStartDayAndMonthOfYearListRequest;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActContentWithSimilarDatePeriodStartDayAndMonthOfYearList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

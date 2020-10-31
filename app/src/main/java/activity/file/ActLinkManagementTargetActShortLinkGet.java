@@ -27,7 +27,7 @@ import ntk.base.api.core.model.CaptchaResponce;
 import ntk.base.api.linkManagemen.interfase.ILinkManagement;
 import ntk.base.api.linkManagemen.model.LinkManagementTargetActShortLinkGetRequest;
 import ntk.base.api.linkManagemen.model.LinkManagementTargetActShortLinkGetResponce;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 import utill.AppUtill;
 

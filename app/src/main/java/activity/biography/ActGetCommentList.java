@@ -33,7 +33,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.biography.interfase.IBiography;
 import ntk.base.api.biography.model.BiographyCommentListRequest;
 import ntk.base.api.biography.model.BiographyCommentResponse;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActGetCommentList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

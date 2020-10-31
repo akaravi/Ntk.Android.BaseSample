@@ -35,7 +35,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.ticket.interfase.ITicket;
 import ntk.base.api.ticket.model.TicketingFaqRequest;
 import ntk.base.api.ticket.model.TicketingFaqResponse;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActGetTicketFaqList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

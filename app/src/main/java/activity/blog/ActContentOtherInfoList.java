@@ -33,7 +33,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.blog.interfase.IBlog;
 import ntk.base.api.blog.model.BlogContentOtherInfoListRequest;
 import ntk.base.api.blog.model.BlogContentOtherInfoListResponse;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActContentOtherInfoList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

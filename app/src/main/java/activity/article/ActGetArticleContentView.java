@@ -29,7 +29,7 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.base.api.article.interfase.IArticle;
 import ntk.base.api.article.model.ArticleContentResponse;
 import ntk.base.api.article.model.ArticleContentViewRequest;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActGetArticleContentView extends AppCompatActivity {

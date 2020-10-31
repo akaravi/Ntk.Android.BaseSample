@@ -32,7 +32,7 @@ import ntk.base.api.article.model.ArticleContentFavoriteAddRequest;
 import ntk.base.api.article.model.ArticleContentFavoriteAddResponse;
 import ntk.base.api.article.model.ArticleContentFavoriteRemoveRequest;
 import ntk.base.api.article.model.ArticleContentFavoriteRemoveResponse;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActGetArticleContentFavoriteAddOrRemove extends AppCompatActivity {

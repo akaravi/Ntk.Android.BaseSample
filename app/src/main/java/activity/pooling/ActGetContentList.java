@@ -35,7 +35,7 @@ import ntk.base.api.baseModel.Filters;
 import ntk.base.api.pooling.interfase.IPooling;
 import ntk.base.api.pooling.model.PoolingContentListRequest;
 import ntk.base.api.pooling.model.PoolingContentListResponse;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActGetContentList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

@@ -36,7 +36,7 @@ import ntk.base.api.estate.interfase.IEstate;
 import ntk.base.api.estate.model.EstatePropertyFavoriteListRequest;
 import ntk.base.api.estate.model.EstatePropertyFavoriteListResponse;
 import ntk.base.api.baseModel.Filters;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActPropertyFavoriteList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

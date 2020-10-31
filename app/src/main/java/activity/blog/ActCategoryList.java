@@ -36,7 +36,7 @@ import ntk.base.api.blog.interfase.IBlog;
 import ntk.base.api.blog.model.BlogCategoryListRequest;
 import ntk.base.api.blog.model.BlogCategoryListResponse;
 import ntk.base.api.baseModel.Filters;
-import ntk.base.api.utill.RetrofitManager;
+import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActCategoryList extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
