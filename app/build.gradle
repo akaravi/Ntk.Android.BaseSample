@@ -65,5 +65,7 @@ dependencies {
     //load image
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
-    implementation 'com.github.akaravi:ntk.android.base:1.1.3'
+    //implementation 'com.github.akaravi:ntk.android.base:1.1.6'
+    implementation project(path: ':base')
+
 }

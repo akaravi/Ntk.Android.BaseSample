@@ -32,17 +32,16 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.internal.observers.BlockingBaseObserver;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.baseModel.FilterModel;
-import ntk.base.api.news.entity.NewsContent;
 import ntk.base.api.news.interfase.INews;
 import ntk.base.api.news.model.NewsContentListRequest;
 import ntk.base.api.news.model.NewsContentResponse;
 import ntk.base.config.RetrofitManager;
 import ntk.base.app.R;
-import ntk.base.entityModel.base.ErrorException;
+import ntk.base.dtoModel.news.NewsContentResponceModel;
+import ntk.base.services.base.ApiServiceOperator;
 import ntk.base.services.news.NewsContentService;
+import retrofit2.Call;
 
 public class ActGetContentList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -166,14 +165,17 @@ public class ActGetContentList extends AppCompatActivity implements AdapterView.
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
         NewsContentService newsContentService = new NewsContentService(this, headers);
-        newsContentService.getAll(request).subscribeOn(Schedulers.io()).subscribe(new Observer<ErrorException<NewsContent>>() {
+
+
+
+        newsContentService.getAll(request).subscribeOn(Schedulers.io()).subscribe(new Observer<NewsContentResponceModel>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
 
             }
 
             @Override
-            public void onNext(@NonNull ErrorException<NewsContent> response) {
+            public void onNext(@NonNull NewsContentResponceModel response) {
                 JsonDialog cdd = new JsonDialog(ActGetContentList.this, response);
                 cdd.setCanceledOnTouchOutside(false);
                 cdd.show();
