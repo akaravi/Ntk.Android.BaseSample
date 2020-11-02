@@ -32,11 +32,11 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.baseModel.Filters;
-import ntk.base.api.ticket.interfase.ITicket;
-import ntk.base.api.ticket.model.TicketingAnswerListRequest;
-import ntk.base.api.ticket.model.TicketingAnswerResponse;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.baseModel.Filters;
+import ntk.android.base.api.ticket.interfase.ITicket;
+import ntk.android.base.api.ticket.model.TicketingAnswerListRequest;
+import ntk.android.base.api.ticket.model.TicketingAnswerResponse;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActGetTicketAnswerList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

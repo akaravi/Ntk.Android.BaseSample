@@ -24,9 +24,9 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.pooling.interfase.IPooling;
-import ntk.base.api.pooling.model.PoolingCategoryResponse;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.pooling.interfase.IPooling;
+import ntk.android.base.api.pooling.model.PoolingCategoryResponse;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActGetCategoryList extends AppCompatActivity {

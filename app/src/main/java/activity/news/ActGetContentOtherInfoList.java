@@ -30,10 +30,10 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.news.interfase.INews;
-import ntk.base.api.news.model.NewsContentOtherInfoRequest;
-import ntk.base.api.news.model.NewsContentOtherInfoResponse;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.news.interfase.INews;
+import ntk.android.base.api.news.model.NewsContentOtherInfoRequest;
+import ntk.android.base.api.news.model.NewsContentOtherInfoResponse;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActGetContentOtherInfoList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

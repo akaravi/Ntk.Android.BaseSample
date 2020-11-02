@@ -30,10 +30,10 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.news.interfase.INews;
-import ntk.base.api.news.model.NewsContentFavoriteListRequest;
-import ntk.base.api.news.model.NewsContentFavoriteListResponse;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.news.interfase.INews;
+import ntk.android.base.api.news.model.NewsContentFavoriteListRequest;
+import ntk.android.base.api.news.model.NewsContentFavoriteListResponse;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActGetContentFavoriteList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

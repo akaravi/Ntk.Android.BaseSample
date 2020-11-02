@@ -25,10 +25,10 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.member.interfase.IMember;
-import ntk.base.api.member.model.MemberHistoryActViewRequest;
-import ntk.base.api.member.model.MemberHistoryResponse;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.member.interfase.IMember;
+import ntk.android.base.api.member.model.MemberHistoryActViewRequest;
+import ntk.android.base.api.member.model.MemberHistoryResponse;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 //ok
 public class ActGetHistoryView extends AppCompatActivity {

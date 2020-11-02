@@ -27,12 +27,12 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.blog.interfase.IBlog;
-import ntk.base.api.blog.model.BlogContentFavoriteAddRequest;
-import ntk.base.api.blog.model.BlogContentFavoriteAddResponse;
-import ntk.base.api.blog.model.BlogContentFavoriteRemoveRequest;
-import ntk.base.api.blog.model.BlogContentFavoriteRemoveResponse;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.blog.interfase.IBlog;
+import ntk.android.base.api.blog.model.BlogContentFavoriteAddRequest;
+import ntk.android.base.api.blog.model.BlogContentFavoriteAddResponse;
+import ntk.android.base.api.blog.model.BlogContentFavoriteRemoveRequest;
+import ntk.android.base.api.blog.model.BlogContentFavoriteRemoveResponse;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActContentFavoriteAddOrRemove extends AppCompatActivity {

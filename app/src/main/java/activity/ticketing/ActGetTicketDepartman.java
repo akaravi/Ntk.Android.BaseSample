@@ -26,10 +26,10 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.baseModel.FilterModel;
-import ntk.base.api.ticket.interfase.ITicket;
-import ntk.base.api.ticket.model.TicketingDepartemenResponse;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.baseModel.FilterModel;
+import ntk.android.base.api.ticket.interfase.ITicket;
+import ntk.android.base.api.ticket.model.TicketingDepartemenResponse;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActGetTicketDepartman extends AppCompatActivity {

@@ -25,10 +25,10 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.core.interfase.ICore;
-import ntk.base.api.core.model.CoreUserConfirmMobileRequest;
-import ntk.base.api.core.model.CoreUserConfirmResponse;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.core.interfase.ICore;
+import ntk.android.base.api.core.model.CoreUserConfirmMobileRequest;
+import ntk.android.base.api.core.model.CoreUserConfirmResponse;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActUserMobileConfirm extends AppCompatActivity {

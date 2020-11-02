@@ -25,11 +25,11 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.application.interfase.IApplication;
-import ntk.base.api.application.model.ApplicationIntroRequest;
-import ntk.base.api.application.model.ApplicationIntroResponse;
+import ntk.android.base.api.application.interfase.IApplication;
+import ntk.android.base.api.application.model.ApplicationIntroRequest;
+import ntk.android.base.api.application.model.ApplicationIntroResponse;
 import ntk.base.app.R;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.config.RetrofitManager;
 
 public class ActIntro extends AppCompatActivity {
 

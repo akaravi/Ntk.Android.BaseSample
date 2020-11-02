@@ -27,10 +27,10 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.application.interfase.IApplication;
-import ntk.base.api.application.model.ApplicationScoreRequest;
-import ntk.base.api.application.model.ApplicationScoreResponse;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.application.interfase.IApplication;
+import ntk.android.base.api.application.model.ApplicationScoreRequest;
+import ntk.android.base.api.application.model.ApplicationScoreResponse;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 

@@ -30,10 +30,10 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.blog.interfase.IBlog;
-import ntk.base.api.blog.model.BlogTagRequest;
-import ntk.base.api.blog.model.BlogTagResponse;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.blog.interfase.IBlog;
+import ntk.android.base.api.blog.model.BlogTagRequest;
+import ntk.android.base.api.blog.model.BlogTagResponse;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActTagList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

@@ -28,11 +28,11 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.pooling.interfase.IPooling;
-import ntk.base.api.pooling.model.PoolingSubmitRequest;
-import ntk.base.api.pooling.model.PoolingSubmitResponse;
-import ntk.base.api.pooling.entity.PoolingVote;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.pooling.interfase.IPooling;
+import ntk.android.base.api.pooling.model.PoolingSubmitRequest;
+import ntk.android.base.api.pooling.model.PoolingSubmitResponse;
+import ntk.android.base.api.pooling.entity.PoolingVote;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActSetSubmitPooling extends AppCompatActivity {

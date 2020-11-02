@@ -77,7 +77,7 @@ public class AppUtill {
         DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(UrlDownload));
         request.setTitle(context.getString(R.string.app_name));
-        request.setDescription("در حال دانلود...");
+        request.setDescription("در حال دانلود..");
         request.setDestinationInExternalPublicDir(Path, FileName);
         downloadReference = downloadManager.enqueue(request);
 

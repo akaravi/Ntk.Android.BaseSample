@@ -26,10 +26,10 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.biography.interfase.IBiography;
-import ntk.base.api.biography.model.BiographyCommentAddRequest;
-import ntk.base.api.biography.model.BiographyCommentResponse;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.biography.interfase.IBiography;
+import ntk.android.base.api.biography.model.BiographyCommentAddRequest;
+import ntk.android.base.api.biography.model.BiographyCommentResponse;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActSetComment extends AppCompatActivity {

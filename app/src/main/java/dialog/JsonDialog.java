@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
-import ntk.base.api.article.model.ArticleContentResponse;
+import ntk.android.base.api.article.model.ArticleContentResponse;
 import ntk.base.app.R;
 
 

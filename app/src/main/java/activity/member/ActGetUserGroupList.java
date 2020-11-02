@@ -30,10 +30,10 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.member.interfase.IMember;
-import ntk.base.api.member.model.MemberUserGroupRequest;
-import ntk.base.api.member.model.MemberUserGroupResponse;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.member.interfase.IMember;
+import ntk.android.base.api.member.model.MemberUserGroupRequest;
+import ntk.android.base.api.member.model.MemberUserGroupResponse;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActGetUserGroupList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

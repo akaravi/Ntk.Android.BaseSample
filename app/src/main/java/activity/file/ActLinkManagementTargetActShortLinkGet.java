@@ -21,13 +21,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.core.entity.CaptchaModel;
-import ntk.base.api.core.interfase.ICoreGet;
-import ntk.base.api.core.model.CaptchaResponce;
-import ntk.base.api.linkManagemen.interfase.ILinkManagement;
-import ntk.base.api.linkManagemen.model.LinkManagementTargetActShortLinkGetRequest;
-import ntk.base.api.linkManagemen.model.LinkManagementTargetActShortLinkGetResponce;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.core.entity.CaptchaModel;
+import ntk.android.base.api.core.interfase.ICoreGet;
+import ntk.android.base.api.core.model.CaptchaResponce;
+import ntk.android.base.api.linkManagemen.interfase.ILinkManagement;
+import ntk.android.base.api.linkManagemen.model.LinkManagementTargetActShortLinkGetRequest;
+import ntk.android.base.api.linkManagemen.model.LinkManagementTargetActShortLinkGetResponce;
+
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 import utill.AppUtill;
 

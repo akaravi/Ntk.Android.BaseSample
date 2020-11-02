@@ -26,12 +26,12 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.biography.interfase.IBiography;
-import ntk.base.api.biography.model.BiographyContentFavoriteAddRequest;
-import ntk.base.api.biography.model.BiographyContentFavoriteAddResponse;
-import ntk.base.api.biography.model.BiographyContentFavoriteRemoveRequest;
-import ntk.base.api.biography.model.BiographyContentFavoriteRemoveResponse;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.biography.interfase.IBiography;
+import ntk.android.base.api.biography.model.BiographyContentFavoriteAddRequest;
+import ntk.android.base.api.biography.model.BiographyContentFavoriteAddResponse;
+import ntk.android.base.api.biography.model.BiographyContentFavoriteRemoveRequest;
+import ntk.android.base.api.biography.model.BiographyContentFavoriteRemoveResponse;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {

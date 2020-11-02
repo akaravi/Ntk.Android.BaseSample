@@ -30,10 +30,10 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.object.interfase.IObject;
-import ntk.base.api.object.model.ObjectHistoryRequest;
-import ntk.base.api.object.model.ObjectHistoryResponse;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.object.interfase.IObject;
+import ntk.android.base.api.object.model.ObjectHistoryRequest;
+import ntk.android.base.api.object.model.ObjectHistoryResponse;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 //ok
 public class ActGetHistoryList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

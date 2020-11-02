@@ -26,10 +26,10 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.news.interfase.INews;
-import ntk.base.api.news.model.NewsCommentResponse;
-import ntk.base.api.news.model.NewsCommentViewRequest;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.news.interfase.INews;
+import ntk.android.base.api.news.model.NewsCommentResponse;
+import ntk.android.base.api.news.model.NewsCommentViewRequest;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActGetCommentView extends AppCompatActivity {

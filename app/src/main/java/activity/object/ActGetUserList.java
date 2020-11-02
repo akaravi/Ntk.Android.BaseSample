@@ -30,10 +30,10 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.object.interfase.IObject;
-import ntk.base.api.object.model.ObjectUserRequest;
-import ntk.base.api.object.model.ObjectUserResponse;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.object.interfase.IObject;
+import ntk.android.base.api.object.model.ObjectUserRequest;
+import ntk.android.base.api.object.model.ObjectUserResponse;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 //ok

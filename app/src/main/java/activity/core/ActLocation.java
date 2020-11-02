@@ -31,11 +31,11 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.core.interfase.ICore;
-import ntk.base.api.core.model.CoreLocationRequest;
-import ntk.base.api.core.model.CoreLocationResponse;
-import ntk.base.api.baseModel.Filters;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.core.interfase.ICore;
+import ntk.android.base.api.core.model.CoreLocationRequest;
+import ntk.android.base.api.core.model.CoreLocationResponse;
+import ntk.android.base.api.baseModel.Filters;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActLocation extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

@@ -25,12 +25,12 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.estate.interfase.IEstate;
-import ntk.base.api.estate.model.EstatePropertyFavoriteAddRequest;
-import ntk.base.api.estate.model.EstatePropertyFavoriteAddResponse;
-import ntk.base.api.estate.model.EstatePropertyFavoriteRemoveRequest;
-import ntk.base.api.estate.model.EstatePropertyFavoriteRemoveResponse;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.estate.interfase.IEstate;
+import ntk.android.base.api.estate.model.EstatePropertyFavoriteAddRequest;
+import ntk.android.base.api.estate.model.EstatePropertyFavoriteAddResponse;
+import ntk.android.base.api.estate.model.EstatePropertyFavoriteRemoveRequest;
+import ntk.android.base.api.estate.model.EstatePropertyFavoriteRemoveResponse;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 //ok 0.34
 public class ActPropertyFavoriteAddOrRemove extends AppCompatActivity {

@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dialog.JsonDialog;
-import ntk.base.api.news.model.NewsCommentListRequest;
+import ntk.android.base.api.news.model.NewsCommentListRequest;
 import ntk.base.app.R;
 
 public class ActCreateFilterModel extends AppCompatActivity {

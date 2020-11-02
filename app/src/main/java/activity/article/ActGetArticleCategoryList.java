@@ -31,11 +31,11 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.article.interfase.IArticle;
-import ntk.base.api.article.model.ArticleCategoryRequest;
-import ntk.base.api.article.model.ArticleCategoryResponse;
-import ntk.base.api.baseModel.Filters;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.article.interfase.IArticle;
+import ntk.android.base.api.article.model.ArticleCategoryRequest;
+import ntk.android.base.api.article.model.ArticleCategoryResponse;
+import ntk.android.base.api.baseModel.Filters;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActGetArticleCategoryList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

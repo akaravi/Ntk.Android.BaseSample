@@ -32,11 +32,11 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.estate.interfase.IEstate;
-import ntk.base.api.estate.model.EstatePropertyTypeListRequest;
-import ntk.base.api.estate.model.EstatePropertyTypeListResponse;
-import ntk.base.api.baseModel.Filters;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.estate.interfase.IEstate;
+import ntk.android.base.api.estate.model.EstatePropertyTypeListRequest;
+import ntk.android.base.api.estate.model.EstatePropertyTypeListResponse;
+import ntk.android.base.api.baseModel.Filters;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActPropertyType extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

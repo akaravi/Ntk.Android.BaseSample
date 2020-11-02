@@ -28,13 +28,13 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.ticket.entity.TicketingTask;
-import ntk.base.api.ticket.interfase.ITicket;
-import ntk.base.api.ticket.entity.TicketingDepartemen;
-import ntk.base.api.ticket.model.TicketingTaskResponse;
+import ntk.android.base.api.ticket.entity.TicketingTask;
+import ntk.android.base.api.ticket.interfase.ITicket;
+import ntk.android.base.api.ticket.entity.TicketingDepartemen;
+import ntk.android.base.api.ticket.model.TicketingTaskResponse;
 
-import ntk.base.api.ticket.model.TicketingTaskResponse;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.ticket.model.TicketingTaskResponse;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActSetTicketSubmit extends AppCompatActivity {

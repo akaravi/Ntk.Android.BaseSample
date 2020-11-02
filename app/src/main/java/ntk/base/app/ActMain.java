@@ -19,10 +19,10 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.news.interfase.INews;
-import ntk.base.api.news.model.NewsContentListRequest;
-import ntk.base.api.news.model.NewsContentResponse;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.news.interfase.INews;
+import ntk.android.base.api.news.model.NewsContentListRequest;
+import ntk.android.base.api.news.model.NewsContentResponse;
+import ntk.android.base.config.RetrofitManager;
 import okhttp3.ResponseBody;
 
 public class ActMain extends AppCompatActivity {
@@ -39,11 +39,11 @@ public class ActMain extends AppCompatActivity {
 
     private void init() {
         TextView textViewLog = findViewById(R.id.textViewLog);
-        textViewLog.setText(".......");
+        textViewLog.setText("....");
 
         Button buttonApiNewsContentList = findViewById(R.id.buttonApiNewsContentList);
         buttonApiNewsContentList.setOnClickListener(view -> {
-            textViewLog.setText(".......");
+            textViewLog.setText("....");
 
             NewsContentListRequest request = new NewsContentListRequest();
             request.RowPerPage = 20;
@@ -83,7 +83,7 @@ public class ActMain extends AppCompatActivity {
 
         Button buttonApiUploadFile = findViewById(R.id.buttonApiUploadFile);
         buttonApiUploadFile.setOnClickListener(view -> {
-            textViewLog.setText(".......");
+            textViewLog.setText("....");
 
             StorageChooser chooser = new StorageChooser.Builder()
                     .withActivity(this)

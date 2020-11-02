@@ -26,10 +26,10 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.estate.interfase.IEstate;
-import ntk.base.api.estate.model.EstatePropertyViewRequest;
-import ntk.base.api.estate.model.EstatePropertyViewResponse;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.estate.interfase.IEstate;
+import ntk.android.base.api.estate.model.EstatePropertyViewRequest;
+import ntk.android.base.api.estate.model.EstatePropertyViewResponse;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActPropertyView extends AppCompatActivity {

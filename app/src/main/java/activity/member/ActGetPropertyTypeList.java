@@ -30,11 +30,11 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.base.api.member.interfase.IMember;
+import ntk.android.base.api.member.interfase.IMember;
 
-import ntk.base.api.member.model.MemberPropertyTypeRequest;
-import ntk.base.api.member.model.MemberPropertyTypeResponse;
-import ntk.base.config.RetrofitManager;
+import ntk.android.base.api.member.model.MemberPropertyTypeRequest;
+import ntk.android.base.api.member.model.MemberPropertyTypeResponse;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
 public class ActGetPropertyTypeList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
