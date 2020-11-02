@@ -72,6 +72,6 @@ dependencies {
     //implementation 'com.github.akaravi:ntk.android.base:1.1.6'
 //    implementation project(path: ':baseActivity')
     implementation project(path: ':base')
-    implementation project(path: ':baseActivity')
+//    implementation project(path: ':baseActivity')
 
 }

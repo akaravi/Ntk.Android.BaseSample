@@ -11,11 +11,10 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import java.io.File;
 
 import ntk.android.base.ApplicationParameter;
-import ntk.android.base.NTKApplication;
-import ntk.android.base.utill.FontManager;
-import ntk.base.app.BuildConfig;
+import ntk.android.base.BaseNtkApplication;
 
-public class TicketingApp extends NTKApplication {
+
+public class TicketingApp extends BaseNtkApplication {
 
     public static boolean Inbox = false;
 
@@ -37,6 +36,11 @@ public class TicketingApp extends NTKApplication {
 //        Toasty.Config.getInstance()
 //                .setToastTypeface(FontManager.GetTypeface(getApplicationContext(), FontManager.IranSans))
 //                .setTextSize(14).apply();
+    }
+
+    @Override
+    public void bindFireBase() {
+       //not implement
     }
 
     @Override
