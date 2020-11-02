@@ -5,11 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
@@ -22,6 +17,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.gson.Gson;
 
 import java.util.Map;
@@ -31,6 +32,7 @@ import activity.article.ActArticle;
 import activity.biography.ActBiography;
 import activity.blog.ActBlog;
 import activity.core.ActCore;
+import activity.coretoken.ActCoreToken;
 import activity.estate.ActEstate;
 import activity.file.ActFile;
 import activity.member.ActMember;
@@ -49,15 +51,17 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.android.base.api.core.interfase.ICore;
 import ntk.android.base.api.core.entity.CoreMain;
+import ntk.android.base.api.core.interfase.ICore;
 import ntk.android.base.api.core.model.MainCoreResponse;
-import ntk.android.base.config.RetrofitManager;;
+import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.BuildConfig;
 import ntk.base.app.R;
 import utill.AppUtill;
 import utill.EasyPreference;
 import utill.FontManager;
+
+;
 
 public class Main extends AppCompatActivity {
 
@@ -70,9 +74,10 @@ public class Main extends AppCompatActivity {
 
     @BindView(R.id.txtPackageName)
     EditText packageName;
-private String urlServerApi;
+    private String urlServerApi;
     private String[] apiNames = new String[]{
             "Core",
+            "CoreToken",
             "Article",
             "News",
             "Pooling",
@@ -103,7 +108,7 @@ private String urlServerApi;
     }
 
     private void init() {
-        urlServerApi="https://apicms.ir";
+        urlServerApi = "https://apicms.ir";
         String ApiBaseUrl_ = EasyPreference.with(this).getString("ApiBaseUrl", urlServerApi);
         String packageName_ = EasyPreference.with(this).getString("packageName", "ntk.cms.android.basesample.app");
         url.setText(ApiBaseUrl_);
@@ -178,63 +183,66 @@ private String urlServerApi;
                             startActivity(new Intent(context, ActCore.class));
                             break;
                         case 1:
-                            startActivity(new Intent(context, ActArticle.class));
+                            startActivity(new Intent(context, ActCoreToken.class));
                             break;
                         case 2:
-                            startActivity(new Intent(context, ActNews.class));
+                            startActivity(new Intent(context, ActArticle.class));
                             break;
                         case 3:
-                            startActivity(new Intent(context, ActPooling.class));
+                            startActivity(new Intent(context, ActNews.class));
                             break;
                         case 4:
-                            startActivity(new Intent(context, ActTicket.class));
+                            startActivity(new Intent(context, ActPooling.class));
                             break;
                         case 5:
-                            startActivity(new Intent(context, ActBiography.class));
+                            startActivity(new Intent(context, ActTicket.class));
                             break;
                         case 6:
-                            startActivity(new Intent(context, ActApplication.class));
+                            startActivity(new Intent(context, ActBiography.class));
                             break;
                         case 7:
-                            startActivity(new Intent(context, ActEstate.class));
+                            startActivity(new Intent(context, ActApplication.class));
                             break;
                         case 8:
-                            startActivity(new Intent(context, ActFile.class));
+                            startActivity(new Intent(context, ActEstate.class));
                             break;
                         case 9:
-                            startActivity(new Intent(context, ActBlog.class));
+                            startActivity(new Intent(context, ActFile.class));
                             break;
                         case 10:
-                            startActivity(new Intent(context, ActProduct.class));
+                            startActivity(new Intent(context, ActBlog.class));
                             break;
                         case 11:
-                            //Chart
+                            startActivity(new Intent(context, ActProduct.class));
                             break;
                         case 12:
-                            //LinkManager
+                            //Chart
                             break;
                         case 13:
-                            //reservition
+                            //LinkManager
                             break;
                         case 14:
-                            //Bank Payment
+                            //reservition
                             break;
                         case 15:
-                            startActivity(new Intent(context, ActMember.class));
+                            //Bank Payment
                             break;
                         case 16:
-                            //job
+                            startActivity(new Intent(context, ActMember.class));
                             break;
                         case 17:
-                            //Advertisement
+                            //job
                             break;
                         case 18:
-                            //Vehicle
+                            //Advertisement
                             break;
                         case 19:
-                            startActivity(new Intent(context, ActObject.class));
+                            //Vehicle
                             break;
                         case 20:
+                            startActivity(new Intent(context, ActObject.class));
+                            break;
+                        case 21:
                             //Shop
                             break;
                     }
@@ -258,13 +266,13 @@ private String urlServerApi;
     }
 
     @OnClick(R.id.defaultValueBtn)
-    public void onDefaultValueBtnClick(){
+    public void onDefaultValueBtnClick() {
 
         EasyPreference.with(Main.this).remove("ApiBaseUrl");
-        EasyPreference.with(Main.this).addString("ApiBaseUrl",urlServerApi);
+        EasyPreference.with(Main.this).addString("ApiBaseUrl", urlServerApi);
 
         EasyPreference.with(Main.this).remove("packageName");
-        EasyPreference.with(Main.this).addString("packageName","ntk.cms.android.basesample.app");
+        EasyPreference.with(Main.this).addString("packageName", "ntk.cms.android.basesample.app");
         url.setText(urlServerApi);
         packageName.setText("ntk.cms.android.basesample.app");
     }
@@ -315,7 +323,7 @@ private String urlServerApi;
     private void CheckUpdate() {
         String st = EasyPreference.with(this).getString("configapp", "");
         CoreMain mcr = new Gson().fromJson(st, CoreMain.class);
-        if (mcr.AppVersion > BuildConfig.VERSION_CODE && BuildConfig.APPLICATION_ID.indexOf(".APPNTK") <0) {
+        if (mcr.AppVersion > BuildConfig.VERSION_CODE && BuildConfig.APPLICATION_ID.indexOf(".APPNTK") < 0) {
             if (mcr.AppForceUpdate) {
                 UpdateFore();
             } else {
