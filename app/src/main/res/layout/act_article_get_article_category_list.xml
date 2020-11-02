@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:layout_margin="@dimen/extra_padding"
         android:orientation="vertical"
-        tools:context="activity.article.ActGetArticleCategoryList">
+        tools:context="ntk.base.app.activity.article.ActGetArticleCategoryList">
 
         <include layout="@layout/header" />
 

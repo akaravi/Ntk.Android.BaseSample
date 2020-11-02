@@ -13,7 +13,7 @@ import com.codekidlabs.storagechooser.StorageChooser;
 import java.util.HashMap;
 import java.util.Map;
 
-import config.ConfigStaticValue;
+import ntk.base.app.config.ConfigStaticValue;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -94,7 +94,7 @@ public class ActMain extends AppCompatActivity {
                     .withFragmentManager(getFragmentManager())
                     .build();
 
-// Show dialog whenever you want by
+// Show ntk.base.app.dialog whenever you want by
             chooser.show();
 
 // get path that the user has chosen

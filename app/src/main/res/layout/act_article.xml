@@ -9,7 +9,7 @@
     android:layout_margin="@dimen/standard_padding"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="activity.article.ActArticle">
+    tools:context="ntk.base.app.activity.article.ActArticle">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/api_recycler_view"

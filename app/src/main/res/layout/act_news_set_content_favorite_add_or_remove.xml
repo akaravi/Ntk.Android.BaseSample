@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:layout_margin="@dimen/extra_padding"
         android:orientation="vertical"
-        tools:context="activity.news.ActSetContentFavoriteAddOrRemove">
+        tools:context="ntk.base.app.activity.news.ActSetContentFavoriteAddOrRemove">
 
         <include layout="@layout/header" />
 

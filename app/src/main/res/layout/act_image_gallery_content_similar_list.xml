@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:layout_margin="@dimen/standard_padding"
         android:orientation="vertical"
-        tools:context="activity.imageGallery.ActContentSimilarList">
+        tools:context="ntk.base.app.activity.imageGallery.ActContentSimilarList">
 
         <include layout="@layout/header" />
 

@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:layout_margin="@dimen/standard_padding"
         android:orientation="vertical"
-        tools:context="activity.biography.ActContentWithDatePeriodStartList">
+        tools:context="ntk.base.app.activity.biography.ActContentWithDatePeriodStartList">
 
         <include layout="@layout/header" />
 

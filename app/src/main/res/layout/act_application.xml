@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_margin="@dimen/standard_padding"
     android:orientation="vertical"
-    tools:context="activity.application.ActApplication">
+    tools:context="ntk.base.app.activity.application.ActApplication">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/api_recycler_view"
