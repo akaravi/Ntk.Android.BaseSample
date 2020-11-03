@@ -1,3 +1,4 @@
 include ':app','base'
 //project(':baseActivity').projectDir = new File('..\\Ntk.Android.BaseActivity\\app')
 project(':base').projectDir = new File('..\\Ntk.Android.Base\\api')
+//project(':prev21').projectDir = new File('..\\Ntk.Android.Base\\prev21')
