@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.LayoutRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -57,11 +59,16 @@ public abstract class BaseFilterModelingActivity extends AppCompatActivity imple
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_news_get_category_list);
+        setContentView(R.layout.act_base_filtermodeling);
         ButterKnife.bind(this);
         initialize();
     }
 
+    protected void extraInflate(@LayoutRes int layout) {
+       ViewStub stub= findViewById(R.id.view_stub);
+       stub.setLayoutResource(layout);
+       stub.inflate();
+    }
     private void initialize() {
         lblLayout.setText(getTitleName());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

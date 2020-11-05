@@ -16,6 +16,11 @@
 
         <include layout="@layout/body" />
 
+        <ViewStub
+            android:id="@+id/view_stub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <include layout="@layout/button" />
 
     </LinearLayout>

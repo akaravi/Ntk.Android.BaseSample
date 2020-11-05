@@ -32,6 +32,7 @@ import ntk.android.base.api.news.model.NewsCommentViewRequest;
 import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
+//net to be content view
 public class ActGetCommentView extends AppCompatActivity {
 
 

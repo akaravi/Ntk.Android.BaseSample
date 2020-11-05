@@ -37,6 +37,7 @@ import ntk.android.base.api.news.model.NewsContentViewRequest;
 import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
 
+//can do with base with extra inflate
 public class ActGetContentView extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.row_per_page_text)
