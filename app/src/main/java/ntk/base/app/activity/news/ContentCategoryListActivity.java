@@ -40,10 +40,10 @@ public class ContentCategoryListActivity extends BaseFilterModelingActivity {
     public void getData() {
 
         FilterDataModel request = new FilterDataModel();
-        request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
-        request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
+        request.RowPerPage = Integer.parseInt(rowPerPageText.getText().toString());
+        request.SkipRowData = Integer.parseInt(skipRowDataText.getText().toString());
         request.SortType = sort_Type_posistion;
-        request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
+        request.CurrentPageNumber = Integer.parseInt(currentPageNumberText.getText().toString());
         request.SortColumn = sortColumnText.getText().toString();
         long LinkContentId = 0;
         if (!txtLinkContentId.getText().toString().matches("")) {
@@ -53,7 +53,7 @@ public class ContentCategoryListActivity extends BaseFilterModelingActivity {
                 return;
             } else {
                 txtLinkContentId.setError(null);
-                LinkContentId = Long.valueOf(txtLinkContentId.getText().toString());
+                LinkContentId = Long.parseLong(txtLinkContentId.getText().toString());
             }
         } else {
             txtLinkContentId.setError("Required !!");
