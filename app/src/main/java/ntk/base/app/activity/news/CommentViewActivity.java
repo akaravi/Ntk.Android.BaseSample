@@ -17,7 +17,7 @@ import ntk.base.app.R;
 import ntk.base.app.activity.AbstractActivity;
 
 //net to be content view
-public class ActGetCommentView extends AbstractActivity {
+public class CommentViewActivity extends AbstractActivity {
 
 
     @BindView(R.id.txtId)

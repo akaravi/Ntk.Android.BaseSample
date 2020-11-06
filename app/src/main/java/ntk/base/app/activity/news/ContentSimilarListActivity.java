@@ -12,18 +12,16 @@ import butterknife.BindView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.schedulers.Schedulers;
-import ntk.android.base.api.news.entity.NewsCategory;
 import ntk.android.base.config.NtkObserver;
 import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.base.entitymodel.base.FilterDataModel;
 import ntk.android.base.entitymodel.base.Filters;
-import ntk.android.base.services.news.NewsCategoryService;
+import ntk.android.base.entitymodel.news.NewsContentSimilarModel;
+import ntk.android.base.services.news.NewsContentSimilarService;
 import ntk.base.app.R;
 import ntk.base.app.activity.BaseFilterModelingActivity;
 
-
-//same as base extra Link Content Id
-public class ActGetContentCategoryList extends BaseFilterModelingActivity {
+public class ContentSimilarListActivity extends BaseFilterModelingActivity {
 
 
     @BindView(R.id.txtLinkContentId)
@@ -32,13 +30,10 @@ public class ActGetContentCategoryList extends BaseFilterModelingActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        extraInflate(R.layout.act_news_content_category_list);
-
+        extraInflate(R.layout.act_news_content_similar_list);
     }
 
-
     public void getData() {
-
         FilterDataModel request = new FilterDataModel();
         request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
         request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
@@ -68,12 +63,13 @@ public class ActGetContentCategoryList extends BaseFilterModelingActivity {
             filters.add(f);
             request.filters = filters;
         }
-        new NewsCategoryService(this).getAll(request).observeOn(AndroidSchedulers.mainThread())
+        new NewsContentSimilarService(this).getAll(request)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new NtkObserver<ErrorException<NewsCategory>>() {
+                .subscribe(new NtkObserver<ErrorException<NewsContentSimilarModel>>() {
                     @Override
-                    public void onNext(@NonNull ErrorException<NewsCategory> response) {
-                        showResult(response);
+                    public void onNext(@NonNull ErrorException<NewsContentSimilarModel> resposne) {
+                        showResult(resposne);
                     }
 
                     @Override
@@ -86,7 +82,8 @@ public class ActGetContentCategoryList extends BaseFilterModelingActivity {
 
     @Override
     protected String getTitleName() {
-        return "NewsContentCategoryList";
+        return "NewsContentSimilarList";
     }
+
 
 }

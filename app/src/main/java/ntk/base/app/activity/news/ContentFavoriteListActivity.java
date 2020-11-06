@@ -5,7 +5,7 @@ import ntk.base.app.activity.BaseFilterModelingActivity;
 
 //need to define favorite api
 //same as base
-public class ActGetContentFavoriteList extends BaseFilterModelingActivity {
+public class ContentFavoriteListActivity extends BaseFilterModelingActivity {
 
 
     public void getData() {

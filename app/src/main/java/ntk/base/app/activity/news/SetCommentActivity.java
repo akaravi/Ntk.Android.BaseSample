@@ -15,7 +15,7 @@ import ntk.android.base.services.news.NewsCommentService;
 import ntk.base.app.R;
 import ntk.base.app.activity.AbstractActivity;
 
-public class ActSetComment extends AbstractActivity {
+public class SetCommentActivity extends AbstractActivity {
 
     @BindView(R.id.txtWriter)
     EditText txtWriter;

@@ -10,7 +10,7 @@ import ntk.android.base.entitymodel.news.NewsContentOtherInfoModel;
 import ntk.android.base.services.news.NewsContentOtherInfoService;
 import ntk.base.app.activity.BaseFilterModelingActivity;
 
-public class ActGetContentOtherInfoList extends BaseFilterModelingActivity {
+public class ContentOtherInfoListActivity extends BaseFilterModelingActivity {
 
 
     public void getData() {

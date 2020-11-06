@@ -1,38 +1,23 @@
 package ntk.base.app.activity.news;
 
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Toast;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import io.reactivex.Observable;
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.android.base.api.news.interfase.INews;
-import ntk.android.base.api.news.model.NewsCategoryTagRequest;
-import ntk.android.base.api.news.model.NewsCategoryTagResponse;
+import ntk.android.base.api.news.entity.NewsCategory;
 import ntk.android.base.config.NtkObserver;
-import ntk.android.base.config.RetrofitManager;
 import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.base.entitymodel.base.FilterDataModel;
-import ntk.android.base.entitymodel.news.NewsCategoryTagModel;
-import ntk.android.base.services.news.NewsCategoryTagService;
+import ntk.android.base.services.news.NewsCategoryService;
 import ntk.base.app.activity.BaseFilterModelingActivity;
-import ntk.base.app.dialog.JsonDialog;
 
-public class ActGetCategoryTagList extends BaseFilterModelingActivity implements AdapterView.OnItemSelectedListener {
+public class CategoryListActivity extends BaseFilterModelingActivity {
 
 
     @Override
     protected String getTitleName() {
-        return "CategoryTagList";
+        return "NewsCategoryList";
     }
+
 
     public void getData() {
         FilterDataModel request = new FilterDataModel();
@@ -41,14 +26,13 @@ public class ActGetCategoryTagList extends BaseFilterModelingActivity implements
         request.SortType = sort_Type_posistion;
         request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
         request.SortColumn = sortColumnText.getText().toString();
-
-        new NewsCategoryTagService(this).getAll(request)
-        .observeOn(AndroidSchedulers.mainThread())
+        new NewsCategoryService(this).getAll(request)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new NtkObserver<ErrorException<NewsCategoryTagModel>>() {
+                .subscribe(new NtkObserver<ErrorException<NewsCategory>>() {
                     @Override
-                    public void onNext(@NonNull ErrorException<NewsCategoryTagModel> newsCategoryTagModelErrorException) {
-                        showResult(newsCategoryTagModelErrorException);
+                    public void onNext(@NonNull ErrorException<NewsCategory> response) {
+                        showResult(response);
                     }
 
                     @Override
@@ -56,8 +40,6 @@ public class ActGetCategoryTagList extends BaseFilterModelingActivity implements
                         showError(e);
                     }
                 });
-
     }
-
 
 }

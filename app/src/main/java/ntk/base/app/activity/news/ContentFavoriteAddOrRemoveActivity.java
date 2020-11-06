@@ -13,7 +13,7 @@ import ntk.android.base.api.news.model.NewsContentFavoriteRemoveRequest;
 import ntk.base.app.R;
 import ntk.base.app.activity.AbstractActivity;
 
-public class ActSetContentFavoriteAddOrRemove extends AbstractActivity {
+public class ContentFavoriteAddOrRemoveActivity extends AbstractActivity {
 
     @BindView(R.id.btnAdd)
     Button btnAdd;

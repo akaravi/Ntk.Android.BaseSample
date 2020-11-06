@@ -22,7 +22,7 @@ import ntk.android.base.services.news.NewsContentService;
 import ntk.base.app.R;
 import ntk.base.app.activity.BaseFilterModelingActivity;
 
-public class ActGetContentList extends BaseFilterModelingActivity {
+public class ContentListActivity extends BaseFilterModelingActivity {
 
     @BindView(R.id.txtTag)
     EditText txtTag;

@@ -17,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ntk.base.app.R;
 
-public class ActNews extends AppCompatActivity {
+public class NewsActivities extends AppCompatActivity {
     public static String LAYOUT_VALUE = "LAYOUT_VALUE";
     @BindView(R.id.api_recycler_view)
     RecyclerView apiRecyclerView;
@@ -91,43 +91,43 @@ public class ActNews extends AppCompatActivity {
                 public void onClick(View view) {
                     switch (view.getId()) {
                         case 0:
-                            startActivity(new Intent(ActNews.this, ActGetContentList.class));
+                            startActivity(new Intent(NewsActivities.this, ContentListActivity.class));
                             break;
                         case 1:
-                            startActivity(new Intent(ActNews.this, ActGetContentView.class));
+                            startActivity(new Intent(NewsActivities.this, ContentViewActivity.class));
                             break;
                         case 2:
-                            startActivity(new Intent(ActNews.this, ActGetTagList.class));
+                            startActivity(new Intent(NewsActivities.this, TagListActivity.class));
                             break;
                         case 3:
-                            startActivity(new Intent(ActNews.this, ActGetCategoryList.class));
+                            startActivity(new Intent(NewsActivities.this, CategoryListActivity.class));
                             break;
                         case 4:
-                            startActivity(new Intent(ActNews.this, ActGetCategoryTagList.class));
+                            startActivity(new Intent(NewsActivities.this, CategoryTagListActivity.class));
                             break;
                         case 5:
-                            startActivity(new Intent(ActNews.this, ActGetContentOtherInfoList.class));
+                            startActivity(new Intent(NewsActivities.this, ContentOtherInfoListActivity.class));
                             break;
                         case 6:
-                            startActivity(new Intent(ActNews.this, ActGetCommentList.class));
+                            startActivity(new Intent(NewsActivities.this, CommentListActivity.class));
                             break;
                         case 7:
-                            startActivity(new Intent(ActNews.this, ActSetComment.class));
+                            startActivity(new Intent(NewsActivities.this, SetCommentActivity.class));
                             break;
                         case 8:
-                            startActivity(new Intent(ActNews.this, ActGetCommentView.class));
+                            startActivity(new Intent(NewsActivities.this, CommentViewActivity.class));
                             break;
                         case 9:
-                            startActivity(new Intent(ActNews.this, ActSetContentFavoriteAddOrRemove.class));
+                            startActivity(new Intent(NewsActivities.this, ContentFavoriteAddOrRemoveActivity.class));
                             break;
                         case 10:
-                            startActivity(new Intent(ActNews.this, ActGetContentFavoriteList.class));
+                            startActivity(new Intent(NewsActivities.this, ContentFavoriteListActivity.class));
                             break;
                         case 11:
-                            startActivity(new Intent(ActNews.this, ActGetContentSimilarList.class));
+                            startActivity(new Intent(NewsActivities.this, ContentSimilarListActivity.class));
                             break;
                         case 12:
-                            startActivity(new Intent(ActNews.this, ActGetContentCategoryList.class));
+                            startActivity(new Intent(NewsActivities.this, ContentCategoryListActivity.class));
                             break;
                     }
                 }

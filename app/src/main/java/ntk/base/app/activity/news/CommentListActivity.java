@@ -10,7 +10,7 @@ import ntk.android.base.entitymodel.news.NewsCommentModel;
 import ntk.android.base.services.news.NewsCommentService;
 import ntk.base.app.activity.BaseFilterModelingActivity;
 
-public class ActGetCommentList extends BaseFilterModelingActivity {
+public class CommentListActivity extends BaseFilterModelingActivity {
 
 
     public void getData() {

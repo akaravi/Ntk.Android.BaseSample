@@ -21,7 +21,7 @@ import ntk.base.app.R;
 import ntk.base.app.activity.BaseFilterModelingActivity;
 
 //can do with base with extra inflate
-public class ActGetContentView extends BaseFilterModelingActivity {
+public class ContentViewActivity extends BaseFilterModelingActivity {
 
     @BindView(R.id.txtId)
     EditText txtId;
