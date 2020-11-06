@@ -34,7 +34,7 @@ public class ContentListActivity extends BaseFilterModelingActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        extraInflate(R.layout.act_news_get_content_list);
+        extraInflate(R.layout.activity_news_content_list);
     }
 
 

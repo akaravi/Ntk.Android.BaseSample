@@ -1,151 +1,76 @@
 package ntk.base.app.activity.news;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import ntk.base.app.R;
+import ntk.base.app.activity.AbstractApiListActivity;
 
-public class NewsActivities extends AppCompatActivity {
-    public static String LAYOUT_VALUE = "LAYOUT_VALUE";
-    @BindView(R.id.api_recycler_view)
-    RecyclerView apiRecyclerView;
-    private String[] articleList = new String[]{"News Content List",
-            "News Content View",
-            "News Tag List",
-            "News Category List",
-            "News Category Tag List",
-            "News Content Other Info List",
-            "News Comment List",
-            "News Comment Add",
-            "News Comment View",
-            "News Content Favorite Add Or Remove",
-            "News Content Favorite List",
-            "NewsContentSimilarList",
-            "NewsContentCategoryList"};
+public class NewsActivities extends AbstractApiListActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act_news);
-        ButterKnife.bind(this);
-        init();
-    }
-
-    private void init() {
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("News");
-        apiRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        apiRecyclerView.setAdapter(new ApiRecyclerViewAdapter(this, articleList));
+    protected String[] apiList() {
+        return new String[]{"News Content List",
+                "News Content View",
+                "News Tag List",
+                "News Category List",
+                "News Category Tag List",
+                "News Content Other Info List",
+                "News Comment List",
+                "News Comment Add",
+                "News Comment View",
+                "News Content Favorite Add Or Remove",
+                "News Content Favorite List",
+                "NewsContentSimilarList",
+                "NewsContentCategoryList"};
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            finish();
-            return true;
+    protected void chooseActivity(View view) {
+        switch (view.getId()) {
+            case 0:
+                startActivity(new Intent(NewsActivities.this, ContentListActivity.class));
+                break;
+            case 1:
+                startActivity(new Intent(NewsActivities.this, ContentViewActivity.class));
+                break;
+            case 2:
+                startActivity(new Intent(NewsActivities.this, TagListActivity.class));
+                break;
+            case 3:
+                startActivity(new Intent(NewsActivities.this, CategoryListActivity.class));
+                break;
+            case 4:
+                startActivity(new Intent(NewsActivities.this, CategoryTagListActivity.class));
+                break;
+            case 5:
+                startActivity(new Intent(NewsActivities.this, ContentOtherInfoListActivity.class));
+                break;
+            case 6:
+                startActivity(new Intent(NewsActivities.this, CommentListActivity.class));
+                break;
+            case 7:
+                startActivity(new Intent(NewsActivities.this, SetCommentActivity.class));
+                break;
+            case 8:
+                startActivity(new Intent(NewsActivities.this, CommentViewActivity.class));
+                break;
+            case 9:
+                startActivity(new Intent(NewsActivities.this, ContentFavoriteAddOrRemoveActivity.class));
+                break;
+            case 10:
+                startActivity(new Intent(NewsActivities.this, ContentFavoriteListActivity.class));
+                break;
+            case 11:
+                startActivity(new Intent(NewsActivities.this, ContentSimilarListActivity.class));
+                break;
+            case 12:
+                startActivity(new Intent(NewsActivities.this, ContentCategoryListActivity.class));
+                break;
         }
-        return super.onKeyDown(keyCode, event);
     }
-
 
     @Override
-    public boolean onSupportNavigateUp() {
-        finish();
-        return super.onSupportNavigateUp();
-    }
-
-    public class ApiRecyclerViewAdapter extends RecyclerView.Adapter<ApiRecyclerViewAdapter.ApiViewHolder> {
-        private Context context;
-        private String[] list;
-
-        ApiRecyclerViewAdapter(Context context, String[] list) {
-            this.context = context;
-            this.list = list;
-        }
-
-        @NonNull
-        @Override
-        public ApiRecyclerViewAdapter.ApiViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-            return new ApiRecyclerViewAdapter.ApiViewHolder(LayoutInflater.from(context).inflate(R.layout.button_item, viewGroup, false));
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull ApiRecyclerViewAdapter.ApiViewHolder apiViewHolder, int i) {
-            apiViewHolder.button.setText(list[i]);
-            apiViewHolder.button.setId(i);
-            apiViewHolder.button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    switch (view.getId()) {
-                        case 0:
-                            startActivity(new Intent(NewsActivities.this, ContentListActivity.class));
-                            break;
-                        case 1:
-                            startActivity(new Intent(NewsActivities.this, ContentViewActivity.class));
-                            break;
-                        case 2:
-                            startActivity(new Intent(NewsActivities.this, TagListActivity.class));
-                            break;
-                        case 3:
-                            startActivity(new Intent(NewsActivities.this, CategoryListActivity.class));
-                            break;
-                        case 4:
-                            startActivity(new Intent(NewsActivities.this, CategoryTagListActivity.class));
-                            break;
-                        case 5:
-                            startActivity(new Intent(NewsActivities.this, ContentOtherInfoListActivity.class));
-                            break;
-                        case 6:
-                            startActivity(new Intent(NewsActivities.this, CommentListActivity.class));
-                            break;
-                        case 7:
-                            startActivity(new Intent(NewsActivities.this, SetCommentActivity.class));
-                            break;
-                        case 8:
-                            startActivity(new Intent(NewsActivities.this, CommentViewActivity.class));
-                            break;
-                        case 9:
-                            startActivity(new Intent(NewsActivities.this, ContentFavoriteAddOrRemoveActivity.class));
-                            break;
-                        case 10:
-                            startActivity(new Intent(NewsActivities.this, ContentFavoriteListActivity.class));
-                            break;
-                        case 11:
-                            startActivity(new Intent(NewsActivities.this, ContentSimilarListActivity.class));
-                            break;
-                        case 12:
-                            startActivity(new Intent(NewsActivities.this, ContentCategoryListActivity.class));
-                            break;
-                    }
-                }
-            });
-        }
-
-        @Override
-        public int getItemCount() {
-            return list.length;
-        }
-
-        class ApiViewHolder extends RecyclerView.ViewHolder {
-            private Button button;
-
-            ApiViewHolder(@NonNull View itemView) {
-                super(itemView);
-                button = itemView.findViewById(R.id.button_item);
-            }
-        }
+    protected String getTitleName() {
+        return "News";
     }
 }

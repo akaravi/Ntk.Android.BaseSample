@@ -29,7 +29,7 @@ public class SetCommentActivity extends AbstractActivity {
 
     @Override
     protected int layout() {
-        return R.layout.act_news_set_comment;
+        return R.layout.activity_news_set_comment;
     }
 
     @Override

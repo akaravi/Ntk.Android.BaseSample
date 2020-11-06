@@ -28,7 +28,7 @@ public class ContentFavoriteAddOrRemoveActivity extends AbstractActivity {
 
     @Override
     protected int layout() {
-        return R.layout.act_news_set_content_favorite_add_or_remove;
+        return R.layout.activity_news_content_favorite_add_or_remove;
     }
 
 

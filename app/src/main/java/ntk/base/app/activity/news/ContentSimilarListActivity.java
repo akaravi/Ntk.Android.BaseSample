@@ -30,7 +30,7 @@ public class ContentSimilarListActivity extends BaseFilterModelingActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        extraInflate(R.layout.act_news_content_similar_list);
+        extraInflate(R.layout.activity_news_content_similar_list);
     }
 
     public void getData() {

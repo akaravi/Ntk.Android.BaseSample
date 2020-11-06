@@ -28,7 +28,7 @@ public class CommentViewActivity extends AbstractActivity {
 
     @Override
     protected int layout() {
-        return R.layout.act_news_get_comment_view;
+        return R.layout.activity_news_comment_view;
     }
 
     @Override

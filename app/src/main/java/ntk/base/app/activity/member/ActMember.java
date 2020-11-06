@@ -45,7 +45,7 @@ public class ActMember extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act_news);
+        setContentView(R.layout.activity_api_list);
         ButterKnife.bind(this);
         init();
     }

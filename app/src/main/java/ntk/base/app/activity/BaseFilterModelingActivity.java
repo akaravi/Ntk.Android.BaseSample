@@ -59,7 +59,7 @@ public abstract class BaseFilterModelingActivity extends AppCompatActivity imple
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_base_filtermodeling);
+        setContentView(R.layout.activity_base_filtermodeling);
         ButterKnife.bind(this);
         initialize();
     }

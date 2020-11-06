@@ -36,7 +36,7 @@ public class ActCore extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_core);
+        setContentView(R.layout.activity_api_list);
         ButterKnife.bind(this);
         initialize();
     }

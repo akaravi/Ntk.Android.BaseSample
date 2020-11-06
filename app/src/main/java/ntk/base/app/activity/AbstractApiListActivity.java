@@ -1,7 +1,6 @@
-package ntk.base.app.activity.coretoken;
+package ntk.base.app.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,28 +17,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ntk.base.app.R;
 
-public class ActCoreToken extends AppCompatActivity {
-
-
+public abstract class AbstractApiListActivity extends AppCompatActivity {
     public static String LAYOUT_VALUE = "LAYOUT_VALUE";
-    private String[] articleList = new String[]{"TOKEN_DEVICE"};
     @BindView(R.id.api_recycler_view)
     RecyclerView apiRecyclerView;
+    private String[] ApiList;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_api_list);
         ButterKnife.bind(this);
         init();
-    }
-
-    private void init() {
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("CoreToken");
-        apiRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        apiRecyclerView.setAdapter(new ActCoreToken.ApiRecyclerViewAdapter(this, articleList));
     }
 
     @Override
@@ -59,7 +47,18 @@ public class ActCoreToken extends AppCompatActivity {
         return super.onSupportNavigateUp();
     }
 
-    public class ApiRecyclerViewAdapter extends RecyclerView.Adapter<ActCoreToken.ApiRecyclerViewAdapter.ApiViewHolder> {
+    private void init() {
+        ApiList = apiList();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(getTitleName());
+        apiRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        apiRecyclerView.setAdapter(new ApiRecyclerViewAdapter(this, ApiList));
+    }
+
+    protected abstract String[] apiList();
+
+    public class ApiRecyclerViewAdapter extends RecyclerView.Adapter<ApiRecyclerViewAdapter.ApiViewHolder> {
         private Context context;
         private String[] list;
 
@@ -70,22 +69,19 @@ public class ActCoreToken extends AppCompatActivity {
 
         @NonNull
         @Override
-        public ActCoreToken.ApiRecyclerViewAdapter.ApiViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-            return new ActCoreToken.ApiRecyclerViewAdapter.ApiViewHolder(LayoutInflater.from(context).inflate(R.layout.button_item, viewGroup, false));
+        public ApiRecyclerViewAdapter.ApiViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+            return new ApiRecyclerViewAdapter.ApiViewHolder(LayoutInflater.from(context).inflate(R.layout.button_item, viewGroup, false));
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ActCoreToken.ApiRecyclerViewAdapter.ApiViewHolder apiViewHolder, int i) {
+        public void onBindViewHolder(@NonNull ApiRecyclerViewAdapter.ApiViewHolder apiViewHolder, int i) {
             apiViewHolder.button.setText(list[i]);
+            apiViewHolder.button.setId(i);
             apiViewHolder.button.setTag(list[i]);
             apiViewHolder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    switch (view.getTag().toString()) {
-                        case "TOKEN_DEVICE":
-                            startActivity(new Intent(ActCoreToken.this, ActTokenDevice.class).putExtra(LAYOUT_VALUE, "ArticleContentList"));
-                            break;
-                    }
+                    chooseActivity(view);
                 }
             });
         }
@@ -104,4 +100,8 @@ public class ActCoreToken extends AppCompatActivity {
             }
         }
     }
+
+    protected abstract void chooseActivity(View view);
+
+    protected abstract String getTitleName();
 }
