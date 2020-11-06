@@ -36,7 +36,7 @@ import ntk.base.app.activity.coretoken.ActCoreToken;
 import ntk.base.app.activity.estate.ActEstate;
 import ntk.base.app.activity.file.ActFile;
 import ntk.base.app.activity.member.ActMember;
-import ntk.base.app.activity.news.ActNews;
+import ntk.base.app.activity.news.NewsActivities;
 import ntk.base.app.activity.object.ActObject;
 import ntk.base.app.activity.pooling.ActPooling;
 import ntk.base.app.activity.product.ActProduct;
@@ -189,7 +189,7 @@ public class Main extends AppCompatActivity {
                             startActivity(new Intent(context, ActArticle.class));
                             break;
                         case 3:
-                            startActivity(new Intent(context, ActNews.class));
+                            startActivity(new Intent(context, NewsActivities.class));
                             break;
                         case 4:
                             startActivity(new Intent(context, ActPooling.class));

@@ -42,10 +42,10 @@ public class ContentViewActivity extends BaseFilterModelingActivity {
 
     public void getData() {
         NewsContentViewRequest request = new NewsContentViewRequest();
-        request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
-        request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
+        request.RowPerPage = Integer.parseInt(rowPerPageText.getText().toString());
+        request.SkipRowData = Integer.parseInt(skipRowDataText.getText().toString());
         request.SortType = sort_Type_posistion;
-        request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
+        request.CurrentPageNumber = Integer.parseInt(currentPageNumberText.getText().toString());
         request.SortColumn = sortColumnText.getText().toString();
         if (!txtId.getText().toString().matches("")) {
             if (txtId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
@@ -53,7 +53,7 @@ public class ContentViewActivity extends BaseFilterModelingActivity {
                 progressBar.setVisibility(View.GONE);
                 return;
             } else {
-                request.Id = Long.valueOf(txtId.getText().toString());
+                request.Id = Long.parseLong(txtId.getText().toString());
             }
         } else {
             txtId.setError("Required !!");
@@ -66,7 +66,7 @@ public class ContentViewActivity extends BaseFilterModelingActivity {
                 progressBar.setVisibility(View.GONE);
                 return;
             } else {
-                request.ActionClientOrder = Integer.valueOf(txtActionClientOrder.getText().toString());
+                request.ActionClientOrder = Integer.parseInt(txtActionClientOrder.getText().toString());
             }
         } else {
             txtActionClientOrder.setError("Required !!");
@@ -79,7 +79,7 @@ public class ContentViewActivity extends BaseFilterModelingActivity {
                 progressBar.setVisibility(View.GONE);
                 return;
             } else {
-                request.ScorePercent = Integer.valueOf(txtScorePercent.getText().toString());
+                request.ScorePercent = Integer.parseInt(txtScorePercent.getText().toString());
             }
         } else {
             txtScorePercent.setError("Required !!");

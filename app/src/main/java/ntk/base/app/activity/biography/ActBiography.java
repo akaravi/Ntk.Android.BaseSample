@@ -13,9 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import ntk.base.app.activity.news.ActGetCommentView;
-import ntk.base.app.activity.news.ActGetContentList;
-import ntk.base.app.activity.news.ActSetComment;
+import ntk.base.app.activity.news.CommentViewActivity;
+import ntk.base.app.activity.news.ContentListActivity;
+import ntk.base.app.activity.news.SetCommentActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ntk.base.app.R;
@@ -101,7 +101,7 @@ public class ActBiography extends AppCompatActivity {
                 public void onClick(View view) {
                     switch (view.getId()) {
                         case 0:
-                            startActivity(new Intent(ActBiography.this, ActGetContentList.class));
+                            startActivity(new Intent(ActBiography.this, ContentListActivity.class));
                             break;
                         case 1:
                             startActivity(new Intent(ActBiography.this, ActGetContentView.class));
@@ -128,10 +128,10 @@ public class ActBiography extends AppCompatActivity {
                             startActivity(new Intent(ActBiography.this, ActGetContentFavoriteList.class));
                             break;
                         case 9:
-                            startActivity(new Intent(ActBiography.this, ActSetComment.class));
+                            startActivity(new Intent(ActBiography.this, SetCommentActivity.class));
                             break;
                         case 10:
-                            startActivity(new Intent(ActBiography.this, ActGetCommentView.class));
+                            startActivity(new Intent(ActBiography.this, CommentViewActivity.class));
                             break;
                         case 11:
                             startActivity(new Intent(ActBiography.this, ActContentCategoryList.class));

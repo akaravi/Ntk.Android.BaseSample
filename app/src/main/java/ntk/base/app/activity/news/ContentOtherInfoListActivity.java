@@ -15,10 +15,10 @@ public class ContentOtherInfoListActivity extends BaseFilterModelingActivity {
 
     public void getData() {
         FilterDataModel request = new FilterDataModel();
-        request.RowPerPage = Integer.valueOf(rowPerPageText.getText().toString());
-        request.SkipRowData = Integer.valueOf(skipRowDataText.getText().toString());
+        request.RowPerPage = Integer.parseInt(rowPerPageText.getText().toString());
+        request.SkipRowData = Integer.parseInt(skipRowDataText.getText().toString());
         request.SortType = sort_Type_posistion;
-        request.CurrentPageNumber = Integer.valueOf(currentPageNumberText.getText().toString());
+        request.CurrentPageNumber = Integer.parseInt(currentPageNumberText.getText().toString());
         request.SortColumn = sortColumnText.getText().toString();
         new NewsContentOtherInfoService(this).getAll(request)
                 .observeOn(AndroidSchedulers.mainThread())

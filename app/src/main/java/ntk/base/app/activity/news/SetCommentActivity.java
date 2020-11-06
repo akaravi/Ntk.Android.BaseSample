@@ -71,7 +71,7 @@ public class SetCommentActivity extends AbstractActivity {
                 progressBar.setVisibility(View.GONE);
                 return;
             } else {
-                request.linkContentid = Long.valueOf(txtLinkContentId.getText().toString());
+                request.linkContentid = Long.parseLong(txtLinkContentId.getText().toString());
             }
         } else {
             txtLinkContentId.setError("Required !!");
