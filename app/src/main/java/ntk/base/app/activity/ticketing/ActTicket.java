@@ -20,7 +20,7 @@ import ntk.base.app.R;
 
 public class ActTicket extends AppCompatActivity {
     public static String LAYOUT_VALUE = "LAYOUT_VALUE";
-    @BindView(R.id.pooling_recycler_view)
+    @BindView(R.id.api_recycler_view)
     RecyclerView poolingRecyclerView;
     private String[] ticketList = new String[]{"Ticketing Answer List",
             "Ticketing Answer Submit",
@@ -32,7 +32,7 @@ public class ActTicket extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_ticket);
+        setContentView(R.layout.activity_api_list);
         ButterKnife.bind(this);
         init();
     }

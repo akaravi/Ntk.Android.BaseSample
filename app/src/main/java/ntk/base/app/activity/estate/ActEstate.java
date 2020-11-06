@@ -35,7 +35,7 @@ public class ActEstate extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_estate);
+        setContentView(R.layout.activity_api_list);
         ButterKnife.bind(this);
         initialize();
     }

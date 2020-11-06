@@ -26,7 +26,7 @@ public class ActFile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_file);
+        setContentView(R.layout.activity_api_list);
         ButterKnife.bind(this);
         initialize();
     }
