@@ -1,40 +1,19 @@
 package ntk.base.app.activity.news;
 
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.InputType;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import ntk.base.app.config.ConfigRestHeader;
-import ntk.base.app.config.ConfigStaticValue;
-import ntk.base.app.dialog.JsonDialog;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-import ntk.android.base.api.news.interfase.INews;
 import ntk.android.base.api.news.model.NewsContentFavoriteAddRequest;
-import ntk.android.base.api.news.model.NewsContentFavoriteAddResponse;
 import ntk.android.base.api.news.model.NewsContentFavoriteRemoveRequest;
-import ntk.android.base.api.news.model.NewsContentFavoriteRemoveResponse;
-import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.R;
+import ntk.base.app.activity.AbstractActivity;
 
-public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
+public class ActSetContentFavoriteAddOrRemove extends AbstractActivity {
 
     @BindView(R.id.btnAdd)
     Button btnAdd;
@@ -46,24 +25,16 @@ public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
     ProgressBar progressBarRemove;
     @BindView(R.id.txtIdAddOrRemove)
     EditText txtIdAddOrRemove;
-    @BindView(R.id.lblLayout)
-    TextView lblLayout;
-    private ConfigRestHeader configRestHeader = new ConfigRestHeader();
-    private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_news_set_content_favorite_add_or_remove);
-        ButterKnife.bind(this);
-        initialize();
+    protected int layout() {
+        return R.layout.act_news_set_content_favorite_add_or_remove;
     }
 
-    private void initialize() {
-        lblLayout.setText("NewsContentFavoriteAdd/NewsContentFavoriteRemove");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("NewsContentFavoriteAddOrRemove");
+
+    @Override
+    protected String getTitleName() {
+        return "NewsContentFavoriteAdd";
     }
 
     @OnClick(R.id.btnRemove)
@@ -93,38 +64,7 @@ public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
             progressBarAdd.setVisibility(View.GONE);
             return;
         }
-        RetrofitManager manager = new RetrofitManager(ActSetContentFavoriteAddOrRemove.this);
-        INews iNews = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(INews.class);
-        Map<String, String> headers = new HashMap<>();
-        headers = configRestHeader.GetHeaders(this);
-
-        Observable<NewsContentFavoriteAddResponse> call = iNews.SetContentFavoriteAdd(headers, request);
-        call.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<NewsContentFavoriteAddResponse>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                    }
-
-                    @Override
-                    public void onNext(NewsContentFavoriteAddResponse response) {
-                        JsonDialog cdd = new JsonDialog(ActSetContentFavoriteAddOrRemove.this, response);
-                        cdd.setCanceledOnTouchOutside(false);
-                        cdd.show();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        progressBarAdd.setVisibility(View.GONE);
-                        Log.i("Error", e.getMessage());
-                        Toast.makeText(ActSetContentFavoriteAddOrRemove.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        progressBarAdd.setVisibility(View.GONE);
-                    }
-                });
+        //todo karavi ask
     }
 
     private void removeFavorite() {
@@ -142,53 +82,12 @@ public class ActSetContentFavoriteAddOrRemove extends AppCompatActivity {
             progressBarRemove.setVisibility(View.GONE);
             return;
         }
-        RetrofitManager manager = new RetrofitManager(ActSetContentFavoriteAddOrRemove.this);
-        INews iNews = manager.getRetrofit(configStaticValue.GetApiBaseUrl()).create(INews.class);
-        Map<String, String> headers = new HashMap<>();
-        headers = configRestHeader.GetHeaders(this);
 
-
-        Observable<NewsContentFavoriteRemoveResponse> call = iNews.SetContentFavoriteRemove(headers, request);
-        call.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<NewsContentFavoriteRemoveResponse>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                    }
-
-                    @Override
-                    public void onNext(NewsContentFavoriteRemoveResponse response) {
-                        JsonDialog cdd = new JsonDialog(ActSetContentFavoriteAddOrRemove.this, response);
-                        cdd.setCanceledOnTouchOutside(false);
-                        cdd.show();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        progressBarRemove.setVisibility(View.GONE);
-                        Log.i("Error", e.getMessage());
-                        Toast.makeText(ActSetContentFavoriteAddOrRemove.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        progressBarRemove.setVisibility(View.GONE);
-                    }
-                });
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        finish();
-        return super.onSupportNavigateUp();
-    }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            finish();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
+    public void getData() {
+        //not need to implement
     }
 }

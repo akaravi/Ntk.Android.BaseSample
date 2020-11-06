@@ -68,7 +68,6 @@ public class ActGetContentList extends BaseFilterModelingActivity {
                 .subscribe(new NtkObserver<ErrorException<NewsContent>>() {
                     @Override
                     public void onNext(@NonNull ErrorException<NewsContent> response) {
-
                         showResult(response);
                     }
 

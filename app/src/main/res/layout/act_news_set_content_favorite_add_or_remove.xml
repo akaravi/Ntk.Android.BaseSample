@@ -107,5 +107,8 @@
             </RelativeLayout>
         </LinearLayout>
 
+        <include
+            layout="@layout/button"
+            android:visibility="gone" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
