@@ -20,9 +20,9 @@ import ntk.android.base.entitymodel.base.FilterDataModel;
 import ntk.android.base.entitymodel.base.Filters;
 import ntk.android.base.services.news.NewsContentService;
 import ntk.base.app.R;
-import ntk.base.app.activity.BaseFilterModelingActivity;
+import ntk.base.app.activity.AbstractFilterModelingActivity;
 
-public class ContentListActivity extends BaseFilterModelingActivity {
+public class ContentListActivity extends AbstractFilterModelingActivity {
 
     @BindView(R.id.txtTag)
     EditText txtTag;

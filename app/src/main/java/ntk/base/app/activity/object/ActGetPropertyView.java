@@ -44,7 +44,7 @@ public class ActGetPropertyView extends AppCompatActivity {
     TextView lblLayout;
     private ConfigRestHeader configRestHeader = new ConfigRestHeader();
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
-
+    //same as getById
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

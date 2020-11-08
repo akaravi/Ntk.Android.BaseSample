@@ -8,9 +8,9 @@ import ntk.android.base.config.NtkObserver;
 import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.base.entitymodel.base.FilterDataModel;
 import ntk.android.base.services.news.NewsCategoryService;
-import ntk.base.app.activity.BaseFilterModelingActivity;
+import ntk.base.app.activity.AbstractFilterModelingActivity;
 
-public class CategoryListActivity extends BaseFilterModelingActivity {
+public class CategoryListActivity extends AbstractFilterModelingActivity {
 
 
     @Override

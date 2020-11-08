@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <application  android:name=".TicketingApp"
+    <application  android:name=".SampleApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -168,6 +168,12 @@
         <activity android:name=".activity.file.ActLinkManagementTargetActShortLinkGet" />
         <activity android:name=".activity.coretoken.ActCoreToken" />
         <activity android:name=".activity.coretoken.ActTokenDevice" />
+        <activity android:name=".activity.hypershop.CategoryGetAllActivity" />
+        <activity android:name=".activity.hypershop.CategoryGetOneActivity" />
+        <activity android:name=".activity.hypershop.ContentGetAllActivity" />
+        <activity android:name=".activity.hypershop.ContentGetOneActivity" />
+        <activity android:name=".activity.hypershop.HyperShopActivity" />
+        <activity android:name=".activity.hypershop.OrderAddActivity" />
 
     </application>
 

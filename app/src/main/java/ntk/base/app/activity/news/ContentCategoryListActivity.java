@@ -19,11 +19,11 @@ import ntk.android.base.entitymodel.base.FilterDataModel;
 import ntk.android.base.entitymodel.base.Filters;
 import ntk.android.base.services.news.NewsCategoryService;
 import ntk.base.app.R;
-import ntk.base.app.activity.BaseFilterModelingActivity;
+import ntk.base.app.activity.AbstractFilterModelingActivity;
 
 
 //same as base extra Link Content Id
-public class ContentCategoryListActivity extends BaseFilterModelingActivity {
+public class ContentCategoryListActivity extends AbstractFilterModelingActivity {
 
 
     @BindView(R.id.txtLinkContentId)

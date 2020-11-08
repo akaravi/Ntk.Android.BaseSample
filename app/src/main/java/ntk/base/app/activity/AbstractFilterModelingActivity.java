@@ -23,10 +23,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import ntk.android.base.entitymodel.base.FilterDataModel;
 import ntk.base.app.R;
 import ntk.base.app.dialog.JsonDialog;
 
-public abstract class BaseFilterModelingActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public abstract class AbstractFilterModelingActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.row_per_page_text)
     protected EditText rowPerPageText;
@@ -65,10 +66,11 @@ public abstract class BaseFilterModelingActivity extends AppCompatActivity imple
     }
 
     protected void extraInflate(@LayoutRes int layout) {
-       ViewStub stub= findViewById(R.id.view_stub);
-       stub.setLayoutResource(layout);
-       stub.inflate();
+        ViewStub stub = findViewById(R.id.view_stub);
+        stub.setLayoutResource(layout);
+        stub.inflate();
     }
+
     private void initialize() {
         lblLayout.setText(getTitleName());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -79,6 +81,16 @@ public abstract class BaseFilterModelingActivity extends AppCompatActivity imple
         sort_type.add("Random_Sort");
         sortTypeSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sort_type));
         sortTypeSpinner.setOnItemSelectedListener(this);
+    }
+
+    public FilterDataModel getReq() {
+        FilterDataModel request = new FilterDataModel();
+        request.RowPerPage = Integer.parseInt(rowPerPageText.getText().toString());
+        request.SkipRowData = Integer.parseInt(skipRowDataText.getText().toString());
+        request.SortType = sort_Type_posistion;
+        request.CurrentPageNumber = Integer.parseInt(currentPageNumberText.getText().toString());
+        request.SortColumn = sortColumnText.getText().toString();
+        return request;
     }
 
     @Override

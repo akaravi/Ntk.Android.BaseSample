@@ -18,10 +18,10 @@ import ntk.android.base.config.NtkObserver;
 import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.base.services.news.NewsContentService;
 import ntk.base.app.R;
-import ntk.base.app.activity.BaseFilterModelingActivity;
+import ntk.base.app.activity.AbstractFilterModelingActivity;
 
 //can do with base with extra inflate
-public class ContentViewActivity extends BaseFilterModelingActivity {
+public class ContentViewActivity extends AbstractFilterModelingActivity {
 
     @BindView(R.id.txtId)
     EditText txtId;

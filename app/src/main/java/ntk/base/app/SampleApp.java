@@ -14,7 +14,7 @@ import ntk.android.base.ApplicationParameter;
 import ntk.android.base.BaseNtkApplication;
 
 
-public class TicketingApp extends BaseNtkApplication {
+public class SampleApp extends BaseNtkApplication {
 
     public static boolean Inbox = false;
 

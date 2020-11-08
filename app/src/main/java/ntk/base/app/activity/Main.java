@@ -27,25 +27,9 @@ import com.google.gson.Gson;
 
 import java.util.Map;
 
-import ntk.base.app.activity.application.ActApplication;
-import ntk.base.app.activity.article.ActArticle;
-import ntk.base.app.activity.biography.ActBiography;
-import ntk.base.app.activity.blog.ActBlog;
-import ntk.base.app.activity.core.ActCore;
-import ntk.base.app.activity.coretoken.ActCoreToken;
-import ntk.base.app.activity.estate.ActEstate;
-import ntk.base.app.activity.file.ActFile;
-import ntk.base.app.activity.member.ActMember;
-import ntk.base.app.activity.news.NewsActivities;
-import ntk.base.app.activity.object.ActObject;
-import ntk.base.app.activity.pooling.ActPooling;
-import ntk.base.app.activity.product.ActProduct;
-import ntk.base.app.activity.ticketing.ActTicket;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import ntk.base.app.config.ConfigRestHeader;
-import ntk.base.app.config.ConfigStaticValue;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -57,6 +41,23 @@ import ntk.android.base.api.core.model.MainCoreResponse;
 import ntk.android.base.config.RetrofitManager;
 import ntk.base.app.BuildConfig;
 import ntk.base.app.R;
+import ntk.base.app.activity.application.ActApplication;
+import ntk.base.app.activity.article.ActArticle;
+import ntk.base.app.activity.biography.ActBiography;
+import ntk.base.app.activity.blog.ActBlog;
+import ntk.base.app.activity.core.ActCore;
+import ntk.base.app.activity.coretoken.ActCoreToken;
+import ntk.base.app.activity.estate.ActEstate;
+import ntk.base.app.activity.file.ActFile;
+import ntk.base.app.activity.hypershop.HyperShopActivity;
+import ntk.base.app.activity.member.ActMember;
+import ntk.base.app.activity.news.NewsActivities;
+import ntk.base.app.activity.object.ActObject;
+import ntk.base.app.activity.pooling.ActPooling;
+import ntk.base.app.activity.product.ActProduct;
+import ntk.base.app.activity.ticketing.ActTicket;
+import ntk.base.app.config.ConfigRestHeader;
+import ntk.base.app.config.ConfigStaticValue;
 import ntk.base.app.utill.AppUtill;
 import ntk.base.app.utill.EasyPreference;
 import ntk.base.app.utill.FontManager;
@@ -97,7 +98,7 @@ public class Main extends AppCompatActivity {
             "Advertisement",
             "Vehicle",
             "Object",
-            "Shop"};
+            "Shop", "HyperShop"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -245,6 +246,8 @@ public class Main extends AppCompatActivity {
                         case 21:
                             //Shop
                             break;
+                        case 22:
+                            startActivity(new Intent(context, HyperShopActivity.class));
                     }
                 }
             });

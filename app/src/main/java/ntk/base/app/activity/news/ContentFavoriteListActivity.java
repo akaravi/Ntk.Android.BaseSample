@@ -1,11 +1,11 @@
 package ntk.base.app.activity.news;
 
 import ntk.android.base.entitymodel.base.FilterDataModel;
-import ntk.base.app.activity.BaseFilterModelingActivity;
+import ntk.base.app.activity.AbstractFilterModelingActivity;
 
 //need to define favorite api
 //same as base
-public class ContentFavoriteListActivity extends BaseFilterModelingActivity {
+public class ContentFavoriteListActivity extends AbstractFilterModelingActivity {
 
 
     public void getData() {

@@ -19,9 +19,9 @@ import ntk.android.base.entitymodel.base.Filters;
 import ntk.android.base.entitymodel.news.NewsContentSimilarModel;
 import ntk.android.base.services.news.NewsContentSimilarService;
 import ntk.base.app.R;
-import ntk.base.app.activity.BaseFilterModelingActivity;
+import ntk.base.app.activity.AbstractFilterModelingActivity;
 
-public class ContentSimilarListActivity extends BaseFilterModelingActivity {
+public class ContentSimilarListActivity extends AbstractFilterModelingActivity {
 
 
     @BindView(R.id.txtLinkContentId)

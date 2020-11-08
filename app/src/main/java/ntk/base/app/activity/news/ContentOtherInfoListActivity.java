@@ -8,9 +8,9 @@ import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.base.entitymodel.base.FilterDataModel;
 import ntk.android.base.entitymodel.news.NewsContentOtherInfoModel;
 import ntk.android.base.services.news.NewsContentOtherInfoService;
-import ntk.base.app.activity.BaseFilterModelingActivity;
+import ntk.base.app.activity.AbstractFilterModelingActivity;
 
-public class ContentOtherInfoListActivity extends BaseFilterModelingActivity {
+public class ContentOtherInfoListActivity extends AbstractFilterModelingActivity {
 
 
     public void getData() {
