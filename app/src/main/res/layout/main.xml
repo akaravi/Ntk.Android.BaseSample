@@ -58,6 +58,16 @@
         android:textColor="#fff"
         android:textSize="18sp" />
 
+    <Button
+        android:id="@+id/getDeviceToken"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
+        android:text="گرفتن توکن دستگاه"
+        android:textColor="#fff"
+        android:textSize="18sp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_recycler_view"
         android:layout_width="match_parent"

@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,7 +40,12 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.android.base.api.core.entity.CoreMain;
 import ntk.android.base.api.core.interfase.ICore;
 import ntk.android.base.api.core.model.MainCoreResponse;
+import ntk.android.base.config.NtkObserver;
 import ntk.android.base.config.RetrofitManager;
+import ntk.android.base.entitymodel.base.ErrorException;
+import ntk.android.base.entitymodel.base.TokenInfoModel;
+import ntk.android.base.entitymodel.news.NewsTagModel;
+import ntk.android.base.services.core.CoreAuthService;
 import ntk.base.app.BuildConfig;
 import ntk.base.app.R;
 import ntk.base.app.activity.application.ActApplication;
@@ -58,6 +65,7 @@ import ntk.base.app.activity.product.ActProduct;
 import ntk.base.app.activity.ticketing.ActTicket;
 import ntk.base.app.config.ConfigRestHeader;
 import ntk.base.app.config.ConfigStaticValue;
+import ntk.base.app.dialog.JsonDialog;
 import ntk.base.app.utill.AppUtill;
 import ntk.base.app.utill.EasyPreference;
 import ntk.base.app.utill.FontManager;
@@ -268,6 +276,35 @@ public class Main extends AppCompatActivity {
         }
     }
 
+    @OnClick(R.id.getDeviceToken)
+    public void getDeviceToken() {
+        new CoreAuthService(this).getTokenDevice()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new NtkObserver<ErrorException<TokenInfoModel>>() {
+                    @Override
+                    public void onNext(@io.reactivex.annotations.NonNull ErrorException<TokenInfoModel> newsTagModelErrorException) {
+                        showResult(newsTagModelErrorException);
+                    }
+
+                    @Override
+                    public void onError(@io.reactivex.annotations.NonNull Throwable e) {
+                        showError(e);
+                    }
+                });
+    }
+    public void showResult(Object response) {
+
+        JsonDialog cdd = new JsonDialog(this, response);
+        cdd.setCanceledOnTouchOutside(false);
+        cdd.show();
+    }
+
+    public void showError(Throwable e) {
+
+        Log.i("Error", e.getMessage());
+        Toast.makeText(this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+    }
     @OnClick(R.id.defaultValueBtn)
     public void onDefaultValueBtnClick() {
 

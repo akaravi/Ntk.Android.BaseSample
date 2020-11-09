@@ -20,7 +20,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.android.base.api.core.entity.TokenInfoModel;
+import ntk.android.base.entitymodel.base.TokenInfoModel;
 import ntk.android.base.dtomodel.core.TokenDeviceClientInfoDtoModel;
 import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.base.services.core.CoreAuthService;
