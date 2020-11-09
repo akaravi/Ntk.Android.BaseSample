@@ -35,7 +35,7 @@ public class ContentViewActivity extends AbstractFilterModelingActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        extraInflate(R.layout.activity_news_get_content_view);
+//        extraInflate(R.layout.activity_news_get_content_view);
 
     }
 

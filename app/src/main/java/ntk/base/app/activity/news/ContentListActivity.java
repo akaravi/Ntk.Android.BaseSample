@@ -34,9 +34,12 @@ public class ContentListActivity extends AbstractFilterModelingActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        extraInflate(R.layout.activity_news_content_list);
     }
 
+    @Override
+    protected Integer extraInflateId() {
+        return R.layout.activity_news_content_list;
+    }
 
     @OnClick(R.id.btnAdd)
     public void onAddClick(View v) {

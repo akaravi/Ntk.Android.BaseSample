@@ -61,14 +61,20 @@ public abstract class AbstractFilterModelingActivity extends AppCompatActivity i
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_filtermodeling);
+        Integer layoutExtra = extraInflateId();
+        if (layoutExtra != null) {
+            View inflate = getLayoutInflater().inflate(layoutExtra, findViewById(R.id.nestedScrollview), false);
+            ViewStub stub = findViewById(R.id.view_stub);
+            stub.setLayoutResource(layoutExtra);
+            stub.inflate();
+        }
         ButterKnife.bind(this);
         initialize();
     }
 
-    protected void extraInflate(@LayoutRes int layout) {
-        ViewStub stub = findViewById(R.id.view_stub);
-        stub.setLayoutResource(layout);
-        stub.inflate();
+    protected @LayoutRes
+    Integer extraInflateId() {
+        return null;
     }
 
     private void initialize() {
