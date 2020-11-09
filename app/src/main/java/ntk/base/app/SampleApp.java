@@ -11,6 +11,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import java.io.File;
 
 import ntk.android.base.ApplicationParameter;
+import ntk.android.base.ApplicationStaticParameter;
 import ntk.android.base.BaseNtkApplication;
 
 
@@ -40,7 +41,7 @@ public class SampleApp extends BaseNtkApplication {
 
     @Override
     public void bindFireBase() {
-       //not implement
+        //not implement
     }
 
     @Override
@@ -52,5 +53,12 @@ public class SampleApp extends BaseNtkApplication {
     @Override
     public ApplicationParameter getApplicationParameter() {
         return new ApplicationParameter(BuildConfig.APPLICATION_ID, BuildConfig.APPLICATION_ID, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE);
+    }
+
+    @Override
+    protected ApplicationStaticParameter getConfig() {
+//        ApplicationStaticParameter.URL="http://24b3272b.ngrok.io/";;
+        return new ApplicationStaticParameter();
+
     }
 }
