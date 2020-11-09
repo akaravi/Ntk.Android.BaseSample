@@ -11,16 +11,20 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import java.util.HashMap;
 import java.util.Map;
 
+import ntk.android.base.utill.EasyPreference;
 import ntk.base.app.BuildConfig;
 import ntk.base.app.utill.AppUtill;
 
 public class ConfigRestHeader {
-
+    final String tokenKey="DeviceToken";
     @SuppressLint("HardwareIds")
     public Map<String, String> GetHeaders(Context context) {
         TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         Map<String, String> headers = new HashMap<>();
         headers.put("Token", "");
+        String prevToken = EasyPreference.with(context).getString(tokenKey, "");
+        if (!prevToken.equalsIgnoreCase(""))
+            headers.put("DeviceToken", prevToken);
         headers.put("LocationLong", "0");
         headers.put("LocationLat", "0");
         headers.put("DeviceId", Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID));
