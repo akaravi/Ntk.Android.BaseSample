@@ -44,7 +44,6 @@ import ntk.android.base.config.NtkObserver;
 import ntk.android.base.config.RetrofitManager;
 import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.base.entitymodel.base.TokenInfoModel;
-import ntk.android.base.entitymodel.news.NewsTagModel;
 import ntk.android.base.services.core.CoreAuthService;
 import ntk.base.app.BuildConfig;
 import ntk.base.app.R;

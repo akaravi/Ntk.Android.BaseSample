@@ -8,8 +8,6 @@ import io.reactivex.schedulers.Schedulers;
 import ntk.android.base.config.NtkObserver;
 import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.base.entitymodel.base.FilterDataModel;
-import ntk.android.base.entitymodel.news.NewsCategoryTagModel;
-import ntk.android.base.services.news.NewsCategoryTagService;
 import ntk.base.app.activity.AbstractFilterModelingActivity;
 
 public class CategoryTagListActivity extends AbstractFilterModelingActivity implements AdapterView.OnItemSelectedListener {
@@ -27,21 +25,21 @@ public class CategoryTagListActivity extends AbstractFilterModelingActivity impl
         request.SortType = sort_Type_posistion;
         request.CurrentPageNumber = Integer.parseInt(currentPageNumberText.getText().toString());
         request.SortColumn = sortColumnText.getText().toString();
-
-        new NewsCategoryTagService(this).getAll(request)
-        .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new NtkObserver<ErrorException<NewsCategoryTagModel>>() {
-                    @Override
-                    public void onNext(@NonNull ErrorException<NewsCategoryTagModel> newsCategoryTagModelErrorException) {
-                        showResult(newsCategoryTagModelErrorException);
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        showError(e);
-                    }
-                });
+//
+//        new NewsCategoryTagService(this).getAll(request)
+//        .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(Schedulers.io())
+//                .subscribe(new NtkObserver<ErrorException<NewsCategoryTagModel>>() {
+//                    @Override
+//                    public void onNext(@NonNull ErrorException<NewsCategoryTagModel> newsCategoryTagModelErrorException) {
+//                        showResult(newsCategoryTagModelErrorException);
+//                    }
+//
+//                    @Override
+//                    public void onError(@NonNull Throwable e) {
+//                        showError(e);
+//                    }
+//                });
 
     }
 
