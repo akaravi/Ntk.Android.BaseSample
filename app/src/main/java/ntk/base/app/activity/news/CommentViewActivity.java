@@ -12,6 +12,7 @@ import ntk.android.base.api.news.entity.NewsContent;
 import ntk.android.base.config.NtkObserver;
 import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.base.entitymodel.news.NewsCommentModel;
+import ntk.android.base.entitymodel.news.NewsContentModel;
 import ntk.android.base.services.news.NewsContentService;
 import ntk.base.app.R;
 import ntk.base.app.activity.AbstractActivity;
@@ -68,10 +69,10 @@ public class CommentViewActivity extends AbstractActivity {
         }
         new NewsContentService(this).getViewModel().observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new NtkObserver<ErrorException<NewsContent>>() {
+                .subscribe(new NtkObserver<ErrorException<NewsContentModel>>() {
 
                     @Override
-                    public void onNext(@NonNull ErrorException<NewsContent> response) {
+                    public void onNext(@NonNull ErrorException<NewsContentModel> response) {
                         showResult(response);
                     }
 

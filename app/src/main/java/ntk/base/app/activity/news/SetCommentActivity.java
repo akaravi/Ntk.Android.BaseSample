@@ -78,7 +78,7 @@ public class SetCommentActivity extends AbstractActivity {
             progressBar.setVisibility(View.GONE);
             return;
         }
-        new NewsCommentService(this).Add(request).observeOn(AndroidSchedulers.mainThread())
+        new NewsCommentService(this).add(request).observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new NtkObserver<ErrorExceptionBase>() {
                     @Override

@@ -16,6 +16,7 @@ import ntk.android.base.api.news.entity.NewsContent;
 import ntk.android.base.api.news.model.NewsContentViewRequest;
 import ntk.android.base.config.NtkObserver;
 import ntk.android.base.entitymodel.base.ErrorException;
+import ntk.android.base.entitymodel.news.NewsContentModel;
 import ntk.android.base.services.news.NewsContentService;
 import ntk.base.app.R;
 import ntk.base.app.activity.AbstractFilterModelingActivity;
@@ -89,9 +90,9 @@ public class ContentViewActivity extends AbstractFilterModelingActivity {
         new NewsContentService(this).getViewModel()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new NtkObserver<ErrorException<NewsContent>>() {
+                .subscribe(new NtkObserver<ErrorException<NewsContentModel>>() {
                     @Override
-                    public void onNext(@NonNull ErrorException<NewsContent> newsContentErrorException) {
+                    public void onNext(@NonNull ErrorException<NewsContentModel> newsContentErrorException) {
                         showResult(newsContentErrorException);
                     }
 
