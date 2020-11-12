@@ -59,6 +59,7 @@ public class CommentViewActivity extends AbstractActivity {
                 progressBar.setVisibility(View.GONE);
                 return;
             } else {
+                linkcontetntid=id;
                 //todo karavi say
 //                request.actionClientOrder = Integer.valueOf(txtActionClientOrder.getText().toString());
             }
