@@ -20,9 +20,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ntk.android.base.entitymodel.base.TokenInfoModel;
 import ntk.android.base.dtomodel.core.TokenDeviceClientInfoDtoModel;
 import ntk.android.base.entitymodel.base.ErrorException;
+import ntk.android.base.entitymodel.base.TokenInfoModel;
 import ntk.android.base.services.core.CoreAuthService;
 import ntk.base.app.R;
 import ntk.base.app.config.ConfigRestHeader;
@@ -42,6 +42,8 @@ public class ActTokenDevice extends AppCompatActivity {
     EditText txtOsType;
     @BindView(R.id.txtClientMacAddress)
     EditText txtClientMacAddress;
+    @BindView(R.id.txtPackageName)
+    EditText txtpackageName;
 
     @BindView(R.id.api_test_submit_button)
     Button apiTestSubmitButton;
@@ -77,13 +79,16 @@ public class ActTokenDevice extends AppCompatActivity {
             req.SecurityKey = txtSecurityKey.getText().toString();
         }
         if (!txtDeviceType.getText().toString().equals("")) {
-//          todo  req.DeviceType=Integer.valueOf(txtDeviceType.getText().toString());
+            req.DeviceType = Integer.valueOf(txtDeviceType.getText().toString());
         }
         if (!txtOsType.getText().toString().equals("")) {
-
+            Integer.valueOf(txtOsType.getText().toString());
         }
         if (!txtClientMacAddress.getText().toString().equals("")) {
-//          todo     req.ClientMACAddress = req.DeviceType = Integer.valueOf(txtClientMacAddress.getText().toString());
+            req.ClientMACAddress = (txtClientMacAddress.getText().toString());
+        }
+        if (!txtpackageName.getText().toString().equals("")) {
+            req.PackageName = (txtpackageName.getText().toString());
         }
         new CoreAuthService(this).getTokenDevice(req).observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io()).subscribe(new Observer<ErrorException<TokenInfoModel>>() {
