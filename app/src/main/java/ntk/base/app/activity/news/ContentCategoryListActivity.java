@@ -8,13 +8,12 @@ import butterknife.BindView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.schedulers.Schedulers;
-import ntk.android.base.api.news.entity.NewsCategory;
 import ntk.android.base.config.NtkObserver;
 import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.base.entitymodel.base.FilterDataModel;
 import ntk.android.base.entitymodel.base.Filters;
-import ntk.android.base.entitymodel.news.NewsCategoryModel;
-import ntk.android.base.services.news.NewsCategoryService;
+import ntk.android.base.entitymodel.news.NewsContentModel;
+import ntk.android.base.services.news.NewsContentService;
 import ntk.base.app.R;
 import ntk.base.app.activity.AbstractFilterModelingActivity;
 
@@ -56,11 +55,11 @@ public class ContentCategoryListActivity extends AbstractFilterModelingActivity 
             f.IntValue1 = LinkContentId;
             request.addFilter(f);
         }
-        new NewsCategoryService(this).getAll(request).observeOn(AndroidSchedulers.mainThread())
+        new NewsContentService(this).getAllWithCategoryUsedInContent(request).observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new NtkObserver<ErrorException<NewsCategoryModel>>() {
+                .subscribe(new NtkObserver<ErrorException<NewsContentModel>>() {
                     @Override
-                    public void onNext(@NonNull ErrorException<NewsCategoryModel> response) {
+                    public void onNext(@NonNull ErrorException<NewsContentModel> response) {
                         showResult(response);
                     }
 

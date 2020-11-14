@@ -9,7 +9,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.schedulers.Schedulers;
 import ntk.android.base.config.NtkObserver;
-import ntk.android.base.entitymodel.base.ErrorExceptionBase;
+import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.base.entitymodel.news.NewsCommentModel;
 import ntk.android.base.services.news.NewsCommentService;
 import ntk.base.app.R;
@@ -41,14 +41,14 @@ public class SetCommentActivity extends AbstractActivity {
     public void getData() {
         NewsCommentModel request = new NewsCommentModel();
         if (!txtWriter.getText().toString().matches("")) {
-            request.writer = txtWriter.getText().toString();
+            request.Writer = txtWriter.getText().toString();
         } else {
             txtWriter.setError("Required !!");
             progressBar.setVisibility(View.GONE);
             return;
         }
         if (!txtComment.getText().toString().matches("")) {
-            request.comment = txtWriter.getText().toString();
+            request.Comment = txtWriter.getText().toString();
         } else {
             txtWriter.setError("Required !!");
             progressBar.setVisibility(View.GONE);
@@ -61,7 +61,7 @@ public class SetCommentActivity extends AbstractActivity {
                 progressBar.setVisibility(View.GONE);
                 return;
             } else {
-                request.linkParentId = Long.valueOf(txtLinkParentId.getText().toString());
+                request.LinkParentId = Long.valueOf(txtLinkParentId.getText().toString());
             }
         }
 
@@ -71,7 +71,7 @@ public class SetCommentActivity extends AbstractActivity {
                 progressBar.setVisibility(View.GONE);
                 return;
             } else {
-                request.linkContentid = Long.parseLong(txtLinkContentId.getText().toString());
+                request.LinkContentId = Long.parseLong(txtLinkContentId.getText().toString());
             }
         } else {
             txtLinkContentId.setError("Required !!");
@@ -80,16 +80,17 @@ public class SetCommentActivity extends AbstractActivity {
         }
         new NewsCommentService(this).add(request).observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new NtkObserver<ErrorExceptionBase>() {
+                .subscribe(new NtkObserver<ErrorException<NewsCommentModel>>() {
                     @Override
-                    public void onNext(@NonNull ErrorExceptionBase response) {
-                        showResult(response);
+                    public void onNext(@NonNull ErrorException<NewsCommentModel> newsCommentModelErrorException) {
+                        showResult(newsCommentModelErrorException);
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
                         showError(e);
                     }
+
                 });
     }
 
