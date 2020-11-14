@@ -37,6 +37,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import ntk.android.base.ApplicationStaticParameter;
 import ntk.android.base.api.core.entity.CoreMain;
 import ntk.android.base.api.core.interfase.ICore;
 import ntk.android.base.api.core.model.MainCoreResponse;
@@ -82,6 +83,10 @@ public class Main extends AppCompatActivity {
 
     @BindView(R.id.txtPackageName)
     EditText packageName;
+
+    @BindView(R.id.txtToken)
+    EditText token;
+
     private String urlServerApi;
     private String[] apiNames = new String[]{
             "Core",
@@ -140,8 +145,7 @@ public class Main extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                EasyPreference.with(Main.this).remove("ApiBaseUrl");
-                EasyPreference.with(Main.this).addString("ApiBaseUrl", s.toString());
+                ApplicationStaticParameter.URL = s.toString();
             }
         });
 
@@ -160,6 +164,23 @@ public class Main extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 EasyPreference.with(Main.this).remove("packageName");
                 EasyPreference.with(Main.this).addString("packageName", s.toString());
+            }
+        });
+        token.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                ApplicationStaticParameter.DEVICE_TOKEN = s.toString();
+
             }
         });
     }
@@ -283,6 +304,8 @@ public class Main extends AppCompatActivity {
                 .subscribe(new NtkObserver<ErrorException<TokenInfoModel>>() {
                     @Override
                     public void onNext(@io.reactivex.annotations.NonNull ErrorException<TokenInfoModel> newsTagModelErrorException) {
+                        token.setText(newsTagModelErrorException.Item.DeviceToken);
+                        ApplicationStaticParameter.DEVICE_TOKEN = newsTagModelErrorException.Item.DeviceToken;
                         showResult(newsTagModelErrorException);
                     }
 
@@ -292,6 +315,7 @@ public class Main extends AppCompatActivity {
                     }
                 });
     }
+
     public void showResult(Object response) {
 
         JsonDialog cdd = new JsonDialog(this, response);
@@ -304,6 +328,7 @@ public class Main extends AppCompatActivity {
         Log.i("Error", e.getMessage());
         Toast.makeText(this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
     }
+
     @OnClick(R.id.defaultValueBtn)
     public void onDefaultValueBtnClick() {
 

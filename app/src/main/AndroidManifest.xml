@@ -89,7 +89,6 @@
         <activity android:name=".activity.news.SetCommentActivity" />
         <activity android:name=".activity.news.CommentListActivity" />
         <activity android:name=".activity.news.ContentOtherInfoListActivity" />
-        <activity android:name=".activity.news.CategoryTagListActivity" />
         <activity android:name=".activity.news.CategoryListActivity" />
         <activity android:name=".activity.news.TagListActivity" />
         <activity android:name=".activity.news.ContentViewActivity" />

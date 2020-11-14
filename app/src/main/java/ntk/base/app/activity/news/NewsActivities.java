@@ -11,9 +11,7 @@ public class NewsActivities extends AbstractApiListActivity {
     protected String[] apiList() {
         return new String[]{"News Content List",
                 "News Content View",
-                "News Tag List",
                 "News Category List",
-                "News Category Tag List",
                 "News Content Other Info List",
                 "News Comment List",
                 "News Comment Add",
@@ -34,38 +32,33 @@ public class NewsActivities extends AbstractApiListActivity {
                 startActivity(new Intent(NewsActivities.this, ContentViewActivity.class));
                 break;
             case 2:
-                startActivity(new Intent(NewsActivities.this, TagListActivity.class));
-                break;
-            case 3:
                 startActivity(new Intent(NewsActivities.this, CategoryListActivity.class));
                 break;
-            case 4:
-                startActivity(new Intent(NewsActivities.this, CategoryTagListActivity.class));
-                break;
-            case 5:
+            case 3:
                 startActivity(new Intent(NewsActivities.this, ContentOtherInfoListActivity.class));
                 break;
-            case 6:
+            case 4:
                 startActivity(new Intent(NewsActivities.this, CommentListActivity.class));
                 break;
-            case 7:
+            case 5:
                 startActivity(new Intent(NewsActivities.this, SetCommentActivity.class));
                 break;
-            case 8:
+            case 6:
                 startActivity(new Intent(NewsActivities.this, CommentViewActivity.class));
                 break;
-            case 9:
+            case 7:
                 startActivity(new Intent(NewsActivities.this, ContentFavoriteAddOrRemoveActivity.class));
                 break;
-            case 10:
+            case 8:
                 startActivity(new Intent(NewsActivities.this, ContentFavoriteListActivity.class));
                 break;
-            case 11:
+            case 9:
                 startActivity(new Intent(NewsActivities.this, ContentSimilarListActivity.class));
                 break;
-            case 12:
+            case 10:
                 startActivity(new Intent(NewsActivities.this, ContentCategoryListActivity.class));
                 break;
+
         }
     }
 

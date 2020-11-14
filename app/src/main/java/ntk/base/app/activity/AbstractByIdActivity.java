@@ -44,6 +44,7 @@ public abstract class AbstractByIdActivity extends AppCompatActivity {
         setContentView(R.layout.activity_base_by_id);
         ButterKnife.bind(this);
         initialize();
+
     }
 
     private void initialize() {

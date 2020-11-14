@@ -57,7 +57,7 @@ public class SampleApp extends BaseNtkApplication {
 
     @Override
     protected ApplicationStaticParameter getConfig() {
-//        ApplicationStaticParameter.URL="http://24b3272b.ngrok.io/";;
+        ApplicationStaticParameter.URL="http://1c336c922406.ngrok.io/";;
         return new ApplicationStaticParameter();
 
     }

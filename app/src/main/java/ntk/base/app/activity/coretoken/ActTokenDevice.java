@@ -1,36 +1,30 @@
 package ntk.base.app.activity.coretoken;
 
-import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import ntk.android.base.ApplicationStaticParameter;
 import ntk.android.base.dtomodel.core.TokenDeviceClientInfoDtoModel;
 import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.base.entitymodel.base.TokenInfoModel;
 import ntk.android.base.services.core.CoreAuthService;
 import ntk.base.app.R;
+import ntk.base.app.activity.AbstractActivity;
 import ntk.base.app.config.ConfigRestHeader;
 import ntk.base.app.config.ConfigStaticValue;
-import ntk.base.app.dialog.JsonDialog;
 
 
-public class ActTokenDevice extends AppCompatActivity {
+public class ActTokenDevice extends AbstractActivity {
 
     @BindView(R.id.lblLayout)
     TextView lblLayout;
@@ -53,27 +47,19 @@ public class ActTokenDevice extends AppCompatActivity {
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_core_token_device);
-        ButterKnife.bind(this);
-        initialize();
+    protected int layout() {
+        return R.layout.act_core_token_device;
     }
 
-    private void initialize() {
-        lblLayout.setText("CoreTokenDevice");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("CoreTokenDevice");
+
+    @Override
+    protected String getTitleName() {
+        return "CoreTokenDevice";
     }
 
-    @OnClick(R.id.api_test_submit_button)
-    public void onSubmitClick(View v) {
-        progressBar.setVisibility(View.VISIBLE);
-        getData();
-    }
 
-    private void getData() {
+    @Override
+    public void getData() {
         TokenDeviceClientInfoDtoModel req = new TokenDeviceClientInfoDtoModel();
         if (!txtSecurityKey.getText().toString().matches("")) {
             req.SecurityKey = txtSecurityKey.getText().toString();
@@ -99,17 +85,13 @@ public class ActTokenDevice extends AppCompatActivity {
 
             @Override
             public void onNext(@NonNull ErrorException<TokenInfoModel> tokenInfoModelErrorException) {
-                JsonDialog cdd = new JsonDialog(ActTokenDevice.this, tokenInfoModelErrorException);
-                cdd.setCanceledOnTouchOutside(false);
-                cdd.show();
-
+                showResult(tokenInfoModelErrorException);
+                ApplicationStaticParameter.DEVICE_TOKEN = tokenInfoModelErrorException.Item.DeviceToken;
             }
 
             @Override
             public void onError(@NonNull Throwable e) {
-                progressBar.setVisibility(View.GONE);
-                Log.i("Error", e.getMessage());
-                Toast.makeText(ActTokenDevice.this, "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                showError(e);
             }
 
             @Override

@@ -31,12 +31,12 @@ public abstract class AbstractActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(layout());
         ButterKnife.bind(this);
-        initialize();
+        initializeBase();
     }
 
     protected abstract @LayoutRes int layout();
 
-    private void initialize() {
+    private void initializeBase() {
         lblLayout.setText(getTitleName());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
