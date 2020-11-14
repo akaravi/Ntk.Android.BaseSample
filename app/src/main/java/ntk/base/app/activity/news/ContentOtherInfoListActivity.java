@@ -14,13 +14,7 @@ public class ContentOtherInfoListActivity extends AbstractFilterModelingActivity
 
 
     public void getData() {
-        FilterDataModel request = new FilterDataModel();
-        request.RowPerPage = Integer.parseInt(rowPerPageText.getText().toString());
-        request.SkipRowData = Integer.parseInt(skipRowDataText.getText().toString());
-        request.SortType = sort_Type_posistion;
-        request.CurrentPageNumber = Integer.parseInt(currentPageNumberText.getText().toString());
-        request.SortColumn = sortColumnText.getText().toString();
-        new NewsContentOtherInfoService(this).getAll(request)
+        new NewsContentOtherInfoService(this).getAll(getReq())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new NtkObserver<ErrorException<NewsContentOtherInfoModel>>() {

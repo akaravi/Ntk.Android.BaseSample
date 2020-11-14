@@ -34,12 +34,7 @@ public class ContentSimilarListActivity extends AbstractFilterModelingActivity {
     }
 
     public void getData() {
-        FilterDataModel request = new FilterDataModel();
-        request.RowPerPage = Integer.parseInt(rowPerPageText.getText().toString());
-        request.SkipRowData = Integer.parseInt(skipRowDataText.getText().toString());
-        request.SortType = sort_Type_posistion;
-        request.CurrentPageNumber = Integer.parseInt(currentPageNumberText.getText().toString());
-        request.SortColumn = sortColumnText.getText().toString();
+        FilterDataModel request = getReq();
         long LinkContentId = 0;
         if (!txtLinkContentId.getText().toString().matches("")) {
             if (txtLinkContentId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
@@ -56,12 +51,11 @@ public class ContentSimilarListActivity extends AbstractFilterModelingActivity {
             return;
         }
         if (LinkContentId > 0) {
-            List<Filters> filters = new ArrayList<>();
+
             Filters f = new Filters();
             f.PropertyName = "LinkContentId";
             f.IntValue1 = LinkContentId;
-            filters.add(f);
-            request.filters = filters;
+            request.addFilter(f);
         }
         new NewsContentSimilarService(this).getAll(request)
                 .observeOn(AndroidSchedulers.mainThread())

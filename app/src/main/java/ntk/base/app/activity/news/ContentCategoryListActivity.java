@@ -1,12 +1,8 @@
 package ntk.base.app.activity.news;
 
-import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -29,22 +25,15 @@ public class ContentCategoryListActivity extends AbstractFilterModelingActivity 
     @BindView(R.id.txtLinkContentId)
     EditText txtLinkContentId;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        extraInflate(R.layout.activity_news_content_category_list);
-
+    protected Integer extraInflateId() {
+        return R.layout.activity_news_content_category_list;
     }
-
 
     public void getData() {
 
-        FilterDataModel request = new FilterDataModel();
-        request.RowPerPage = Integer.parseInt(rowPerPageText.getText().toString());
-        request.SkipRowData = Integer.parseInt(skipRowDataText.getText().toString());
-        request.SortType = sort_Type_posistion;
-        request.CurrentPageNumber = Integer.parseInt(currentPageNumberText.getText().toString());
-        request.SortColumn = sortColumnText.getText().toString();
+        FilterDataModel request = getReq();
         long LinkContentId = 0;
         if (!txtLinkContentId.getText().toString().matches("")) {
             if (txtLinkContentId.getInputType() != InputType.TYPE_CLASS_NUMBER) {
@@ -61,12 +50,10 @@ public class ContentCategoryListActivity extends AbstractFilterModelingActivity 
             return;
         }
         if (LinkContentId > 0) {
-            List<Filters> filters = new ArrayList<>();
             Filters f = new Filters();
             f.PropertyName = "LinkContentId";
             f.IntValue1 = LinkContentId;
-            filters.add(f);
-            request.filters = filters;
+            request.addFilter(f);
         }
         new NewsCategoryService(this).getAll(request).observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

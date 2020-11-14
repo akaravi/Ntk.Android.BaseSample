@@ -13,7 +13,6 @@ import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.schedulers.Schedulers;
-import ntk.android.base.api.news.entity.NewsContent;
 import ntk.android.base.config.NtkObserver;
 import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.base.entitymodel.base.FilterDataModel;
@@ -53,18 +52,13 @@ public class ContentListActivity extends AbstractFilterModelingActivity {
     }
 
     public void getData() {
-        FilterDataModel request = new FilterDataModel();
-        request.RowPerPage = Integer.parseInt(rowPerPageText.getText().toString());
-        request.SkipRowData = Integer.parseInt(skipRowDataText.getText().toString());
-        request.SortType = sort_Type_posistion;
-        request.CurrentPageNumber = Integer.parseInt(currentPageNumberText.getText().toString());
-        request.SortColumn = sortColumnText.getText().toString();
-        request.filters = new ArrayList<>();
+        FilterDataModel request = getReq();
         if (!TagIds.isEmpty()) {
+
             Filters filter = new Filters();
             filter.IntContainValues = TagIds;
             filter.PropertyName = "Tag";
-            request.filters.add(filter);
+            request.addFilter(filter);
         }
         new NewsContentService(this).getAll(request)
                 .observeOn(AndroidSchedulers.mainThread())

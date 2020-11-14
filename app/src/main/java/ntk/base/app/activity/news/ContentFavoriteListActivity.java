@@ -16,14 +16,7 @@ public class ContentFavoriteListActivity extends AbstractFilterModelingActivity 
 
 
     public void getData() {
-        FilterDataModel request = new FilterDataModel();
-        request.RowPerPage = Integer.parseInt(rowPerPageText.getText().toString());
-        request.SkipRowData = Integer.parseInt(skipRowDataText.getText().toString());
-        request.SortType = sort_Type_posistion;
-        request.CurrentPageNumber = Integer.parseInt(currentPageNumberText.getText().toString());
-        request.SortColumn = sortColumnText.getText().toString();
-
-        new NewsContentService(this).getFavoriteList(request).
+        new NewsContentService(this).getFavoriteList(getReq()).
                 observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new NtkObserver<ErrorException<NewsContentModel>>() {
