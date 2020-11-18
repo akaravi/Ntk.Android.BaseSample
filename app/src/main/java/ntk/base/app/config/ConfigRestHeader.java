@@ -11,9 +11,9 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import java.util.HashMap;
 import java.util.Map;
 
-import ntk.android.base.utill.EasyPreference;
 import ntk.base.app.BuildConfig;
 import ntk.base.app.utill.AppUtill;
+import ntk.base.app.utill.EasyPreference;
 
 public class ConfigRestHeader {
     final String tokenKey="DeviceToken";
